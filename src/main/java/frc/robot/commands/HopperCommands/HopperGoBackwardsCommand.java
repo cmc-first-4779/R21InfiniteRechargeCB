@@ -2,17 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HopperSubsytem;
 
-public class GoBackwardsCommand extends CommandBase {
-  ExampleSubsystem sub;
+public class HopperGoBackwardsCommand extends CommandBase {
+  HopperSubsytem sub;
   /** Creates a new GoBackwardsCommand. */
-  public GoBackwardsCommand(ExampleSubsytem sub) {
+  public HopperGoBackwardsCommand(HopperSubsytem sub) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.sub = sub;
+this.sub = sub;
   }
 
   // Called when the command is initially scheduled.
@@ -21,7 +21,9 @@ public class GoBackwardsCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    sub.goBackwards(.4);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

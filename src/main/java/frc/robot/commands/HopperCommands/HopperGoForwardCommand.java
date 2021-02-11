@@ -5,12 +5,12 @@
 package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HopperSubsytem;
 
 public class HopperGoForwardCommand extends CommandBase {
-  ExampleSubsystem sub;
+  HopperSubsytem sub;
   /** Creates a new GoForwardCommand. */
-  public HopperGoForwardCommand(ExampleSubsystem sub) {
+  public HopperGoForwardCommand(HopperSubsytem sub) {
     // Use addRequirements() here to declare subsystem dependencies.
 this.sub = sub;
 
