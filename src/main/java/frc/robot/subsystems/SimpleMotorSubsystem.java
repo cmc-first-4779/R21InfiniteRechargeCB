@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -14,12 +17,20 @@ public class SimpleMotorSubsystem extends SubsystemBase {
 
   Spark motor;
   CANSparkMax sparkMax;
+  TalonFX shooterMotor1;
+  TalonFX shooterMotor2;
 
-  double speed = .5;
+  double speed = 1;
   /** Creates a new SimpleMotorSubsystem. */
   public SimpleMotorSubsystem() {
     motor = new Spark(0);
     sparkMax = new CANSparkMax(1, MotorType.kBrushless);
+    shooterMotor1 = new TalonFX(21);
+    shooterMotor2 = new TalonFX(22);
+
+    shooterMotor1.setInverted(true);
+    shooterMotor2.setInverted(false);
+
   }
 
   @Override
@@ -28,8 +39,10 @@ public class SimpleMotorSubsystem extends SubsystemBase {
   }
 
   public void spinforward() {
-    motor.set(speed);
-    sparkMax.set(speed);
+    // motor.set(speed);
+    // sparkMax.set(speed);
+    shooterMotor1.set(ControlMode.PercentOutput, speed);
+    shooterMotor2.set(ControlMode.PercentOutput, speed);
   }
 
   public void spinBackwards() {
@@ -40,5 +53,7 @@ public class SimpleMotorSubsystem extends SubsystemBase {
   public void stop(){
     motor.set(0);
     sparkMax.set(0);
+    shooterMotor1.set(ControlMode.PercentOutput, 0);
+    shooterMotor2.set(ControlMode.PercentOutput, 0);
   }
 }
