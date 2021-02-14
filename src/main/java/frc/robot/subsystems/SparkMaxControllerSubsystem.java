@@ -7,18 +7,13 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SimpleMotorSubsystem extends SubsystemBase {
-
-  Spark motor;
+public class SparkMaxControllerSubsystem extends SubsystemBase {
   CANSparkMax sparkMax;
 
-  double speed = .5;
-  /** Creates a new SimpleMotorSubsystem. */
-  public SimpleMotorSubsystem() {
-    motor = new Spark(0);
+  /** Creates a new SparkMaxControllerSubsystem. */
+  public SparkMaxControllerSubsystem() {
     sparkMax = new CANSparkMax(1, MotorType.kBrushless);
   }
 
@@ -27,18 +22,5 @@ public class SimpleMotorSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void spinforward() {
-    motor.set(speed);
-    sparkMax.set(speed);
-  }
-
-  public void spinBackwards() {
-    motor.set(speed * -1);
-    sparkMax.set(speed * -.5);
-  }
-
-  public void stop(){
-    motor.set(0);
-    sparkMax.set(0);
-  }
+  
 }
