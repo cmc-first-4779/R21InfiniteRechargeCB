@@ -21,19 +21,21 @@ import frc.robot.subsystems.SimpleMotorSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final SimpleMotorSubsystem m_simpleMotorSubsystem = new SimpleMotorSubsystem();
+  private final SimpleMotorSubsystem simpleMotorSubsystem; 
 
-  private final SpinForwardCommand m_spinForwardCommand;
-  private final SpinBackwardsCommand m_spinBackwardsCommand;
+  private final SpinForwardCommand spinForwardCommand;
+  private final SpinBackwardsCommand spinBackwardsCommand;
 
-  public static XboxController m_driverStick;
+  public static XboxController driverStick;
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_spinForwardCommand = new SpinForwardCommand(m_simpleMotorSubsystem);
-    m_spinBackwardsCommand = new SpinBackwardsCommand(m_simpleMotorSubsystem);
-    m_driverStick = new XboxController(0);
+    simpleMotorSubsystem = new SimpleMotorSubsystem();
+    spinForwardCommand = new SpinForwardCommand(simpleMotorSubsystem);
+    spinBackwardsCommand = new SpinBackwardsCommand(simpleMotorSubsystem);
+    
+    driverStick = new XboxController(0);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -46,8 +48,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_driverStick, Button.kA.value).whileHeld(m_spinForwardCommand);
-    new JoystickButton(m_driverStick, Button.kB.value).whileHeld(m_spinBackwardsCommand);
+    new JoystickButton(driverStick, Button.kA.value).whileHeld(spinForwardCommand);
+    new JoystickButton(driverStick, Button.kB.value).whileHeld(spinBackwardsCommand);
 
 
   }
@@ -59,6 +61,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_spinForwardCommand;
+    return spinForwardCommand;
   }
 }
