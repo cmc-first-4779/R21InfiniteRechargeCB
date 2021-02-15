@@ -14,13 +14,13 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    myMoter = new Spark(0);
+    myMoter = new Spark(1);
     // This method will be called once per scheduler run
   }
   public void goForward(double speed) {
     myMoter.set(speed);
   }
   public void goBackwards(double speed) {
-    myMoter.set(speed*=1);
+    myMoter.set(speed*-1);
   }
 }
