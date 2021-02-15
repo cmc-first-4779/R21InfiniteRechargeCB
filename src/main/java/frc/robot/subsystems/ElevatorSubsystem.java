@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ElevatorSubsystem extends SubsystemBase {
   Spark myMoter;
   /** Creates a new ElevatorSubsystem. */
-  public ElevatorSubsystem() {}
+  public ElevatorSubsystem() {
+    myMoter = new Spark(0);
+  }
 
   @Override
   public void periodic() {
-    myMoter = new Spark(1);
     // This method will be called once per scheduler run
   }
   public void goForward(double speed) {
