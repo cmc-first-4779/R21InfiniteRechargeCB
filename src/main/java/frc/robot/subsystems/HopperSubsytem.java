@@ -12,7 +12,7 @@ public class HopperSubsytem extends SubsystemBase {
 
   /** Creates a new ExampleSubsystem. */
   public HopperSubsytem() {
-    myMotor = new Spark(1);
+    myMotor = new Spark(0);
   }
 
   @Override
@@ -29,5 +29,8 @@ public class HopperSubsytem extends SubsystemBase {
   }
   public void goBackwards(double speed){
     myMotor.set(speed*-1);
+  }
+  public void stop(){
+    myMotor.set(0);
   }
 }

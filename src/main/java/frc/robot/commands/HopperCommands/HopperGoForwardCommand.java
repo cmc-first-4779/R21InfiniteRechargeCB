@@ -10,10 +10,10 @@ import frc.robot.subsystems.HopperSubsytem;
 public class HopperGoForwardCommand extends CommandBase {
   HopperSubsytem sub;
   /** Creates a new GoForwardCommand. */
-  public HopperGoForwardCommand(HopperSubsytem sub) {
+  public HopperGoForwardCommand(HopperSubsytem hgf) {
+    this.sub = hgf;  
     // Use addRequirements() here to declare subsystem dependencies.
-this.sub = sub;
-
+    addRequirements(sub);
   }
 
   // Called when the command is initially scheduled.
@@ -28,7 +28,9 @@ this.sub = sub;
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    sub.stop();
+  }
 
   // Returns true when the command should end.
   @Override
