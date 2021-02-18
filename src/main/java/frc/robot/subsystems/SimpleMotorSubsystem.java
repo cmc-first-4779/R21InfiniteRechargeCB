@@ -40,7 +40,7 @@ public class SimpleMotorSubsystem extends SubsystemBase {
 
   public void spinforward() {
     // motor.set(speed);
-    // sparkMax.set(speed);
+     sparkMax.set(speed);
     shooterMotor1.set(ControlMode.PercentOutput, speed);
     shooterMotor2.set(ControlMode.PercentOutput, speed);
   }
