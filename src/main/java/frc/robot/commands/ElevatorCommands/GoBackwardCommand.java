@@ -6,15 +6,15 @@ package frc.robot.commands.ElevatorCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
-
-public class GoForwardCommand extends CommandBase {
-  ElevatorSubsystem sub;
-
-  /** Creates a new GoForwardCommand. */
-  public GoForwardCommand(ElevatorSubsystem mts) {
-    this.sub=mts;
+public class GoBackwardCommand extends CommandBase {
+ private ElevatorSubsystem elevatorSubsystem;
+private double speed;
+  /** Creates a new GoBackwardCommand. */
+  public GoBackwardCommand(ElevatorSubsystem el, double speed  ) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(sub);
+  elevatorSubsystem = el;
+this.speed = speed;
+addRequirements(elevatorSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -24,13 +24,13 @@ public class GoForwardCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.goForward(.4);
+    elevatorSubsystem.goBackwards(.4);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    ElevatorSubsystem.stop();
+    elevatorSubsystem.stop();
   }
 
   // Returns true when the command should end.

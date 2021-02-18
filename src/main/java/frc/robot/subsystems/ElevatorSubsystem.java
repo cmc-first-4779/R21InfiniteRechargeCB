@@ -24,4 +24,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void goBackwards(double speed) {
     myMoter.set(speed*-1);
   }
+  public void stop() {
+  myMoter.set(0);
+  }
 }
