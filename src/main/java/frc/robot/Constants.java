@@ -49,6 +49,7 @@ public final class Constants {
   public static final int PWM_PORT_RAINBOW_MOTOR = 3; // this is for the motor that turns the color wheel
   public static final int PWM_PORT_CLIMBER_MOTOR = 4; // this is for the motor of the climber
   public static final int PWM_PORT_BLING = 5; // PWM for BLINKIN LED Driver (Looks like a SPARK, but not)
+  public static final int PWM_PORT_TURRET = 6; // PWM for Turret subsystem
 
   // ************** PCM (PNEUMATICS CONTROL MODULE) PORTS
   // *************************/
@@ -136,6 +137,10 @@ public final class Constants {
    // **************** SHOOTER SETTINGS ****************/
   public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
   public static final double SHOOTER_EMPTY_MAGAZINE_TIMER = 0.5;
+
+   //***************** TURRET SETTINGS *****************/
+  public static final double TURRET_MOTOR_SPEED = 0.5;
+
 
   //   AUTON CONSTANTS
   public static final double LIMELIGHT_SEEK_TIMEOUT_SECS = 2.0;
