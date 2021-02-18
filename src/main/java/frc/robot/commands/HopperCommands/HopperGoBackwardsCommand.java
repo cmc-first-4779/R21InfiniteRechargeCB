@@ -13,6 +13,7 @@ public class HopperGoBackwardsCommand extends CommandBase {
   public HopperGoBackwardsCommand(HopperSubsytem sub) {
     // Use addRequirements() here to declare subsystem dependencies.
 this.sub = sub;
+addRequirements(sub);
   }
 
   // Called when the command is initially scheduled.
@@ -22,7 +23,7 @@ this.sub = sub;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.goBackwards(.4);
+    sub.goBackwards(.7);
   }
 
   // Called once the command ends or is interrupted.

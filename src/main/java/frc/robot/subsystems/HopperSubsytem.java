@@ -4,15 +4,18 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class HopperSubsytem extends SubsystemBase {
-  Spark myMotor;
+  CANSparkMax myMotor;
 
   /** Creates a new ExampleSubsystem. */
   public HopperSubsytem() {
-    myMotor = new Spark(0);
+    myMotor = new CANSparkMax(1, MotorType.kBrushless);
   }
 
   @Override
