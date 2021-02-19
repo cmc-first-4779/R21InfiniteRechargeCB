@@ -24,7 +24,7 @@ public class SimpleMotorSubsystem extends SubsystemBase {
   /** Creates a new SimpleMotorSubsystem. */
   public SimpleMotorSubsystem() {
     motor = new Spark(0);
-    sparkMax = new CANSparkMax(1, MotorType.kBrushless);
+    sparkMax = new CANSparkMax(10, MotorType.kBrushless);
     shooterMotor1 = new TalonFX(21);
     shooterMotor2 = new TalonFX(22);
 
