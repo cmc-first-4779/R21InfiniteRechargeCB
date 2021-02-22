@@ -4,8 +4,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
@@ -34,26 +37,54 @@ public class ShooterSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  private static void initMasterMotorController(WPI_TalonFX talon) {
-    
-    System.out.println("Initializing Master: " + talon);
+  private static void initMasterMotorController(WPI_TalonFX falcon) {
+      
+    System.out.println("Initializing Master: " + falcon);
     
     // Config to Factory Default
-    talon.configFactoryDefault();
- 
-   
+    falcon.configFactoryDefault();
+
+    falcon.setNeutralMode(NeutralMode.Coast); // Neutral Mode is "Coast"
+  
+    falcon.setSensorPhase(true);
+
+    falcon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx_Velocity,
+        Constants.kTimeoutMs_Velocity);
+  
+    falcon.configNominalOutputForward(0, Constants.kTimeoutMs_Velocity);
+
+    falcon.configNominalOutputReverse(0, Constants.kTimeoutMs_Velocity);
+    
+    falcon.configPeakOutputForward(1, Constants.kTimeoutMs_Velocity);
+    
+    falcon.configPeakOutputReverse(-1, Constants.kTimeoutMs_Velocity);
+  
   }
 
-   // Initialize a VictorSPX Motor controller and set our default settings.
-   private static void initSlaveMotorController(WPI_TalonFX talon) {
+   private static void initSlaveMotorController(WPI_TalonFX falcon) {
     
-    System.out.println("Initializing Slave: " + talon);
+    System.out.println("Initializing Slave: " + falcon);
     
     // Config to Factory Default
-    talon.configFactoryDefault();
+    falcon.configFactoryDefault();
+
+     falcon.setNeutralMode(NeutralMode.Coast); // Neutral Mode is "Coast"
+     
+     falcon.setSensorPhase(true);
+     
+     falcon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx_Velocity,
+         Constants.kTimeoutMs_Velocity);
+   
+     falcon.configNominalOutputForward(0, Constants.kTimeoutMs_Velocity);
+
+     falcon.configNominalOutputReverse(0, Constants.kTimeoutMs_Velocity);
+     
+     falcon.configPeakOutputForward(1, Constants.kTimeoutMs_Velocity);
+     
+     falcon.configPeakOutputReverse(-1, Constants.kTimeoutMs_Velocity);
+     
+   }
 
   
   }
 
-
-}
