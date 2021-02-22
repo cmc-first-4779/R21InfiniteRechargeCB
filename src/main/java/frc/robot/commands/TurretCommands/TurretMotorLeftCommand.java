@@ -7,18 +7,16 @@ package frc.robot.commands.TurretCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class TurretMotorOnCommand extends CommandBase {
-
+public class TurretMotorLeftCommand extends CommandBase {
+  /** Creates a new TurretMotorLeftCommand. */
   TurretSubsystem m_turretSubsystem;
 
-  /** Creates a new TurretMotorOnCommand. */
-  public TurretMotorOnCommand(TurretSubsystem turretSubsystem) {
+  public TurretMotorLeftCommand(TurretSubsystem turretSubsystem) {
 
-   m_turretSubsystem = turretSubsystem;
+    m_turretSubsystem = turretSubsystem;
 
     // Use addRequirements() here to declare subsystem dependencies.
-   addRequirements(m_turretSubsystem);
-
+    addRequirements(m_turretSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -29,10 +27,9 @@ public class TurretMotorOnCommand extends CommandBase {
   @Override
   public void execute() {
 
-    m_turretSubsystem.setTurretMotorOn();
+    m_turretSubsystem.setTurretMotorLeft();
 
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
