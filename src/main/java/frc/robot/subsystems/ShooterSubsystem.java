@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -17,7 +18,7 @@ public class ShooterSubsystem extends SubsystemBase {
   WPI_TalonFX shooterMotorMaster; //declare motors
   WPI_TalonFX shooterMotorSlave;
 
-  private int m_desiredSpeed;
+  private double m_desiredSpeed;
 
   private Boolean isShooterUpToSpeed;
 
@@ -93,6 +94,22 @@ public class ShooterSubsystem extends SubsystemBase {
      
    }
 
+   private void configPIDFValues(double p, double i, double d, double f, int slot) {
+    // Configure the PID settings for Slot0
+    shooterMotorMaster.config_kF(slot, f);
+    shooterMotorMaster.config_kP(slot, p);
+    shooterMotorMaster.config_kI(slot, i);
+    shooterMotorMaster.config_kD(slot, d);
+  }
+
+   public void setConstantVelocityLow() {
+    configPIDFValues(1, 0, 0, 0.02, 0);  //STILL NEED TO GET THESE VALUES
+   
+    shooterMotorMaster.set(ControlMode.Velocity, 8000);
+
+    m_desiredSpeed = 8000;
+  }
+
   // Stop our shooter to stop the shooter
   public void stopMotor() {
     shooterMotorMaster.stopMotor();
@@ -104,17 +121,17 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
     //   Sets the desired speeed for our Shooter fly wheels
-  public void setDesiredSpeed(int desiredSpeed){
+  public void setDesiredSpeed(Double desiredSpeed){
     m_desiredSpeed = desiredSpeed;
   }
 
   //   Gets the Desired Speed for the Shooter Fly Wheels
-  public int getDesiredSpeed(){
+  public double getDesiredSpeed(){
     return m_desiredSpeed;
   }
 
   public boolean isUpToSpeed(){
-    isShooterUpToSpeed = Math.abs(shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < Constants.SHOOTER_TARGET_VELOCITY_TOLERANCE;
+    isShooterUpToSpeed = Math.abs(shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < 350;
     SmartDashboard.putBoolean("Is Shooter Up to Speed", isShooterUpToSpeed);
     System.out.println("Shooting Speed:  " + shooterMotorMaster.getSelectedSensorVelocity());
     System.out.println("Desired Speed:  " + m_desiredSpeed);
