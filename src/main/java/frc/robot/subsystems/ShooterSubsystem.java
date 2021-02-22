@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -90,6 +92,34 @@ public class ShooterSubsystem extends SubsystemBase {
      falcon.configPeakOutputReverse(-1, Constants.kTimeoutMs_Velocity);
      
    }
+
+  // Stop our shooter to stop the shooter
+  public void stopMotor() {
+    shooterMotorMaster.stopMotor();
+  }
+
+  // Gets the current velocity of the shooter master motor
+  public double getShooterVelocity() {
+    return shooterMotorMaster.getSelectedSensorVelocity();
+  }
+
+    //   Sets the desired speeed for our Shooter fly wheels
+  public void setDesiredSpeed(int desiredSpeed){
+    m_desiredSpeed = desiredSpeed;
+  }
+
+  //   Gets the Desired Speed for the Shooter Fly Wheels
+  public int getDesiredSpeed(){
+    return m_desiredSpeed;
+  }
+
+  public boolean isUpToSpeed(){
+    isShooterUpToSpeed = Math.abs(shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < Constants.SHOOTER_TARGET_VELOCITY_TOLERANCE;
+    SmartDashboard.putBoolean("Is Shooter Up to Speed", isShooterUpToSpeed);
+    System.out.println("Shooting Speed:  " + shooterMotorMaster.getSelectedSensorVelocity());
+    System.out.println("Desired Speed:  " + m_desiredSpeed);
+    return isShooterUpToSpeed;
+  }
 
   
   }
