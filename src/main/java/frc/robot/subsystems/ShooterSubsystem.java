@@ -15,6 +15,10 @@ public class ShooterSubsystem extends SubsystemBase {
   WPI_TalonFX shooterMotorMaster; //declare motors
   WPI_TalonFX shooterMotorSlave;
 
+  private int m_desiredSpeed;
+
+  private Boolean isShooterUpToSpeed;
+
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
@@ -28,6 +32,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
   initMasterMotorController(shooterMotorMaster);
   initSlaveMotorController(shooterMotorSlave);
+
+  isShooterUpToSpeed = false;
 
   }
   
