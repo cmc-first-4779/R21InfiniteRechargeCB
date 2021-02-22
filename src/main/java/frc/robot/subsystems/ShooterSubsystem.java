@@ -102,7 +102,7 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotorMaster.config_kD(slot, d);
   }
 
-   public void setConstantVelocityLow() {
+   public void setConstantVelocity() {
     configPIDFValues(1, 0, 0, 0.02, 0);  //STILL NEED TO GET THESE VALUES
    
     shooterMotorMaster.set(ControlMode.Velocity, 8000);
