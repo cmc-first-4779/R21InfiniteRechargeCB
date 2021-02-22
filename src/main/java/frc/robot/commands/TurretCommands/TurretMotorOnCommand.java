@@ -31,7 +31,12 @@ public class TurretMotorOnCommand extends CommandBase {
 
     m_turretSubsystem.setTurretMotorOn();
 
+    m_turretSubsystem.setTurretMotorLeft();
+
+    m_turretSubsystem.setTurretMotorRight();
+
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
