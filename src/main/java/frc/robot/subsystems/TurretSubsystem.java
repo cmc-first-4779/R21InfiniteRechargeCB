@@ -34,7 +34,7 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   public void setTurretMotorRight(){ 
-    turretMotor.set(-Constants.TURRET_MOTOR_SPEED);
+    turretMotor.set(Constants.TURRET_MOTOR_SPEED);
   }
 
   //set motor speed when on
