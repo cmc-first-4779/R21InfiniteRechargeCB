@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ElevatorCommands.GoBackwardCommand;
 import frc.robot.commands.ElevatorCommands.GoForwardCommand;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -21,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
+GoBackwardCommand goback;
   ElevatorSubsystem ellivator;
   GoForwardCommand ellirun;
   XboxController ellicontroller;
@@ -33,7 +34,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-
+    goback = new GoBackwardCommand(ellivator, 0);
     ellivator = new ElevatorSubsystem();
     ellirun = new GoForwardCommand(ellivator);
     ellicontroller = new XboxController(0);
@@ -50,6 +51,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(ellicontroller, Button.kB.value).whileHeld(ellirun);
+    new JoystickButton(ellicontroller, Button.kX.value).whileHeld(goback);
   }
 
   /**
