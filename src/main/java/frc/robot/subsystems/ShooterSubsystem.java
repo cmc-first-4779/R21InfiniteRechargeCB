@@ -26,8 +26,8 @@ public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
 
-  shooterMotorMaster = new WPI_TalonFX(55); 
-  shooterMotorSlave = new WPI_TalonFX(2);
+  shooterMotorMaster = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_MASTER); 
+  shooterMotorSlave = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_SLAVE);
 
   shooterMotorSlave.setInverted(true); //invert slave (might change)
 
@@ -37,6 +37,8 @@ public class ShooterSubsystem extends SubsystemBase {
   initSlaveMotorController(shooterMotorSlave);
 
   isShooterUpToSpeed = false;
+
+  m_desiredSpeed = 5000;
 
   }
   
@@ -57,7 +59,7 @@ public class ShooterSubsystem extends SubsystemBase {
   
     falcon.setSensorPhase(true);
 
-    falcon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kPIDLoopIdx_Velocity,
+    falcon.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.kPIDLoopIdx_Velocity,
         Constants.kTimeoutMs_Velocity);
   
     falcon.configNominalOutputForward(0, Constants.kTimeoutMs_Velocity);
@@ -66,7 +68,7 @@ public class ShooterSubsystem extends SubsystemBase {
     
     falcon.configPeakOutputForward(1, Constants.kTimeoutMs_Velocity);
     
-    falcon.configPeakOutputReverse(-1, Constants.kTimeoutMs_Velocity);
+    falcon.configPeakOutputReverse(1, Constants.kTimeoutMs_Velocity);
   
   }
 
@@ -103,11 +105,11 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
    public void setConstantVelocity() {
-    configPIDFValues(1, 0, 0, 0.02, 0);  //STILL NEED TO GET THESE VALUES
+    configPIDFValues(.1, 0, 0, 0, 0);  //STILL NEED TO GET THESE VALUES
    
-    shooterMotorMaster.set(ControlMode.Velocity, 8000);
+    shooterMotorMaster.set(ControlMode.Velocity, m_desiredSpeed);
 
-    m_desiredSpeed = 8000;
+    // m_desiredSpeed = 4000;
   }
 
   // Stop our shooter to stop the shooter
