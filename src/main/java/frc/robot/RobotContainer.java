@@ -43,8 +43,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(Controller, Button.kB.value).whileHeld(runforward);
-    new JoystickButton(Controller, Button.kY.value).whileHeld(runbackwards);
+    new JoystickButton(Controller, Button.kBumperLeft.value).whileHeld(runforward);
+    new JoystickButton(Controller, Button.kBumperRight.value).whileHeld(runbackwards);
   }
 
   /**

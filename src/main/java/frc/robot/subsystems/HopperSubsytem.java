@@ -15,7 +15,7 @@ public class HopperSubsytem extends SubsystemBase {
 
   /** Creates a new ExampleSubsystem. */
   public HopperSubsytem() {
-    myMotor = new CANSparkMax(1, MotorType.kBrushless);
+    myMotor = new CANSparkMax(10, MotorType.kBrushless);
   }
 
   @Override
