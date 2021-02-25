@@ -26,7 +26,7 @@ public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
 
-  shooterMotorMaster = new WPI_TalonFX(1); 
+  shooterMotorMaster = new WPI_TalonFX(55); 
   shooterMotorSlave = new WPI_TalonFX(2);
 
   shooterMotorSlave.setInverted(true); //invert slave (might change)
