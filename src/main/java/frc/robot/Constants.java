@@ -115,16 +115,17 @@ public final class Constants {
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;                                                                                 
 
   // **************** HOPPER SETTINGS ****************/
-  public static final double HOPPER_MOTOR_SPEED = .6; // How fast to move conveyor belt 
+  public static final double HOPPER_MOTOR_SPEED = 0.6; // How fast to move conveyor belt 
 
   // **************** INTAKE SETTINGS ****************/
-  public static final double INTAKE_MOTOR_SPEED = .5; // How fast to spin the rollers 
+  public static final double INTAKE_MOTOR_SPEED = 0.5; // How fast to spin the rollers to intake a ball
+  public static final double EJECT_MOTOR_SPEED = 0.5;  //  How fast to eject a ball from the intake
 
   // **************** ELEVATOR SETTINGS ****************/
-  public static final double ELEVATOR_MOTOR_SPEED = .8; // How fast to spin the wheels for bring power cells up to shooter 
+  public static final double ELEVATOR_MOTOR_SPEED = 0.8; // How fast to spin the wheels for bring power cells up to shooter 
 
   // **************** TURRET SETTINGS ****************/
-  public static final double TURRET_MOTOR_SPEED = .3; // How fast to spin the turret to line-up to target 
+  public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target 
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on RoboRIO
 
   // **************** RAINBOW SETTINGS ****************/

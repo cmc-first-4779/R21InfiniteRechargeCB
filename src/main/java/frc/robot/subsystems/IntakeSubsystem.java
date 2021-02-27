@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 //pneumatic cylinder to push out to pick up powercells
 //single motor to run rollers
@@ -19,7 +20,7 @@ public class IntakeSubsystem extends SubsystemBase {
   Spark intakeMotor;
 
   public IntakeSubsystem() {
-    intakeMotor = new Spark(0);
+    intakeMotor = new Spark(Constants.CAN_ADDRESS_INTAKE);
   }
 
   @Override
@@ -28,12 +29,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
-  public void intakeOn(double speed) {
+  public void intakeCells(double speed) {
     intakeMotor.set(speed);
   }
 
-  public void intakeBackward(double speed) {
+  public void ejectCells(double speed) {
     intakeMotor.set(speed*-1);
+  }
+
+  public void stopIntake(){
+    intakeMotor.set(0);
   }
 
 }
