@@ -6,25 +6,26 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ElevatorSubsystem extends SubsystemBase {
-  Spark myMoter;
+  Spark elevatorMotor;
   /** Creates a new ElevatorSubsystem. */
   public ElevatorSubsystem() {
-    myMoter = new Spark(0);
+    elevatorMotor = new Spark(Constants.PWM_PORT_ELEVATOR_MOTOR);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void goForward(double speed) {
-    myMoter.set(speed);
+  public void goUp(double speed) {
+    elevatorMotor.set(speed);
   }
-  public void goBackwards(double speed) {
-    myMoter.set(speed*-1);
+  public void goDown(double speed) {
+    elevatorMotor.set(speed*-1);
   }
   public void stop() {
-  myMoter.set(0);
+    elevatorMotor.set(0);
   }
 }
