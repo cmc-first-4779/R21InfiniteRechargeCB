@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Button;
+//import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.ElevatorCommands.GoBackwardCommand;
 import frc.robot.commands.ElevatorCommands.GoForwardCommand;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -31,10 +31,7 @@ import frc.robot.commands.TurretCommands.TurretMotorRightCommand;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-GoBackwardCommand goback;
-  ElevatorSubsystem ellivator;
-  GoForwardCommand ellirun;
-  XboxController ellicontroller;
+
 
   // The robot's subsystems and commands are defined here...
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -50,29 +47,14 @@ GoBackwardCommand goback;
   private final ShooterOffCommand shooterOff = new ShooterOffCommand(shooter);
   private final TurretMotorLeftCommand turretMotorLeftCommand = new TurretMotorLeftCommand(turret);
   private final TurretMotorRightCommand turretMotorRightCommand = new TurretMotorRightCommand(turret); 
-  private final GoBackCommand goback = new GoBackwardCommand(ellivator, 0);
+  private final GoBackwardCommand goback = new GoBackwardCommand(ellivator, 0);
   private final GoForwardCommand ellirun = new GoForwardCommand(ellivator);
   private final XboxController controller = new XboxController(0);
 
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
-    /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  //public RobotContainer() {
-    
-
-  //  Declare Shooter Variables  
-  //  ShooterSubsystem shooter;
-  //  ShooterOnCommand shooterOn;
-  //  ShooterOffCommand shooterOff;
-  
-  //  Declare Turret Variables  
-  //  TurretSubsystem turret;
-  //  TurretMotorLeftCommand turretMotorLeftCommand;
-  //  TurretMotorRightCommand turretMotorRightCommand;
-    
-  //Declare XboxController  
-  //  XboxController controller;
+ 
 
      
    
