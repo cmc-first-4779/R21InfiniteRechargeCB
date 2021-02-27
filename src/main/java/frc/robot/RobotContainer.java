@@ -6,12 +6,19 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.ShooterCommands.ShooterOff;
+import frc.robot.commands.ShooterCommands.ShooterOnCommand;
+import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorLeftCommand;
 import frc.robot.commands.TurretCommands.TurretMotorRightCommand;
-import frc.robot.subsystems.TurretSubsystem;
+
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -21,16 +28,46 @@ import frc.robot.subsystems.TurretSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  TurretSubsystem turret;
-  TurretMotorLeftCommand turretMotorLeftCommand;
-  TurretMotorRightCommand turretMotorRightCommand;
-  XboxController controller;
+  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final ShooterSubsystem shooter;
+  private final ShooterOnCommand shooterOn;
+  private final ShooterOff shooterOff;
+  private final XboxController controller;
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
+
+  //  Declare Shooter Variables  
+    ShooterSubsystem shooter;
+    ShooterOnCommand shooterOn;
+    ShooterOffCommand shooterOff;
+  //  Declare Turret Variables  
+    TurretSubsystem turret;
+    TurretMotorLeftCommand turretMotorLeftCommand;
+    TurretMotorRightCommand turretMotorRightCommand;
+    
+  //Declare XboxController  
+    XboxController controller;
+    
+   
+  
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  public RobotContainer() {
+    
+  //Init Turret Variables  
     turret = new TurretSubsystem();
     turretMotorLeftCommand = new TurretMotorLeftCommand(turret);
     turretMotorRightCommand = new TurretMotorRightCommand(turret);
+    
+  //Init Shooter Variables  
+    shooter = new ShooterSubsystem();
+    shooterOn = new ShooterOnCommand(shooter);
+    shooterOff = new ShooterOff(shooter);
+    
+  //Init XBox Controller Variables  
     controller = new XboxController(0);
 
     // Configure the button bindings
@@ -44,9 +81,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(controller, 1).whileHeld(turretMotorRightCommand);
-    new JoystickButton(controller, 2).whileHeld(turretMotorLeftCommand);
-
+    new JoystickButton(controller, 1).whenPressed(shooterOn);
+    new JoystickButton(controller, 2).whenPressed(shooterOff);
+    new JoystickButton(controller, 3).whileHeld(turretMotorRightCommand);
+    new JoystickButton(controller, 4).whileHeld(turretMotorLeftCommand);
+    
   }
 
   /**
