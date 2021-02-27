@@ -5,15 +5,17 @@
 package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.HopperSubsytem;
+import frc.robot.Constants;
+import frc.robot.subsystems.HopperSubsystem;
 
 public class HopperGoBackwardCommand extends CommandBase {
-  HopperSubsytem sub;
-  /** Creates a new GoBackwardsCommand. */
-  public HopperGoBackwardCommand(HopperSubsytem sub) {
+    HopperSubsystem m_hopperSubsystem;
+    /** Creates a new GoBackwardsCommand. */
+ 
+    public HopperGoBackwardCommand(HopperSubsystem hopperSubsystem) {
+      m_hopperSubsystem = hopperSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-this.sub = sub;
-addRequirements(sub);
+      addRequirements(m_hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -23,13 +25,13 @@ addRequirements(sub);
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.goBackward(.7);
+    m_hopperSubsystem.goBackward(Constants.HOPPER_MOTOR_BACKWARD_SPEED);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    sub.stop();
+    m_hopperSubsystem.stop();
   }
 
   // Returns true when the command should end.

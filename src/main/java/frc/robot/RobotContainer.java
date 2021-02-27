@@ -20,7 +20,7 @@ import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorLeftCommand;
 import frc.robot.commands.TurretCommands.TurretMotorRightCommand;
-import frc.robot.subsystems.HopperSubsytem;
+import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
 
@@ -39,7 +39,7 @@ public class RobotContainer {
   private final ShooterSubsystem shooter = new ShooterSubsystem();
   private final TurretSubsystem turret = new TurretSubsystem();
   private final ElevatorSubsystem ellivator = new ElevatorSubsystem();
-  private final HopperSubsytem hopper = new HopperSubsytem();
+  private final HopperSubsystem hopper = new HopperSubsystem();
 
   //    Commands
   private final ShooterOnCommand shooterOn = new ShooterOnCommand(shooter);

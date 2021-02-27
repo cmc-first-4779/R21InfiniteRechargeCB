@@ -5,15 +5,16 @@
 package frc.robot.commands.HopperCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.HopperSubsytem;
+import frc.robot.Constants;
+import frc.robot.subsystems.HopperSubsystem;
 
 public class HopperGoForwardCommand extends CommandBase {
-  HopperSubsytem sub;
+  HopperSubsystem m_hopperSubsystem;
   /** Creates a new GoForwardCommand. */
-  public HopperGoForwardCommand(HopperSubsytem hgf) {
-    this.sub = hgf;  
+  public HopperGoForwardCommand(HopperSubsystem hopperSubsystem) {
+    m_hopperSubsystem = hopperSubsystem;  
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(sub);
+    addRequirements(m_hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -23,13 +24,13 @@ public class HopperGoForwardCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.goForward(1);
+    m_hopperSubsystem.goForward(Constants.HOPPER_MOTOR_FORWARD_SPEED);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    sub.stop();
+    m_hopperSubsystem.stop();
   }
 
   // Returns true when the command should end.

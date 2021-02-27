@@ -10,11 +10,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class HopperSubsytem extends SubsystemBase {
+public class HopperSubsystem extends SubsystemBase {
   CANSparkMax myMotor;
 
   /** Creates a new ExampleSubsystem. */
-  public HopperSubsytem() {
+  public HopperSubsystem() {
     //myMotor = new CANSparkMax(10, MotorType.kBrushless);
     myMotor = new CANSparkMax(Constants.CAN_ADDRESS_HOPPER, MotorType.kBrushless);
   }
