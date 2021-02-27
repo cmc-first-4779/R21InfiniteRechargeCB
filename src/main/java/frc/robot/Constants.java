@@ -55,7 +55,8 @@ public final class Constants {
 
   // ************** PCM (PNEUMATICS CONTROL MODULE) PORTS
   // *************************/
-  public static final int PCM_PORT_INTAKE_DEPLOY = 0; // Solenoid for extending the intake
+  public static final int PCM_PORT_INTAKE_EXTEND = 0; // Solenoid for extending the intake
+  public static final int PCM_PORT_INTAKE_RETRACT = 1;  //  PCM for retracting the intake
   //public static final int PCM_PORT_SHOOTER_RETRACT = 1; // Placeholder
   //public static final int PCM_PORT_RAINBOW_ARM_DEPLOY = 2; // Place holder
   //public static final int PCM_PORT_RAINBOW_ARM_RETRACT = 3; // Place holder
