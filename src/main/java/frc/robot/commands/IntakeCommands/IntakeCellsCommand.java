@@ -9,13 +9,15 @@ import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeCellsCommand extends CommandBase {
-  private IntakeSubsystem sub;
+  private IntakeSubsystem m_intakeSubsystem;
 
   /** Creates a new GoForward. */
 
-  public IntakeCellsCommand(IntakeSubsystem sub) {
+  public IntakeCellsCommand(IntakeSubsystem intakeSubsystem) {
+    m_intakeSubsystem = intakeSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    this.sub = sub;
+    addRequirements(m_intakeSubsystem);
+    
   }
 
   // Called when the command is initially scheduled.
@@ -25,13 +27,13 @@ public class IntakeCellsCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.intakeCells(Constants.INTAKE_MOTOR_SPEED);
+    m_intakeSubsystem.intakeCells(Constants.INTAKE_MOTOR_SPEED);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    sub.stopIntake();
+    m_intakeSubsystem.stopIntake();
   }
 
   // Returns true when the command should end.

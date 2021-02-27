@@ -9,11 +9,11 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 
 public class IntakeStopCommand extends CommandBase {
-  private IntakeSubsystem sub;
+  private IntakeSubsystem m_intakeSubsystem;
 
   /** Creates a new IntakeStopCommand. */
-  public IntakeStopCommand() {
-    this.sub = sub;
+  public IntakeStopCommand(IntakeSubsystem intakeSubsystem) {
+    m_intakeSubsystem = intakeSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -24,13 +24,13 @@ public class IntakeStopCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.stopIntake();
+    m_intakeSubsystem.stopIntake();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    sub.stopIntake();
+    m_intakeSubsystem.stopIntake();
   }
 
   // Returns true when the command should end.
