@@ -50,7 +50,10 @@ public class RobotContainer {
   private final HopperGoBackwardCommand hopperGoBackward = new HopperGoBackwardCommand(hopper);
   private final GoBackwardCommand goback = new GoBackwardCommand(ellivator, 0);
   private final GoForwardCommand ellirun = new GoForwardCommand(ellivator);
-  private final XboxController driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT); 
+
+  //  Joysticks
+  private final XboxController driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT);
+  private final XboxController operStick = new XboxController(XBoxJoystickConstants.OPERSTICK_USB_PORT); 
   
    
   
