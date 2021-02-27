@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.StaticConstants.XBoxJoystickConstants;
 import frc.robot.commands.ElevatorCommands.GoBackwardCommand;
 import frc.robot.commands.ElevatorCommands.GoForwardCommand;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -20,7 +21,7 @@ import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorLeftCommand;
 import frc.robot.commands.TurretCommands.TurretMotorRightCommand;
 import frc.robot.subsystems.HopperSubsytem;
-import frc.robot.commands.HopperCommands.HopperGoBackwardsCommand;
+import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
 
 
@@ -45,11 +46,11 @@ public class RobotContainer {
   private final ShooterOffCommand shooterOff = new ShooterOffCommand(shooter);
   private final TurretMotorLeftCommand turretMotorLeftCommand = new TurretMotorLeftCommand(turret);
   private final TurretMotorRightCommand turretMotorRightCommand = new TurretMotorRightCommand(turret); 
-  private final HopperGoForwardCommand runforward = new HopperGoForwardCommand(hopper);
-  private final HopperGoBackwardsCommand runbackwards = new HopperGoBackwardsCommand(hopper);
+  private final HopperGoForwardCommand hopperGoForward = new HopperGoForwardCommand(hopper);
+  private final HopperGoBackwardCommand hopperGoBackward = new HopperGoBackwardCommand(hopper);
   private final GoBackwardCommand goback = new GoBackwardCommand(ellivator, 0);
   private final GoForwardCommand ellirun = new GoForwardCommand(ellivator);
-  private final XboxController controller = new XboxController(0); 
+  private final XboxController driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT); 
   
    
   
@@ -67,14 +68,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(controller, 1).whenPressed(shooterOn);
-    new JoystickButton(controller, 2).whenPressed(shooterOff);
-    new JoystickButton(controller, 3).whileHeld(turretMotorRightCommand);
-    new JoystickButton(controller, 4).whileHeld(turretMotorLeftCommand);
-    new JoystickButton(controller, Button.kB.value).whileHeld(ellirun);
-    new JoystickButton(controller, Button.kX.value).whileHeld(goback);
-    new JoystickButton(controller, Button.kBumperLeft.value).whileHeld(runforward);
-    new JoystickButton(controller, Button.kBumperRight.value).whileHeld(runbackwards);
+    new JoystickButton(driverStick, 1).whenPressed(shooterOn);
+    new JoystickButton(driverStick, 2).whenPressed(shooterOff);
+    new JoystickButton(driverStick, 3).whileHeld(turretMotorRightCommand);
+    new JoystickButton(driverStick, 4).whileHeld(turretMotorLeftCommand);
+    new JoystickButton(driverStick, Button.kB.value).whileHeld(ellirun);
+    new JoystickButton(driverStick, Button.kX.value).whileHeld(goback);
+    new JoystickButton(driverStick, Button.kBumperLeft.value).whileHeld(hopperGoForward);
+    new JoystickButton(driverStick, Button.kBumperRight.value).whileHeld(hopperGoBackward);
   }
 
   /**

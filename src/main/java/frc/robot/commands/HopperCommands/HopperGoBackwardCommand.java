@@ -7,10 +7,10 @@ package frc.robot.commands.HopperCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.HopperSubsytem;
 
-public class HopperGoBackwardsCommand extends CommandBase {
+public class HopperGoBackwardCommand extends CommandBase {
   HopperSubsytem sub;
   /** Creates a new GoBackwardsCommand. */
-  public HopperGoBackwardsCommand(HopperSubsytem sub) {
+  public HopperGoBackwardCommand(HopperSubsytem sub) {
     // Use addRequirements() here to declare subsystem dependencies.
 this.sub = sub;
 addRequirements(sub);
@@ -23,7 +23,7 @@ addRequirements(sub);
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    sub.goBackwards(.7);
+    sub.goBackward(.7);
   }
 
   // Called once the command ends or is interrupted.
