@@ -34,26 +34,29 @@ public final class Constants {
   // ***************** CAN ADDRESSES *******************************************/
   // Any Victors that are slaved to Talons have a CAN address of 10 + the TALON
   // address that it is slaved to.
-  public static final int CAN_ADDRESS_FRONT_LEFT_DRIVE = 1; // Front Left Drive Motor (TALON)
-  public static final int CAN_ADDRESS_REAR_LEFT_DRIVE = 11; // Rear Left Drive Motor (VICTOR)
-  public static final int CAN_ADDRESS_FRONT_RIGHT_DRIVE = 2; /// Front Right Drive Motor (TALON)
-  public static final int CAN_ADDRESS_REAR_RIGHT_DRIVE = 12; // Rear Right Drive Motor (VICTOR)
-  public static final int CAN_ADDRESS_SHOOTER_MASTER = 3; // Shooter Motor (TALON)
-  public static final int CAN_ADDRESS_SHOOTER_SLAVE = 13;
+  public static final int CAN_ADDRESS_FRONT_LEFT_DRIVE = 1; // Front Left Drive Motor (FALCON)
+  public static final int CAN_ADDRESS_REAR_LEFT_DRIVE = 11; // Rear Left Drive Motor (FALCON)
+  public static final int CAN_ADDRESS_FRONT_RIGHT_DRIVE = 2; /// Front Right Drive Motor (FALCON)
+  public static final int CAN_ADDRESS_REAR_RIGHT_DRIVE = 12; // Rear Right Drive Motor (FALCON)
+  public static final int CAN_ADDRESS_SHOOTER_MASTER = 21; // Shooter Motor (FALCON)
+  public static final int CAN_ADDRESS_SHOOTER_SLAVE = 22; // Shooter Motor Slave (FALCON)
+  public static final int CAN_ADDRESS_INTAKE = 31; // SparkMax controller w/ Neo 550 motor
+  public static final int CAN_ADDRESS_HOPPER = 41; // SparkMax controlller w/ Neo 550 motor
+  
 
   // ***************** PWM PORTS ON THE ROBORIO
   // **********************************/
-  public static final int PWM_PORT_MAGAZINE_LOWER_CONVEYOR_MOTOR = 0; // PWM Port for the Magazine/Agitator
-  //public static final int PWM_PORT_MAGAZINE_UPPER_CONVEYOR_MOTOR = 1; // This is for the Conveyor belt
-  public static final int PWM_PORT_INTAKE = 2; // this is for the intake system
-  public static final int PWM_PORT_RAINBOW_MOTOR = 3; // this is for the motor that turns the color wheel
-  public static final int PWM_PORT_CLIMBER_MOTOR = 4; // this is for the motor of the climber
+  public static final int PWM_PORT_ELEVATOR_MOTOR = 0; // CIM Motor
+  public static final int PWM_PORT_TURRET_MOTOR = 1; // Spark controller w/ RedLine (775) Motor
+  // public static final int PWM_PORT_RAINBOW_MOTOR = 3; // this is for the motor that turns the color wheel
+  // public static final int PWM_PORT_CLIMBER_MOTOR = 4; // this is for the motor of the climber
   public static final int PWM_PORT_BLING = 5; // PWM for BLINKIN LED Driver (Looks like a SPARK, but not)
+  public static final int PWM_PORT_TURRET = 0; // PWM for Turret subsystem
 
   // ************** PCM (PNEUMATICS CONTROL MODULE) PORTS
   // *************************/
-  public static final int PCM_PORT_SHOOTER_DEPLOY = 0; // Placeholder
-  public static final int PCM_PORT_SHOOTER_RETRACT = 1; // Placeholder
+  public static final int PCM_PORT_INTAKE_DEPLOY = 0; // Solenoid for extending the intake
+  //public static final int PCM_PORT_SHOOTER_RETRACT = 1; // Placeholder
   //public static final int PCM_PORT_RAINBOW_ARM_DEPLOY = 2; // Place holder
   //public static final int PCM_PORT_RAINBOW_ARM_RETRACT = 3; // Place holder
 
@@ -63,16 +66,16 @@ public final class Constants {
   public static final int SPI_PORT_AHRS = 0; // Using Nav-X GYRO THIS YEAR
 
   /*************************
-   * DIO PORTS FOR SENSORS *************************************************
-   */
-  public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_A = 0;  // Shooter Quad Encoder - Channel A
-  public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_B = 1;  // Shooter Quad Encoder - Channel B
-  public static final int DIO_PORT_RAINBOW_ARM_SENSOR = 2; // Sensor that detects whether the Rainbow arm is close
+   * DIO PORTS FOR SENSORS
+  **************************************************/
+  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_A = 0;  // Shooter Quad Encoder - Channel A
+  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_B = 1;  // Shooter Quad Encoder - Channel B
+  // public static final int DIO_PORT_RAINBOW_ARM_SENSOR = 2; // Sensor that detects whether the Rainbow arm is close
                                                            // enough to the control panel
-  public static final int DIO_PORT_MAGAZINE_INTAKE_SENSOR = 3; // Sensor that detects a new ball entering the magazine
-  public static final int DIO_PORT_MAGAZINE_EXIT_SENSOR = 4; // Sensor that detects a new ball entering the magazine
-  public static final int DIO_PORT_CLIMBER_CHANNEL_A = 5;  // Climber Quad Encoder - Channel A
-  public static final int DIO_PORT_CLIMBER_CHANNEL_B = 6;  // Climber Quad Encoder - Channel A
+  // public static final int DIO_PORT_MAGAZINE_INTAKE_SENSOR = 3; // Sensor that detects a new ball entering the magazine
+  // public static final int DIO_PORT_MAGAZINE_EXIT_SENSOR = 4; // Sensor that detects a new ball entering the magazine
+  // public static final int DIO_PORT_CLIMBER_CHANNEL_A = 5;  // Climber Quad Encoder - Channel A
+  // public static final int DIO_PORT_CLIMBER_CHANNEL_B = 6;  // Climber Quad Encoder - Channel A
 
   // Set a DEFAULT BLING mode here so that way we only have to change it in one
   // place..
@@ -111,16 +114,18 @@ public final class Constants {
                                                                                             // with the arm up
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;                                                                                 
 
-  // **************** BALL MAGAZINE SETTINGS ****************/
-  public static final double MAGAZINE_LOWER_CONVEYOR_MOTOR_SPEED = 1.0;//0.85; 
-  public static final double MAGAZINE_UPPER_CONVEYOR_MOTOR_SPEED = 1.0; //0.85; 
-  public static final int MAGAZINE_MAX_NUMBER_CELLS = 4;  //  Max # of cells the magazine can hold
-  public static final int MAGAZINE_START_NUMBER_CELLS = 3;  //  # of cells we start with
+  // **************** HOPPER SETTINGS ****************/
+  public static final double HOPPER_MOTOR_SPEED = .6; // How fast to move conveyor belt 
 
   // **************** INTAKE SETTINGS ****************/
-  public static final double INTAKE_MOTOR_SPEED = 1; 
-  public static final double INTAKE_BLURP_SPEED = 0.5;
-  public static final double INTAKE_BLURP_TIMEOUT_SEC = 0.5;
+  public static final double INTAKE_MOTOR_SPEED = .5; // How fast to spin the rollers 
+
+  // **************** ELEVATOR SETTINGS ****************/
+  public static final double ELEVATOR_MOTOR_SPEED = .8; // How fast to spin the wheels for bring power cells up to shooter 
+
+  // **************** TURRET SETTINGS ****************/
+  public static final double TURRET_MOTOR_SPEED = .3; // How fast to spin the turret to line-up to target 
+  public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on RoboRIO
 
   // **************** RAINBOW SETTINGS ****************/
   public static final double RAINBOW_MOTOR_SPEED = 0.8; // Placeholder for motor power
