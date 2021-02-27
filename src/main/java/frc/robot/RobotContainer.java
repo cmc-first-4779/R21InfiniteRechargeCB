@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
-import frc.robot.commands.ElevatorCommands.GoBackwardCommand;
-import frc.robot.commands.ElevatorCommands.GoForwardCommand;
+import frc.robot.commands.ElevatorCommands.GoDownCommand;
+import frc.robot.commands.ElevatorCommands.GoUpCommand;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterCommands.ShooterOffCommand;
 import frc.robot.commands.ShooterCommands.ShooterOnCommand;
@@ -48,8 +48,8 @@ public class RobotContainer {
   private final TurretMotorRightCommand turretMotorRightCommand = new TurretMotorRightCommand(turret); 
   private final HopperGoForwardCommand hopperGoForward = new HopperGoForwardCommand(hopper);
   private final HopperGoBackwardCommand hopperGoBackward = new HopperGoBackwardCommand(hopper);
-  private final GoBackwardCommand goback = new GoBackwardCommand(ellivator, 0);
-  private final GoForwardCommand ellirun = new GoForwardCommand(ellivator);
+  private final GoDownCommand goback = new GoDownCommand(ellivator);
+  private final GoUpCommand ellirun = new GoUpCommand(ellivator);
 
   //  Joysticks
   private final XboxController driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT);

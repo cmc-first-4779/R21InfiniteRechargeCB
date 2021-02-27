@@ -122,7 +122,8 @@ public final class Constants {
   public static final double EJECT_MOTOR_SPEED = 0.5;  //  How fast to eject a ball from the intake
 
   // **************** ELEVATOR SETTINGS ****************/
-  public static final double ELEVATOR_MOTOR_SPEED = 0.8; // How fast to spin the wheels for bring power cells up to shooter 
+  public static final double ELEVATOR_MOTOR_UP_SPEED = 0.5; // How fast to spin the wheels for bring power cells up to shooter 
+  public static final double ELEVATOR_MOTOR_DOWN_SPEED = 0.5; // How fast the elevator will move cells up
 
   // **************** TURRET SETTINGS ****************/
   public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target 

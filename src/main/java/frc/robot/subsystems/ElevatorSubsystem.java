@@ -19,13 +19,20 @@ public class ElevatorSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+  
+  //  Elevator go up method
   public void goUp(double speed) {
     elevatorMotor.set(speed);
   }
+  
+  //  Elevator go down method
   public void goDown(double speed) {
-    elevatorMotor.set(speed*-1);
+    // NOTE:   The speed is multiplied by -1 to spin the motor in reverse
+    elevatorMotor.set(-1*speed);
   }
-  public void stop() {
+
+  //  Elevator stop method
+  public void stopElevator() {
     elevatorMotor.set(0);
   }
 }
