@@ -5,13 +5,25 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+//import edu.wpi.first.wpilibj2.command.button.Button;
+import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.commands.ElevatorCommands.GoBackwardCommand;
+import frc.robot.commands.ElevatorCommands.GoForwardCommand;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.ShooterCommands.ShooterOffCommand;
+import frc.robot.commands.ShooterCommands.ShooterOnCommand;
+import frc.robot.subsystems.TurretSubsystem;
+import frc.robot.commands.TurretCommands.TurretMotorLeftCommand;
+import frc.robot.commands.TurretCommands.TurretMotorRightCommand;
+import frc.robot.subsystems.HopperSubsytem;
 import frc.robot.commands.HopperCommands.HopperGoBackwardsCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
-import frc.robot.subsystems.HopperSubsytem;
+
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,18 +32,30 @@ import frc.robot.subsystems.HopperSubsytem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  HopperSubsytem hopper;
-  HopperGoBackwardsCommand runbackwards;
-  HopperGoForwardCommand runforward;
-  XboxController Controller;
-  // The robot's subsystems and commands are defined here...
+   // The robot's subsystems and commands are defined here...
+  
+  //  Subsystems
+  private final ShooterSubsystem shooter = new ShooterSubsystem();
+  private final TurretSubsystem turret = new TurretSubsystem();
+  private final ElevatorSubsystem ellivator = new ElevatorSubsystem();
+  private final HopperSubsytem hopper = new HopperSubsytem();
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  //    Commands
+  private final ShooterOnCommand shooterOn = new ShooterOnCommand(shooter);
+  private final ShooterOffCommand shooterOff = new ShooterOffCommand(shooter);
+  private final TurretMotorLeftCommand turretMotorLeftCommand = new TurretMotorLeftCommand(turret);
+  private final TurretMotorRightCommand turretMotorRightCommand = new TurretMotorRightCommand(turret); 
+  private final HopperGoForwardCommand runforward = new HopperGoForwardCommand(hopper);
+  private final HopperGoBackwardsCommand runbackwards = new HopperGoBackwardsCommand(hopper);
+  private final GoBackwardCommand goback = new GoBackwardCommand(ellivator, 0);
+  private final GoForwardCommand ellirun = new GoForwardCommand(ellivator);
+  private final XboxController controller = new XboxController(0); 
+  
+   
+  
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    hopper = new HopperSubsytem();
-    runbackwards = new HopperGoBackwardsCommand(hopper);
-    runforward = new HopperGoForwardCommand(hopper);
-    Controller = new XboxController(0);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -43,8 +67,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(Controller, Button.kBumperLeft.value).whileHeld(runforward);
-    new JoystickButton(Controller, Button.kBumperRight.value).whileHeld(runbackwards);
+    new JoystickButton(controller, 1).whenPressed(shooterOn);
+    new JoystickButton(controller, 2).whenPressed(shooterOff);
+    new JoystickButton(controller, 3).whileHeld(turretMotorRightCommand);
+    new JoystickButton(controller, 4).whileHeld(turretMotorLeftCommand);
+    new JoystickButton(controller, Button.kB.value).whileHeld(ellirun);
+    new JoystickButton(controller, Button.kX.value).whileHeld(goback);
+    new JoystickButton(controller, Button.kBumperLeft.value).whileHeld(runforward);
+    new JoystickButton(controller, Button.kBumperRight.value).whileHeld(runbackwards);
   }
 
   /**
@@ -57,3 +87,4 @@ public class RobotContainer {
     return null;
   }
 }
+    

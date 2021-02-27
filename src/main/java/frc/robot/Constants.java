@@ -51,6 +51,7 @@ public final class Constants {
   // public static final int PWM_PORT_RAINBOW_MOTOR = 3; // this is for the motor that turns the color wheel
   // public static final int PWM_PORT_CLIMBER_MOTOR = 4; // this is for the motor of the climber
   public static final int PWM_PORT_BLING = 5; // PWM for BLINKIN LED Driver (Looks like a SPARK, but not)
+  public static final int PWM_PORT_TURRET = 0; // PWM for Turret subsystem
 
   // ************** PCM (PNEUMATICS CONTROL MODULE) PORTS
   // *************************/
@@ -123,7 +124,7 @@ public final class Constants {
   public static final double ELEVATOR_MOTOR_SPEED = .8; // How fast to spin the wheels for bring power cells up to shooter 
 
   // **************** TURRET SETTINGS ****************/
-  public static final double TURRET_MOTOR_SPEED = .8; // How fast to spin the turret to line-up to target 
+  public static final double TURRET_MOTOR_SPEED = .3; // How fast to spin the turret to line-up to target 
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on RoboRIO
 
   // **************** RAINBOW SETTINGS ****************/
@@ -136,6 +137,10 @@ public final class Constants {
   public static final double CLIMBER_DISTANCE_PER_ENCODER_PULSE = CLIMBER_DISTANCE_PER_REVOLUTION / CLIMBER_REVOLUTIONS_PER_ENCODER_PULSE;
   public static final double CLIMBER_ARM_LENGTH_INCHES = 30.0;   //The length of the climber arms is 30 inches
   public static final double CLIMBER_OK_TIME_IN_MATCH_TO_CLIMB_SECS = 30;  // How many seconds left in teleop beore we can climb
+
+   // **************** SHOOTER SETTINGS ****************/
+  public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
+  public static final double SHOOTER_EMPTY_MAGAZINE_TIMER = 0.5;
 
   //   AUTON CONSTANTS
   public static final double LIMELIGHT_SEEK_TIMEOUT_SECS = 2.0;
