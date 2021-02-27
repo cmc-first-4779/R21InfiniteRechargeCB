@@ -7,12 +7,12 @@ package frc.robot.commands.ShooterCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class ShooterOff extends CommandBase {
+public class ShooterOffCommand extends CommandBase {
 
   ShooterSubsystem m_shooterSubsystem;
 
   /** Creates a new ShooterOff. */
-  public ShooterOff(ShooterSubsystem shooterSubsystem) {
+  public ShooterOffCommand(ShooterSubsystem shooterSubsystem) {
     
     m_shooterSubsystem = shooterSubsystem;
     
