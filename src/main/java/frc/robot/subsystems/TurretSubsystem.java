@@ -39,13 +39,21 @@ public class TurretSubsystem extends SubsystemBase {
     turretMotor.set(Constants.TURRET_MOTOR_SPEED);
   }
 
+  //  Used for the Limelight to aim..   Passes in a speed
+  public void setTurretMotorAim(double speed){
+    System.out.println("Encoder: " + turretEncoder.get());
+    turretMotor.set(speed);
+  }
+
   //set motor speed when on
   public void setTurretMotorOff(){ 
+    System.out.println("Encoder: " + turretEncoder.get());
     turretMotor.set(0);
   }
 
   //set motor speed when on
   public void setTurretMotorSpeed(double turretspeed){ 
+    System.out.println("Encoder: " + turretEncoder.get());
     turretMotor.set(turretspeed);
   }
 
