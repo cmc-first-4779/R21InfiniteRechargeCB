@@ -14,14 +14,14 @@ public class TurretSubsystem extends SubsystemBase {
 
   //Declare our turret motor
   Spark turretMotor; 
-  AnalogEncoder encoder;
+  AnalogEncoder turretEncoder;
 
   /** Creates a new TurretSubsystem. */
   public TurretSubsystem() {
 
     turretMotor = new Spark(Constants.PWM_PORT_TURRET); 
     AnalogInput analogInput = new AnalogInput(0);
-    encoder = new AnalogEncoder(analogInput);
+    turretEncoder = new AnalogEncoder(analogInput);
   }
 
   @Override
@@ -29,13 +29,13 @@ public class TurretSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setTurretMotorLeft(){ 
-    System.out.println("Encoder: " + encoder.get());
+  public void setTurretMotorCounterClockwise(){ 
+    System.out.println("Encoder: " + turretEncoder.get());
     turretMotor.set(-Constants.TURRET_MOTOR_SPEED);
   }
 
-  public void setTurretMotorRight(){ 
-    System.out.println("Encoder: " + encoder.get());
+  public void setTurretMotorClockwise(){ 
+    System.out.println("Encoder: " + turretEncoder.get());
     turretMotor.set(Constants.TURRET_MOTOR_SPEED);
   }
 
@@ -48,5 +48,20 @@ public class TurretSubsystem extends SubsystemBase {
   public void setTurretMotorSpeed(double turretspeed){ 
     turretMotor.set(turretspeed);
   }
+
+  //  Stop the turret
+  public void stopTurret(){
+    turretMotor.set(0);
+  }
+
+  //  Reset the Turret Encoders distance to zero.   We need to run this at the start of match
+  public void resetTurretEncoder(){
+    turretEncoder.reset();
+  }
+
+  //  Return the Turret Encoder Position
+  public double getTurretEncoderPosition(){
+    return turretEncoder.get();
+  }  
 
 }

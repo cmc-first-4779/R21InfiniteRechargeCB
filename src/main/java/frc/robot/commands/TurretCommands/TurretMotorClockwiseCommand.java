@@ -7,11 +7,11 @@ package frc.robot.commands.TurretCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurretSubsystem; 
 
-public class TurretMotorRightCommand extends CommandBase {
+public class TurretMotorClockwiseCommand extends CommandBase {
   /** Creates a new TurretMotorRightCommand. */
   TurretSubsystem m_turretSubsystem;
 
-  public TurretMotorRightCommand(TurretSubsystem turretSubsystem) {
+  public TurretMotorClockwiseCommand(TurretSubsystem turretSubsystem) {
 
     m_turretSubsystem = turretSubsystem;
 
@@ -27,7 +27,7 @@ public class TurretMotorRightCommand extends CommandBase {
   @Override
   public void execute() {
 
-    m_turretSubsystem.setTurretMotorRight();
+    m_turretSubsystem.setTurretMotorClockwise();
 
   }
 

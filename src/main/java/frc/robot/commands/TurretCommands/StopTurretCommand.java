@@ -7,14 +7,11 @@ package frc.robot.commands.TurretCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class TurretMotorLeftCommand extends CommandBase {
-  /** Creates a new TurretMotorLeftCommand. */
+public class StopTurretCommand extends CommandBase {
+  /** Creates a new StopTurretCommand. */
   TurretSubsystem m_turretSubsystem;
-
-  public TurretMotorLeftCommand(TurretSubsystem turretSubsystem) {
-
+  public StopTurretCommand(TurretSubsystem turretSubsystem) {
     m_turretSubsystem = turretSubsystem;
-
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_turretSubsystem);
   }
@@ -26,17 +23,13 @@ public class TurretMotorLeftCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    m_turretSubsystem.setTurretMotorLeft();
-
+    m_turretSubsystem.stopTurret();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    m_turretSubsystem.setTurretMotorOff();
-
+    m_turretSubsystem.stopTurret();
   }
 
   // Returns true when the command should end.

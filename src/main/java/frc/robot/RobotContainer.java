@@ -18,8 +18,8 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterCommands.ShooterOffCommand;
 import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
-import frc.robot.commands.TurretCommands.TurretMotorLeftCommand;
-import frc.robot.commands.TurretCommands.TurretMotorRightCommand;
+import frc.robot.commands.TurretCommands.TurretMotorCounterClockwiseCommand;
+import frc.robot.commands.TurretCommands.TurretMotorClockwiseCommand;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
@@ -44,8 +44,8 @@ public class RobotContainer {
   //    Commands
   private final ShooterOnCommand shooterOn = new ShooterOnCommand(shooter);
   private final ShooterOffCommand shooterOff = new ShooterOffCommand(shooter);
-  private final TurretMotorLeftCommand turretMotorLeftCommand = new TurretMotorLeftCommand(turret);
-  private final TurretMotorRightCommand turretMotorRightCommand = new TurretMotorRightCommand(turret); 
+  private final TurretMotorCounterClockwiseCommand turretMotorLeftCommand = new TurretMotorCounterClockwiseCommand(turret);
+  private final TurretMotorClockwiseCommand turretMotorRightCommand = new TurretMotorClockwiseCommand(turret); 
   private final HopperGoForwardCommand hopperGoForward = new HopperGoForwardCommand(hopper);
   private final HopperGoBackwardCommand hopperGoBackward = new HopperGoBackwardCommand(hopper);
   private final GoDownCommand goback = new GoDownCommand(ellivator);
