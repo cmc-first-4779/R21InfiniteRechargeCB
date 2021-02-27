@@ -16,17 +16,12 @@ public class TurretSubsystem extends SubsystemBase {
   /** Creates a new TurretSubsystem. */
   public TurretSubsystem() {
 
-  turretMotor = new Spark(Constants.PWM_PORT_TURRET); 
+    turretMotor = new Spark(Constants.PWM_PORT_TURRET); 
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  //set motor speed when on
-  public void setTurretMotorOn(){ 
-    turretMotor.set(Constants.TURRET_MOTOR_SPEED);
   }
 
   public void setTurretMotorLeft(){ 
