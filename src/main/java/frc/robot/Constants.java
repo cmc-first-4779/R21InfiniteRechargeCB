@@ -128,6 +128,8 @@ public final class Constants {
   public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE = 0;  //Encoder ticks
   public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES = 225;  //This number may change
   public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE = TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES * TURRET_ENCODER_PULSES_PER_DEGREE;
+  public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_PULSE = (TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE + TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE) / 2;
+  public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_DEGREES = (TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES + TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES) / 2;
   
    // **************** SHOOTER SETTINGS ****************/
   public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
@@ -153,8 +155,10 @@ public final class Constants {
 
   // LIMELIGHT SEEK MODE - How much power do we give the motors when it is turning
   // to scan and driving...
-  public static final double LIMELIGHT_SEEK_TURN_POWER = 0.45; // Power when we are turning when we CAN'T SEE THE target
-  public static final double LIMELIGHT_SEEK_DRIVE_POWER = 0.7; // Power when we are driving toward the target
+  public static final double LIMELIGHT_SEEK_TURN_DT_POWER = 0.45; // Power when we are turning when we CAN'T SEE THE target
+  public static final double LIMELIGHT_SEEK_DRIVE_DT_POWER = 0.7; // Power when we are driving toward the target
+  public static final double LIMELIGHT_SEEK_TURN_TURRET_POWER = 0.45; // Power when we are using the turret to seek
+  
   // public static double LIMELIGHT_SEEK_AREA = 0.9;
 
   // //Tolerance of degrees we want to be on target

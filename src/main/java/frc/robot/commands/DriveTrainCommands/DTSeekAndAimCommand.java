@@ -15,7 +15,7 @@ import frc.robot.subsystems.BlingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 
-public class SeekAndAimCommand extends CommandBase {
+public class DTSeekAndAimCommand extends CommandBase {
   /**
    * Creates a new SeekAndAimCommand.
    */
@@ -31,7 +31,7 @@ public class SeekAndAimCommand extends CommandBase {
   double move;
   boolean aimAndMove = false;
 
-  public SeekAndAimCommand(DriveTrainSubsystem driveTrainSubsystem, LimelightSubsystem limelightSubsystem,
+  public DTSeekAndAimCommand(DriveTrainSubsystem driveTrainSubsystem, LimelightSubsystem limelightSubsystem,
       double pipeline, BlingSubsystem blingSubsystem) {
 
     // Init our local variables
@@ -89,7 +89,7 @@ public class SeekAndAimCommand extends CommandBase {
       // Output to the Dashboard whether the LimeLight has a target
       SmartDashboard.putString("LimeLight Has Target", "NO TARGET");
       move = 0;
-      turn = Constants.LIMELIGHT_SEEK_TURN_POWER;
+      turn = Constants.LIMELIGHT_SEEK_TURN_DT_POWER;
     }
 
     // Send the "move" and "turn" values into arcade drive

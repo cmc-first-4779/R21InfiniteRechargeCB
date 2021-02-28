@@ -36,9 +36,10 @@ public class SeekAndMoveToTargetCommand extends CommandBase {
     m_limelightSubsystem = limelightSubsystem;
     m_pipeline = pipeline;
     m_blingSubsystem = blingSubsystem;
+    
 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
+    addRequirements(m_driveTrainSubsystem, m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -86,7 +87,7 @@ public class SeekAndMoveToTargetCommand extends CommandBase {
       // Output to the Dashboard whether the LimeLight has a target
       SmartDashboard.putString("LimeLight Has Target", "NO TARGET");
       move = 0;
-      turn = Constants.LIMELIGHT_SEEK_TURN_POWER;
+      turn = Constants.LIMELIGHT_SEEK_TURN_DT_POWER;
     }
 
     // Send the "move" and "turn" values into arcade drive

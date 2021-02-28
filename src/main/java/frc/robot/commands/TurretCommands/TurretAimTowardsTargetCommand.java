@@ -1,75 +1,71 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.DriveTrainCommands;
+package frc.robot.commands.TurretCommands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.StaticConstants.BlingConstants;
 import frc.robot.subsystems.BlingSubsystem;
-import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
 
-public class AimTowardsTargetCommand extends CommandBase {
-  /**
+public class TurretAimTowardsTargetCommand extends CommandBase {
+  /** Creates a new AimTowardsTargetCommand. */
+
+    /**
    * Creates a new AimTowardsTargetCommand.
    */
-    LimelightSubsystem m_limelightSubsystem;
-    DriveTrainSubsystem m_driveTrainSubsystem;
-    BlingSubsystem m_blingSubsystem;
-    double m_pipeline;
+  LimelightSubsystem m_limelightSubsystem;
+  TurretSubsystem m_turretSubsystem;
+  BlingSubsystem m_blingSubsystem;
+  double m_pipeline;
 
-     //These will be used as we calculate turning 
-     double turnPower;  //   Power needed to turn the robot
-     boolean aimAndMove;
-     double kpAim;  //  Our incremental power we use to hit the target
-     double aimMinPower;  //  The minimum power we use to turn the robot to aim at the target
+   //These will be used as we calculate turning 
+  double turnPower;  //   Power needed to turn the robot
+  boolean aimAndMove;
+  double kpAim;  //  Our incremental power we use to hit the target
+  double aimMinPower;  //  The minimum power we use to turn the robot to aim at the target
 
-    boolean onTarget = false;
-    int counter = 0;
-
-  public AimTowardsTargetCommand(DriveTrainSubsystem driveTrainSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem) {
-    
-
-        //Init our local variables
-        m_driveTrainSubsystem = driveTrainSubsystem;
-        m_limelightSubsystem = limelightSubsystem;
-        m_pipeline = pipeline;
-        m_blingSubsystem = blingSubsystem;
-        kpAim = 0;
-        aimMinPower = Constants.LIMELIGHT_SEEK_TURN_POWER;
-        aimAndMove = false;
-        //  Put these to the Shuffleboard so that we can read them later to calibrate
-        SmartDashboard.putNumber("kpAim", kpAim);
-        SmartDashboard.putNumber("Aim Min", aimMinPower);
-    
-        // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(m_driveTrainSubsystem, m_limelightSubsystem, m_blingSubsystem);
+  boolean onTarget = false;  //  Are we on target, assume "false"
+  int counter = 0;
+  
+  public TurretAimTowardsTargetCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem) {
+            //Init our local variables
+            m_turretSubsystem = turretSubsystem;
+            m_limelightSubsystem = limelightSubsystem;
+            m_pipeline = pipeline;
+            m_blingSubsystem = blingSubsystem;
+            kpAim = 0;
+            aimMinPower = Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER;
+            aimAndMove = false;
+            //  Put these to the Shuffleboard so that we can read them later to calibrate
+            SmartDashboard.putNumber("kpAim", kpAim);
+            SmartDashboard.putNumber("Aim Min", aimMinPower);
+        
+            // Use addRequirements() here to declare subsystem dependencies.
+            addRequirements(m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //  Set our "on target" boolean to false
-    onTarget = false;
-    //  set our counter to zero
-    counter = 0;
-    //  Set the Limelight to init for vision
-    m_limelightSubsystem.initLimelightforVision();
-    //  Set the bling subsystem to lime green
-    m_blingSubsystem.setBlingPattern(BlingConstants.BLING_LIME);
+        //  Set our "on target" boolean to false
+        onTarget = false;
+        //  set our counter to zero
+        counter = 0;
+        //  Set the Limelight to init for vision
+        m_limelightSubsystem.initLimelightforVision();
+        //  Set the bling subsystem to lime green
+        m_blingSubsystem.setBlingPattern(BlingConstants.BLING_LIME);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-      /*
+          /*
        * First check to see if there is a target, if not turn Then make sure we are on
        * target Then make sure we are the proper distance from target
        */
@@ -93,29 +89,24 @@ public class AimTowardsTargetCommand extends CommandBase {
         // Output to the Dashboard whether the LimeLight has a target
         SmartDashboard.putString("LimeLight Has Target", "NO TARGET");  
         // Set the turn power equal to the minimum we use to seek    
-        turnPower = Constants.LIMELIGHT_SEEK_TURN_POWER;
+        turnPower = Constants.LIMELIGHT_SEEK_TURN_DT_POWER;
       }
-      //  Send the "move" and "turn" values into arcade drive.   Move is ZERO because we are only turning.
-      m_driveTrainSubsystem.arcadeDrive(0, turnPower);
+      //  Send the turnpower into the Turret Motor..
+      //   When this is negative it should turn the other way
+      m_turretSubsystem.setTurretMotorSpeed(turnPower);
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    //  Set our Bling back to Default
-    m_blingSubsystem.setBlingPattern(Constants.BLING_DEFAULT);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //  We are running the counter a set number of times to line up on target
-    return counter > Constants.LIMELIGHT_AIMING_COUNTER;
+    return false;
   }
 
-
-      /**
+     /**
      * Calculates how much to turn. Get's how far off in the x-axis we are from limelight.  If we are within acceptable range, then it
      * returns 0.
      * @return the amount to turn
@@ -145,10 +136,9 @@ public class AimTowardsTargetCommand extends CommandBase {
       else {
         turnPower = 0;
         onTarget = true; 
-      counter++;
+        counter++;
       }
       //Return the directon and amount we have to turn
         return turnPower;
       }
-
-    }
+}
