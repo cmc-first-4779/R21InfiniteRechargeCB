@@ -131,8 +131,13 @@ public final class Constants {
   public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target 
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on RoboRIO
   public static final double TURRET_CIRCUMFRENCE_INCHES = 47;  // This will change
-  public static final int TURRET_NUMBER_ENCODER_PULSES_PER_ROTATION = 4096;  //  This value will change
-  public static final double TURRET_DEGREES_PER_ENCODER_PULSE  = 360 / TURRET_NUMBER_ENCODER_PULSES_PER_ROTATION;  //Degrees per encoder pulse
+  public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096;  //  This value will change
+  public static final double TURRET_DEGREES_PER_ENCODER_PULSE  = 360 / TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION;  //Degrees per encoder pulse
+  public static final double TURRET_ENCODER_PULSES_PER_DEGREE = TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION / 360;
+  public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES = 0;  //  Our reference point.  The right manual stop
+  public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE = 0;  //Encoder ticks
+  public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES = 225;  //This number may change
+  public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE = TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES * TURRET_ENCODER_PULSES_PER_DEGREE;
   // **************** RAINBOW SETTINGS ****************/
   public static final double RAINBOW_MOTOR_SPEED = 0.8; // Placeholder for motor power
 

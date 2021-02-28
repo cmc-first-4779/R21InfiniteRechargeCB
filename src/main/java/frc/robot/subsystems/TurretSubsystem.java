@@ -72,4 +72,11 @@ public class TurretSubsystem extends SubsystemBase {
     return turretEncoder.get();
   }  
 
+  public double getTurretAngleFromEncoder(){
+    double numberPulsesPerRevolution = Constants.TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION;
+    double currentEncoderPosition = getTurretEncoderPosition();
+    double angleFromEncoder = (currentEncoderPosition / numberPulsesPerRevolution) * 360;
+    return angleFromEncoder;
+  }
+
 }
