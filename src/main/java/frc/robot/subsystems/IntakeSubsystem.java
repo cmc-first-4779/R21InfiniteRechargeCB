@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,11 +21,11 @@ import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
-  Spark intakeMotor;
+  CANSparkMax intakeMotor;
   DoubleSolenoid intakeDoubleSolenoid;
 
   public IntakeSubsystem() {
-    intakeMotor = new Spark(Constants.CAN_ADDRESS_INTAKE);
+    intakeMotor = new CANSparkMax(Constants.CAN_ADDRESS_INTAKE, MotorType.kBrushless);
     intakeDoubleSolenoid = new DoubleSolenoid(Constants.PCM_PORT_INTAKE_EXTEND, Constants.PCM_PORT_INTAKE_RETRACT);
   }
 
