@@ -130,5 +130,46 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return null;
   }
+
+  //  Return the Drivetrian Subsystem
+  public DriveTrainSubsystem getDriveTrainSubsystem(){
+    return m_driveTrainSubsystem;
+  }
+
+  //  Return the Intake Subsystem
+  public IntakeSubsystem getIntakeSubsystem(){
+    return m_intakeSubsystem;
+  }
+
+  //  Return the Bling Subsystem
+  public BlingSubsystem getBlingSubsystem(){
+    return m_blingSubsystem;
+  }  
+
+  //  Return the Elevator Subsystem
+  public ElevatorSubsystem getElevatorSubsystem(){
+    return m_elevatorSubsystem;
+  }
+  
+  //  Return the Hopper Subsystem
+  public HopperSubsystem getHopperSubsystem(){
+    return m_hopperSubsystem;
+  }
+  
+  //  Return the Limelight Subsystem
+  public LimelightSubsystem getLimelightSubsystem(){
+    return m_limelightSubsystem;
+  }
+  
+  //  Return the Shooter Subsystem
+  public ShooterSubsystem getShooterSubsystem(){
+    return m_shooterSubsystem;
+  }  
+
+  //  Return the Shooter Subsystem
+  public TurretSubsystem getTurretSubsystem(){
+    return m_turretSubsystem;
+  }  
+
 }
     
