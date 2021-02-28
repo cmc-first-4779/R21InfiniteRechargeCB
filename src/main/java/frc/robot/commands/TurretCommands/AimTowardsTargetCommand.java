@@ -20,7 +20,7 @@ public class AimTowardsTargetCommand extends CommandBase {
    */
   LimelightSubsystem m_limelightSubsystem;
   TurretSubsystem m_turretSubsystem;
-  BlingSubsystem m_blingSubsystem;
+  // BlingSubsystem m_blingSubsystem;
   double m_pipeline;
 
    //These will be used as we calculate turning 
@@ -32,12 +32,13 @@ public class AimTowardsTargetCommand extends CommandBase {
   boolean onTarget = false;  //  Are we on target, assume "false"
   int counter = 0;
   
-  public AimTowardsTargetCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem) {
+  // public AimTowardsTargetCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem) {
+  public AimTowardsTargetCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline) {
             //Init our local variables
             m_turretSubsystem = turretSubsystem;
             m_limelightSubsystem = limelightSubsystem;
             m_pipeline = pipeline;
-            m_blingSubsystem = blingSubsystem;
+            // m_blingSubsystem = blingSubsystem;
             kpAim = 0;
             aimMinPower = Constants.LIMELIGHT_SEEK_TURN_POWER;
             aimAndMove = false;
@@ -46,8 +47,9 @@ public class AimTowardsTargetCommand extends CommandBase {
             SmartDashboard.putNumber("Aim Min", aimMinPower);
         
             // Use addRequirements() here to declare subsystem dependencies.
-            addRequirements(m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
-  }
+            // addRequirements(m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
+            addRequirements(m_turretSubsystem, m_limelightSubsystem);
+          }
 
   // Called when the command is initially scheduled.
   @Override
@@ -59,7 +61,7 @@ public class AimTowardsTargetCommand extends CommandBase {
         //  Set the Limelight to init for vision
         m_limelightSubsystem.initLimelightforVision();
         //  Set the bling subsystem to lime green
-        m_blingSubsystem.setBlingPattern(BlingConstants.BLING_LIME);
+        // m_blingSubsystem.setBlingPattern(BlingConstants.BLING_LIME);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -98,7 +100,9 @@ public class AimTowardsTargetCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_turretSubsystem.stopTurret();
+  }
 
   // Returns true when the command should end.
   @Override

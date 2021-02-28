@@ -19,8 +19,10 @@ import frc.robot.commands.ShooterCommands.ShooterOffCommand;
 import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorCounterClockwiseCommand;
+import frc.robot.commands.TurretCommands.AimTowardsTargetCommand;
 import frc.robot.commands.TurretCommands.TurretMotorClockwiseCommand;
 import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
 
@@ -40,6 +42,7 @@ public class RobotContainer {
   private final TurretSubsystem turret = new TurretSubsystem();
   private final ElevatorSubsystem ellivator = new ElevatorSubsystem();
   private final HopperSubsystem hopper = new HopperSubsystem();
+  private final LimelightSubsystem limelight = new LimelightSubsystem();
 
   //    Commands
   private final ShooterOnCommand shooterOn = new ShooterOnCommand(shooter);
@@ -50,6 +53,7 @@ public class RobotContainer {
   private final HopperGoBackwardCommand hopperGoBackward = new HopperGoBackwardCommand(hopper);
   private final GoDownCommand goback = new GoDownCommand(ellivator);
   private final GoUpCommand ellirun = new GoUpCommand(ellivator);
+  private final AimTowardsTargetCommand aimTowardsTarget = new AimTowardsTargetCommand(turret, limelight, 1);
 
   //  Joysticks
   private final XboxController driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT);
@@ -71,14 +75,16 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(driverStick, 1).whenPressed(shooterOn);
-    new JoystickButton(driverStick, 2).whenPressed(shooterOff);
-    new JoystickButton(driverStick, 3).whileHeld(turretMotorRightCommand);
-    new JoystickButton(driverStick, 4).whileHeld(turretMotorLeftCommand);
-    new JoystickButton(driverStick, Button.kB.value).whileHeld(ellirun);
-    new JoystickButton(driverStick, Button.kX.value).whileHeld(goback);
-    new JoystickButton(driverStick, Button.kBumperLeft.value).whileHeld(hopperGoForward);
-    new JoystickButton(driverStick, Button.kBumperRight.value).whileHeld(hopperGoBackward);
+    // new JoystickButton(driverStick, 1).whenPressed(shooterOn);
+    // new JoystickButton(driverStick, 2).whenPressed(shooterOff);
+    // new JoystickButton(driverStick, 3).whileHeld(turretMotorRightCommand);
+    // new JoystickButton(driverStick, 4).whileHeld(turretMotorLeftCommand);
+    // new JoystickButton(driverStick, Button.kB.value).whileHeld(ellirun);
+    // new JoystickButton(driverStick, Button.kX.value).whileHeld(goback);
+    // new JoystickButton(driverStick, Button.kBumperLeft.value).whileHeld(hopperGoForward);
+    // new JoystickButton(driverStick, Button.kBumperRight.value).whileHeld(hopperGoBackward);
+
+    new JoystickButton(driverStick, Button.kA.value).whileHeld(aimTowardsTarget);
   }
 
   /**
