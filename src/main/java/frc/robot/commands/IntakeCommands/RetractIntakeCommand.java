@@ -13,6 +13,7 @@ public class RetractIntakeCommand extends CommandBase {
   public RetractIntakeCommand(IntakeSubsystem intakeSubsystem) {
     m_intakeSubsystem = intakeSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.

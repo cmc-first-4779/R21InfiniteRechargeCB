@@ -12,6 +12,7 @@ public class ExtendIntakeCommand extends CommandBase {
   /** Creates a new ExtendIntakeCommand. */
   public ExtendIntakeCommand(IntakeSubsystem intakeSubsystem) {
     m_intakeSubsystem = intakeSubsystem;
+    addRequirements(m_intakeSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
