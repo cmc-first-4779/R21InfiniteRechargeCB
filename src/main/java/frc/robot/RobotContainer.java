@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.subsystems.BlingSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 //import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
@@ -21,6 +23,7 @@ import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorCounterClockwiseCommand;
 import frc.robot.commands.TurretCommands.TurretMotorClockwiseCommand;
 import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
 
@@ -40,6 +43,9 @@ public class RobotContainer {
   private final TurretSubsystem turret = new TurretSubsystem();
   private final ElevatorSubsystem ellivator = new ElevatorSubsystem();
   private final HopperSubsystem hopper = new HopperSubsystem();
+  private final IntakeSubsystem intake = new IntakeSubsystem();
+  private final BlingSubsystem bling = new BlingSubsystem();
+  private final DriveTrainSubsystem driveTrain = new DriveTrainSubsystem();
 
   //    Commands
   private final ShooterOnCommand shooterOn = new ShooterOnCommand(shooter);
