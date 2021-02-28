@@ -14,6 +14,7 @@ import frc.robot.subsystems.BlingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 //import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.AutoCommands.HopperElevatorCommand;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
 import frc.robot.commands.BlingCommands.BlingSetDefaultCommand;
 import frc.robot.commands.DriveTrainCommands.DriveWithJoystickCommand;
@@ -33,7 +34,11 @@ import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
 import frc.robot.commands.HopperCommands.StopHopperCommand;
+import frc.robot.commands.IntakeCommands.EjectCellsCommand;
+import frc.robot.commands.IntakeCommands.ExtendIntakeCommand;
+import frc.robot.commands.IntakeCommands.IntakeCellsCommand;
 import frc.robot.commands.IntakeCommands.IntakeStopCommand;
+import frc.robot.commands.IntakeCommands.RetractIntakeCommand;
 import frc.robot.commands.LimelightCommands.LimelightInitForVisionCommand;
 
 
@@ -115,14 +120,19 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_driverStick, Button.kA.value).whenPressed(shooterOnCommand);
-    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(shooterOffCommand);
-    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(turretMotorRightCommand);
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(turretMotorLeftCommand);
-    new JoystickButton(m_driverStick, Button.kB.value).whileHeld(elevatorGoUpCommand);
+    new JoystickButton(m_driverStick, Button.kA.value).whileHeld(shooterOnCommand);
+    //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(shooterOffCommand);
+    // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(turretMotorRightCommand);
+    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(turretMotorLeftCommand);
+    //new JoystickButton(m_driverStick, Button.kB.value).whileHeld(elevatorGoUpCommand);
     new JoystickButton(m_driverStick, Button.kX.value).whileHeld(elevatorGoDownCommand);
-    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(hopperGoForward);
-    new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(hopperGoBackward);
+    //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(hopperGoForward);
+    //new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(hopperGoBackward);
+    new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem));
+    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new RetractIntakeCommand(m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new IntakeCellsCommand(m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new EjectCellsCommand(m_intakeSubsystem));
   }
 
   /**

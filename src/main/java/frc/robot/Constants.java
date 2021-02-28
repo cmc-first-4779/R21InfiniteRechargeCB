@@ -106,16 +106,16 @@ public final class Constants {
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;                                                                                 
 
   // **************** HOPPER SETTINGS ****************/
-  public static final double HOPPER_MOTOR_FORWARD_SPEED = 0.6; // How fast to move conveyor belt forward
-  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 0.6;  // How fast to move the conveyor belt forward
+  public static final double HOPPER_MOTOR_FORWARD_SPEED = 0.8; // How fast to move conveyor belt forward
+  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 0.8;  // How fast to move the conveyor belt forward
 
   // **************** INTAKE SETTINGS ****************/
-  public static final double INTAKE_MOTOR_SPEED = 0.5; // How fast to spin the rollers to intake a ball
-  public static final double EJECT_MOTOR_SPEED = 0.5;  //  How fast to eject a ball from the intake
+  public static final double INTAKE_MOTOR_SPEED = 1.0; // How fast to spin the rollers to intake a ball
+  public static final double EJECT_MOTOR_SPEED = 0.8;  //  How fast to eject a ball from the intake
 
   // **************** ELEVATOR SETTINGS ****************/
-  public static final double ELEVATOR_MOTOR_UP_SPEED = 0.5; // How fast to spin the wheels for bring power cells up to shooter 
-  public static final double ELEVATOR_MOTOR_DOWN_SPEED = 0.5; // How fast the elevator will move cells up
+  public static final double ELEVATOR_MOTOR_UP_SPEED = 0.9; // How fast to spin the wheels for bring power cells up to shooter 
+  public static final double ELEVATOR_MOTOR_DOWN_SPEED = 0.9; // How fast the elevator will move cells up
 
   // **************** TURRET SETTINGS ****************/
   public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target 

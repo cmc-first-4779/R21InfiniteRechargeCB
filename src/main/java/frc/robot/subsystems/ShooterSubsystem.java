@@ -29,16 +29,19 @@ public class ShooterSubsystem extends SubsystemBase {
   shooterMotorMaster = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_MASTER); 
   shooterMotorSlave = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_SLAVE);
 
-  shooterMotorSlave.setInverted(true); //invert slave (might change)
+  initMasterMotorController(shooterMotorMaster);
+  initSlaveMotorController(shooterMotorSlave);
+  
+  shooterMotorSlave.setInverted(false); //invert slave (might change)
+  shooterMotorMaster.setInverted(true); //invert master (might change)
 
   shooterMotorSlave.follow(shooterMotorMaster);//
 
-  initMasterMotorController(shooterMotorMaster);
-  initSlaveMotorController(shooterMotorSlave);
+
 
   isShooterUpToSpeed = false;
 
-  m_desiredSpeed = 5000;
+  m_desiredSpeed = 18000;
 
   }
   
@@ -105,7 +108,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
    public void setConstantVelocity() {
-    configPIDFValues(.1, 0, 0, 0, 0);  //STILL NEED TO GET THESE VALUES
+    configPIDFValues(.1, 0, 0, 0.05, 0);  //STILL NEED TO GET THESE VALUES
    
     shooterMotorMaster.set(ControlMode.Velocity, m_desiredSpeed);
 
