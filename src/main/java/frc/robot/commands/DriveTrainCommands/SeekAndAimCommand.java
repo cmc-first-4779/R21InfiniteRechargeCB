@@ -100,6 +100,7 @@ public class SeekAndAimCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //  Set our bling back to default
     m_blingSubsystem.setBlingPattern(Constants.BLING_DEFAULT);
   }
 

@@ -48,18 +48,14 @@ public final class Constants {
   // **********************************/
   public static final int PWM_PORT_ELEVATOR_MOTOR = 0; // CIM Motor
   public static final int PWM_PORT_TURRET_MOTOR = 1; // Spark controller w/ RedLine (775) Motor
-  // public static final int PWM_PORT_RAINBOW_MOTOR = 3; // this is for the motor that turns the color wheel
-  // public static final int PWM_PORT_CLIMBER_MOTOR = 4; // this is for the motor of the climber
-  public static final int PWM_PORT_BLING = 5; // PWM for BLINKIN LED Driver (Looks like a SPARK, but not)
-  public static final int PWM_PORT_TURRET = 0; // PWM for Turret subsystem
+  public static final int PWM_PORT_BLING = 2; // PWM for BLINKIN LED Driver (Looks like a SPARK, but not)
+  //public static final int PWM_PORT_TURRET = 0; // PWM for Turret subsystem
 
   // ************** PCM (PNEUMATICS CONTROL MODULE) PORTS
   // *************************/
   public static final int PCM_PORT_INTAKE_EXTEND = 0; // Solenoid for extending the intake
   public static final int PCM_PORT_INTAKE_RETRACT = 1;  //  PCM for retracting the intake
-  //public static final int PCM_PORT_SHOOTER_RETRACT = 1; // Placeholder
-  //public static final int PCM_PORT_RAINBOW_ARM_DEPLOY = 2; // Place holder
-  //public static final int PCM_PORT_RAINBOW_ARM_RETRACT = 3; // Place holder
+
 
   /**********************
    * GYRO SPI PORT
@@ -71,13 +67,7 @@ public final class Constants {
   **************************************************/
   // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_A = 0;  // Shooter Quad Encoder - Channel A
   // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_B = 1;  // Shooter Quad Encoder - Channel B
-  // public static final int DIO_PORT_RAINBOW_ARM_SENSOR = 2; // Sensor that detects whether the Rainbow arm is close
-                                                           // enough to the control panel
-  // public static final int DIO_PORT_MAGAZINE_INTAKE_SENSOR = 3; // Sensor that detects a new ball entering the magazine
-  // public static final int DIO_PORT_MAGAZINE_EXIT_SENSOR = 4; // Sensor that detects a new ball entering the magazine
-  // public static final int DIO_PORT_CLIMBER_CHANNEL_A = 5;  // Climber Quad Encoder - Channel A
-  // public static final int DIO_PORT_CLIMBER_CHANNEL_B = 6;  // Climber Quad Encoder - Channel A
-
+  
   // Set a DEFAULT BLING mode here so that way we only have to change it in one
   // place..
   public static final double BLING_DEFAULT = BlingConstants.BLING_OCEAN_PALETTE;
@@ -138,17 +128,7 @@ public final class Constants {
   public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE = 0;  //Encoder ticks
   public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES = 225;  //This number may change
   public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE = TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES * TURRET_ENCODER_PULSES_PER_DEGREE;
-  // **************** RAINBOW SETTINGS ****************/
-  public static final double RAINBOW_MOTOR_SPEED = 0.8; // Placeholder for motor power
-
-  // **************** CLIMBER SETTINGS ****************/
-  public static final double CLIMBER_MOTOR_POWER = 0.85; // Placeholder
-  public static final double CLIMBER_DISTANCE_PER_REVOLUTION = 1; // Placeholder
-  public static final double CLIMBER_REVOLUTIONS_PER_ENCODER_PULSE = 20;  //Placeholder
-  public static final double CLIMBER_DISTANCE_PER_ENCODER_PULSE = CLIMBER_DISTANCE_PER_REVOLUTION / CLIMBER_REVOLUTIONS_PER_ENCODER_PULSE;
-  public static final double CLIMBER_ARM_LENGTH_INCHES = 30.0;   //The length of the climber arms is 30 inches
-  public static final double CLIMBER_OK_TIME_IN_MATCH_TO_CLIMB_SECS = 30;  // How many seconds left in teleop beore we can climb
-
+  
    // **************** SHOOTER SETTINGS ****************/
   public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
   public static final double SHOOTER_EMPTY_MAGAZINE_TIMER = 0.5;
@@ -176,13 +156,7 @@ public final class Constants {
   public static final double LIMELIGHT_SEEK_TURN_POWER = 0.45; // Power when we are turning when we CAN'T SEE THE target
   public static final double LIMELIGHT_SEEK_DRIVE_POWER = 0.7; // Power when we are driving toward the target
   // public static double LIMELIGHT_SEEK_AREA = 0.9;
-  // LIMELIGHT Details about where the camera is mounted, and target details...
-  // public static final double LIMELIGHT_CAMERAMOUNT_ANGLE = 0.0; // degrees
-  // public static final double LIMELIGHT_CAMERA_HEIGHT = 26.25; // inches
-  // public static final double LIMELIGHT_DISTANCE_FROM_TARGET = 24.0; // inches
-  // public static final double LIMELIGHT_CARGO_HEIGHT = 5.5; // inches
-  // public static final double LIMELIGHT_HATCHCOVER_HEIGHT = 0.25; // inches
-  // public static final double LIMELIGHT_DRIVETRAIN_AIM_TOLERANCE = 5;
+
   // //Tolerance of degrees we want to be on target
 
   public static final double LIMELIGHT_SKEW_CLOCKWISE_MAX = 62.5; // degrees

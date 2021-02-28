@@ -19,7 +19,7 @@ public class TurretSubsystem extends SubsystemBase {
   /** Creates a new TurretSubsystem. */
   public TurretSubsystem() {
 
-    turretMotor = new Spark(Constants.PWM_PORT_TURRET); 
+    turretMotor = new Spark(Constants.PWM_PORT_TURRET_MOTOR); 
     AnalogInput analogInput = new AnalogInput(0);
     turretEncoder = new AnalogEncoder(analogInput);
     resetTurretEncoder();  //  Reset our encoder to zero when the subsystem is constructed.
@@ -104,5 +104,36 @@ public class TurretSubsystem extends SubsystemBase {
     System.out.println("Current Angle from Encoder:  " + angleFromEncoder);
     return angleFromEncoder;
   }
+
+  //  This method returns a boolean of TRUE if we are in either side of the dead zone which is protected
+  //   by manual stops on the turret.   
+  //  We need this logic to protect our motors from burning out.
+  public boolean isInDeadZone(){
+    //  If our turret angle is less than or equal to the angle of the right manual stop in degrees
+    if (getTurretAngleFromEncoder() <= Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES){
+      return true;
+    }
+    //  If our turret angle is greater than or equal to the angle of the left manual stop in degrees
+    else if (getTurretAngleFromEncoder() >= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES){
+      return true;
+    }
+    //  Else..   We are not in the Deadzone..   Return False
+    else {
+      return false;
+    }
+  }
+
+  //  This method returns a boolean of TRUE if we are turning clockwise
+  public boolean isTurningClockwise(double turretspeed){
+    //  If the turret speed is greater than zero, it's going clockwise
+    if (turretspeed >= 0){
+      return true;
+    }
+    //  If our turret speed is less than zero, it's going counterclockwise
+    else {
+      return false;
+    }
+  }
+
 
 }
