@@ -31,11 +31,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    // During robotInit, We want the robot drivetrain motor controllers in "Coast"
-    // mode.
+    // During robotInit, We want the robot drivetrain motor controllers in "Coast" mode.
     m_robotContainer.getDriveTrainSubsystem().setNeutralMode(NeutralMode.Coast);
-    //  Reset the encoder position to zero
-    m_robotContainer.getTurretSubsystem().resetTurretEncoder();
   }
 
   /**
@@ -57,8 +54,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    // When disabled, we want the robot drivetrain motor controllers in "Coast"
-    // mode.
+    // When disabled, we want the robot drivetrain motor controllers in "Coast" mode.
     m_robotContainer.getDriveTrainSubsystem().setNeutralMode(NeutralMode.Coast);
   }
 
@@ -68,6 +64,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+
     // During auton, we want the robot drivetrain motor controllers in "Brake" mode.
     m_robotContainer.getDriveTrainSubsystem().setNeutralMode(NeutralMode.Brake);
 
@@ -90,7 +87,7 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
 
-    // During auton, we want the robot drivetrain motor controllers in "Brake" mode.
+    // During teleop, we want the robot drivetrain motor controllers in "Brake" mode.
     m_robotContainer.getDriveTrainSubsystem().setNeutralMode(NeutralMode.Brake);
 
     if (m_autonomousCommand != null) {

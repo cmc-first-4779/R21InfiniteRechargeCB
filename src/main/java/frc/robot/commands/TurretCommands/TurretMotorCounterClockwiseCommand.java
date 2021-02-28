@@ -34,9 +34,7 @@ public class TurretMotorCounterClockwiseCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    m_turretSubsystem.setTurretMotorOff();
-
+    m_turretSubsystem.stopTurret();
   }
 
   // Returns true when the command should end.
