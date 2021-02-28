@@ -53,25 +53,22 @@ public class TurretScanForTargetCommand extends CommandBase {
     // Set BLING to LIME_GREEN as a visual cue for our driveteam that Vision is 
     // taking over the Turret
     m_blingSubsystem.setBlingPattern(BlingConstants.BLING_LIME);
+
     // get the position and angle values of the Turret Encoder when the command initially starts.
-     initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
-     initialEncoderAngle = m_turretSubsystem.getTurretAngleFromEncoder();
+    initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
+    initialEncoderAngle = m_turretSubsystem.getTurretAngleFromEncoder();
+
   }
 
-  // C  alled every time the scheduler runs while the command is scheduled.
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     /*
-     * First check to see if there is a target, if not turn Then make sure we are on
-     * target Then make sure we are the proper distance from target
+     * First check to see if there is a target, if not turn 
      */
     boolean hasTarget = m_limelightSubsystem.hasTarget();
 
-    //  Get the current angle / position from the Turret Encoder
-    double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
-    double currentEncoderAngle = m_turretSubsystem.getTurretAngleFromEncoder();
-
-    //   If the Limelight can see the target...
+     //   If the Limelight can see the target...
     if (hasTarget) {
       // Output to the Dashboard whether the LimeLight has a target
       System.out.println("LimeLight Has Target");
@@ -80,7 +77,7 @@ public class TurretScanForTargetCommand extends CommandBase {
       turnTurretPower = calculateTurn();
       System.out.println("Turn Value: " + turnTurretPower);
     }
-    //  Else..   If the Limelight can't see the target, we need to keep seeking
+    //  Else..   If the Limelight can't see the target, we need to keep scanning
     else {
       // Output to the Dashboard whether the LimeLight has a target
       System.out.println("LimeLight Has NO Target.  Seeking...");   
@@ -92,10 +89,12 @@ public class TurretScanForTargetCommand extends CommandBase {
       if (initialEncoderAngle > Constants.TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_DEGREES){
         //  Turn the turret counter clockwise if the turrent started to the left of the midpoint
         turnTurretPower = Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER; 
+        System.out.println("Turn Value: " + turnTurretPower);
       }
       else{
         //  Else..   We started to the right of the midpoint, so turn the turret clockwise
         turnTurretPower = -1* Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER; 
+        System.out.println("Turn Value: " + turnTurretPower);
       }
       turnTurretPower = Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER;  
       System.out.println("Turn Value: " + turnTurretPower);
@@ -139,6 +138,40 @@ public class TurretScanForTargetCommand extends CommandBase {
     }
     // Return the directon and amount we have to turn
     return turnTurretPower;
+  }
+
+  //  This routine will doublecheck our current location to see if we are touching the left manual stop
+  //   It returns TRUE if we are...
+  private boolean checkTouchLeftStop(){
+    //  Get the current angle / position from the Turret Encoder
+    //double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
+    double currentEncoderAngle = m_turretSubsystem.getTurretAngleFromEncoder();
+   
+    //  If the Encoder Angle is at the left manual stop, change our boolean to true...
+    if (currentEncoderAngle >= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES){
+        return true;
+       }
+    //  Else..   We are not touching the left manual stop   
+    else {
+        return false;
+    }   
+  }
+
+//  This routine will doublecheck our current location to see if we are touching the Right manual stop
+  //   It returns TRUE if we are...
+  private boolean checkTouchRightStop(){
+    //  Get the current angle / position from the Turret Encoder
+    //double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
+    double currentEncoderAngle = m_turretSubsystem.getTurretAngleFromEncoder();
+   
+    //  If the Encoder Angle is at the right manual stop, change our boolean to true...
+    if (currentEncoderAngle <= Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES){
+        return true;
+       }
+    //  Else..   We are not touching the right manual stop   
+    else {
+        return false;
+    }   
   }
 
 }
