@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
@@ -79,6 +80,9 @@ public class RobotContainer {
   
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    // Setup the CameraServer
+    CameraServer.getInstance().startAutomaticCapture();
 
     //  DEFAULT COMMANDS FOR EACH SUBSYSTEM
     //This is where we make the DriveWithJoystick Command the default command for the DriveTrain
