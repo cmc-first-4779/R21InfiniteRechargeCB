@@ -118,7 +118,7 @@ public final class Constants {
   public static final double ELEVATOR_MOTOR_DOWN_SPEED = 0.9; // How fast the elevator will move cells up
 
   // **************** TURRET SETTINGS ****************/
-  public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target 
+  public static final double TURRET_MOTOR_SPEED = 0.5; // How fast to spin the turret to line-up to target 
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on RoboRIO
   public static final double TURRET_CIRCUMFRENCE_INCHES = 47;  // This will change
   public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096;  //  This value will change

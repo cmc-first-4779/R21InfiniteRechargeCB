@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class TurretSubsystem extends SubsystemBase {
@@ -33,10 +34,29 @@ public class TurretSubsystem extends SubsystemBase {
   public void setTurretMotorCounterClockwise(){ 
     //  Negative speed to turn counter clockwise
     setTurretMotorSpeed(-1*Constants.TURRET_MOTOR_SPEED);
+    SmartDashboard.putNumber("Turret Encoder Value:", turretEncoder.get());
   }
 
   public void setTurretMotorClockwise(){ 
     setTurretMotorSpeed(Constants.TURRET_MOTOR_SPEED);
+    SmartDashboard.putNumber("Turret Encoder Value:", turretEncoder.get());
+  }
+  public void setTurretMotorClockwiseTest(){ 
+    if (turretEncoder.get() < 1) {
+    turretMotor.set(Constants.TURRET_MOTOR_SPEED); }
+    else {
+      turretMotor.set(0);
+    }
+    SmartDashboard.putNumber("Turret Encoder Value:", turretEncoder.get());
+  }
+  public void setTurretMotorCounterClockwiseTest(){ 
+    //  Negative speed to turn counter clockwise
+    if (turretEncoder.get() > -1) {
+    turretMotor.set(-1*Constants.TURRET_MOTOR_SPEED);}
+    else {
+      turretMotor.set(0);
+    }
+    SmartDashboard.putNumber("Turret Encoder Value:", turretEncoder.get());
   }
 
   //set motor speed when on.  Used also for limelight aiming.
