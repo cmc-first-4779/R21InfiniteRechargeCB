@@ -88,7 +88,7 @@ public class TurretScanForTargetCommand extends CommandBase {
         //    turn clockwise after it exits this "if" statement
         if (!isTurningClockwise(turnTurretPower)){
           //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
-          //    to the right stop so that the turett will now turn counterclockwise on the next loop
+          //    to the right stop encoder position so that the turett will now turn counterclockwise on the next loop
           initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
         }
         System.out.println("We are touching the Left Stop, starting clockwise scan..");   
@@ -99,12 +99,11 @@ public class TurretScanForTargetCommand extends CommandBase {
       {
         if (isTurningClockwise(turnTurretPower)){
           //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
-          //    to the right stop so that the turett will now turn counterclockwise on the next loop
+          //    to the right stop encoder position so that the turett will now turn counterclockwise on the next loop
           initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
         }  
         System.out.println("We are touching the Right Stop, starting counter-clockwise scan..");  
       }
-    }
       //Set our seek power to our constant
       //  Because we have the manual stops in the turret, we have to be strategic in which way
       //    the turret turns to scan for a target..   If we are far to the left, then we scan to the right..
@@ -118,11 +117,13 @@ public class TurretScanForTargetCommand extends CommandBase {
       else
       {
         //  Else..   We started to the right of the midpoint, so turn the turret counter clockwise
-        turnTurretPower = -1* Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER; 
+        turnTurretPower = -1 * Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER; 
         System.out.println("Turn Value: " + turnTurretPower);
       }
-    //FINALLY..   Turn the turret the right direction..
+    //FINALLY..   Turn the turret the correct direction based on the location and whether
+    //  and whether the turret had been going clockwise or counter-clockwise..
     m_turretSubsystem.setTurretMotorSpeed(turnTurretPower);
+    }
   }
 
   // Called once the command ends or is interrupted.
