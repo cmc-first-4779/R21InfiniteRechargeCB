@@ -54,6 +54,9 @@ public class RobotContainer {
   private final GoDownCommand goback = new GoDownCommand(ellivator);
   private final GoUpCommand ellirun = new GoUpCommand(ellivator);
   private final AimTowardsTargetCommand aimTowardsTarget = new AimTowardsTargetCommand(turret, limelight, 1);
+  private final TurretMotorClockwiseCommand turretMotorClockwiseCommand = new TurretMotorClockwiseCommand(turret);
+  private final TurretMotorCounterClockwiseCommand turretMotorCounterClockwiseCommand = new TurretMotorCounterClockwiseCommand(turret);
+  
 
   //  Joysticks
   private final XboxController driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT);
@@ -85,6 +88,8 @@ public class RobotContainer {
     // new JoystickButton(driverStick, Button.kBumperRight.value).whileHeld(hopperGoBackward);
 
     new JoystickButton(driverStick, Button.kA.value).whileHeld(aimTowardsTarget);
+    new JoystickButton(driverStick, Button.kX.value).whileHeld(turretMotorClockwiseCommand);
+    new JoystickButton(driverStick, Button.kY.value).whileHeld(turretMotorCounterClockwiseCommand);
   }
 
   /**
