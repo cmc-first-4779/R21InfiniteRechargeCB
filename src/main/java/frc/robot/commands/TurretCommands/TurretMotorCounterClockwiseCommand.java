@@ -27,7 +27,7 @@ public class TurretMotorCounterClockwiseCommand extends CommandBase {
   @Override
   public void execute() {
 
-    m_turretSubsystem.setTurretMotorCounterClockwise();
+    m_turretSubsystem.setTurretMotorCounterClockwiseTest();
 
   }
 
