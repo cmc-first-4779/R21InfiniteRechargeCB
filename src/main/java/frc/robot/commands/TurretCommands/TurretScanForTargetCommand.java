@@ -89,7 +89,7 @@ public class TurretScanForTargetCommand extends CommandBase {
         if (!isTurningClockwise(turnTurretPower)){
           //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
           //    to the right stop so that the turett will now turn counterclockwise on the next loop
-          initialEncoderPositon = Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE;
+          initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
         }
         System.out.println("We are touching the Left Stop, starting clockwise scan..");   
       }
@@ -100,7 +100,7 @@ public class TurretScanForTargetCommand extends CommandBase {
         if (isTurningClockwise(turnTurretPower)){
           //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
           //    to the right stop so that the turett will now turn counterclockwise on the next loop
-          initialEncoderPositon = Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE;
+          initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
         }  
         System.out.println("We are touching the Right Stop, starting counter-clockwise scan..");  
       }
