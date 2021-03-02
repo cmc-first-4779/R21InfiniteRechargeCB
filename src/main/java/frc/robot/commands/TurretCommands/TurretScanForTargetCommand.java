@@ -15,7 +15,7 @@ import frc.robot.subsystems.TurretSubsystem;
 public class TurretScanForTargetCommand extends CommandBase {
   /** Creates a new TurretScanForTargetCommand. */
 
-    // Declare the DriveTrain and Limelight Subsystems
+    // Declare the Turret and Limelight Subsystems
     TurretSubsystem m_turretSubsystem;
     LimelightSubsystem m_limelightSubsystem;
     double m_pipeline;

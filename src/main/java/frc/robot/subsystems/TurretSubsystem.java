@@ -17,6 +17,14 @@ public class TurretSubsystem extends SubsystemBase {
   Spark turretMotor; 
   AnalogEncoder turretEncoder;
 
+  //Declare our offset from the absolute zero position of the encoder
+  //   This needs to be called after a reset and so we are putting it
+  //   in the resetEncoder() method
+  double turretPositionOffset;
+
+  //Get current encoder location and angle
+  double initialEncoderPositon;
+
   /** Creates a new TurretSubsystem. */
   public TurretSubsystem() {
 
@@ -33,29 +41,57 @@ public class TurretSubsystem extends SubsystemBase {
 
   public void setTurretMotorCounterClockwise(){ 
     if (getTurretEncoderPosition() > Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+      System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Negative speed to turn counter clockwise
-      setTurretMotorSpeed(-1*Constants.TURRET_MOTOR_SPEED);
+      setTurretMotorSpeed(-1 * Constants.TURRET_MOTOR_SPEED);
     }
     else{
       //  Set speed to Zero..  Stop turret motor
+      System.out.println("Current Position:  " + getTurretEncoderPosition());
       stopTurret();
     }
   }
 
   public void setTurretMotorClockwise(){ 
     if (getTurretEncoderPosition() < Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+      System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Positive speed to turn clockwise
       setTurretMotorSpeed(Constants.TURRET_MOTOR_SPEED);
     }
     else{
       //  Set speed to Zero..  Stop turret motor
+      System.out.println("Current Position:  " + getTurretEncoderPosition());
       stopTurret();
     }
   }
 
   //set motor speed when on.  Used also for limelight aiming.
-  public void setTurretMotorSpeed(double turretspeed){    
-      turretMotor.set(turretspeed);
+  public void setTurretMotorSpeed(double turretspeed){
+
+    if (isTouchingLeftStop())
+    {
+      //  Set the InitalEncoderPosition to the left Manual Stop angle so that the scan will now
+      //    turn clockwise after it exits this "if" statement
+      if (!isTurningClockwise(turretspeed)){
+        //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
+        //    to the right stop encoder position so that the turett will now turn counterclockwise on the next loop
+        turretspeed = 0;
+      }
+      System.out.println("We are touching the Left Stop, starting clockwise scan..");   
+    }
+      // Else if we are touching the right manual stop, set the inital stop angle so that the scan
+      //   will not turn counterclockwise  
+    else if (isTouchingRightStop())
+    {
+      if (isTurningClockwise(turretspeed)){
+        //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
+        //    to the right stop encoder position so that the turett will now turn counterclockwise on the next loop
+        turretspeed = 0;
+      }  
+      System.out.println("We are touching the Right Stop, starting counter-clockwise scan..");  
+    }
+    turretMotor.set(turretspeed);
+      
   }
 
   //  Stop the turret by setting the motor speed to zero
@@ -66,12 +102,16 @@ public class TurretSubsystem extends SubsystemBase {
   //  Reset the Turret Encoders distance to zero.   We need to run this at the start of match
   public void resetTurretEncoder(){
     System.out.println("Resetting the Turret Encoder...");
+    //Reset Encoder
     turretEncoder.reset();
+    //  Store the offset position of the turret from the absolute zero position of the encoder
+    turretPositionOffset = turretEncoder.getPositionOffset();
   }
 
   //  Return the Turret Encoder Position
   public double getTurretEncoderPosition(){
     System.out.println("Current Position of Encoder:  " + turretEncoder.get());
+    SmartDashboard.putNumber("Current Position:", turretEncoder.get());
     return turretEncoder.get();
   }  
 
@@ -112,4 +152,35 @@ public class TurretSubsystem extends SubsystemBase {
     }
   }
 
+    //  This routine will doublecheck our current location to see if we are touching the left manual stop
+  //   It returns TRUE if we are...
+  private boolean isTouchingLeftStop(){
+    //  Get the current angle / position from the Turret Encoder
+    double currentEncoderPosition = getTurretEncoderPosition();
+    //  If the Encoder Angle is at the left manual stop, change our boolean to true...
+    if (currentEncoderPosition <= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+        return true;
+       }
+    //  Else..   We are not touching the left manual stop   
+    else {
+        return false;
+    }   
+  }
+
+//  This routine will doublecheck our current location to see if we are touching the Right manual stop
+  //   It returns TRUE if we are...
+  private boolean isTouchingRightStop(){
+    //  Get the current angle / position from the Turret Encoder
+    double currentEncoderPosition = getTurretEncoderPosition();
+    //  If the Encoder Angle is at the right manual stop, change our boolean to true...
+    if (currentEncoderPosition >= Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+        return true;
+       }
+    //  Else..   We are not touching the right manual stop   
+    else {
+        return false;
+    }   
+  }
+
+  
 }

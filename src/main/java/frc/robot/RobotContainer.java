@@ -28,6 +28,7 @@ import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorCounterClockwiseCommand;
 import frc.robot.commands.TurretCommands.TurretResetEncoderCommand;
 import frc.robot.commands.TurretCommands.StopTurretCommand;
+import frc.robot.commands.TurretCommands.TurretAimTowardsTargetCommand;
 import frc.robot.commands.TurretCommands.TurretMotorClockwiseCommand;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -137,7 +138,7 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new TurretMotorClockwiseCommand(m_turretSubsystem));
     new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new TurretMotorCounterClockwiseCommand(m_turretSubsystem));
     new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new TurretResetEncoderCommand(m_turretSubsystem));
-  
+    new JoystickButton(m_driverStick, Button.kA.value).whileHeld(new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem));
   }
 
   /**

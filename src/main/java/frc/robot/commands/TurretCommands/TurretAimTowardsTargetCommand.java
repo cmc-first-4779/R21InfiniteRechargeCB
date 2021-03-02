@@ -83,13 +83,16 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
         System.out.println("Turn Power: " + turnPower);
         //  Output to the Dashboard the Turn Value that we must go to line up to the target
         SmartDashboard.putNumber("Turn Power", turnPower);
+
+        
       } 
       // Else if we do NOT have a target, keep spinning...
       else {
         // Output to the Dashboard whether the LimeLight has a target
         SmartDashboard.putString("LimeLight Has Target", "NO TARGET");  
         // Set the turn power equal to the minimum we use to seek    
-        turnPower = Constants.LIMELIGHT_SEEK_TURN_DT_POWER;
+        //turnPower = Constants.LIMELIGHT_SEEK_TURN_DT_POWER;
+        turnPower = 0;
       }
       //  Send the turnpower into the Turret Motor..
       //   When this is negative it should turn the other way
