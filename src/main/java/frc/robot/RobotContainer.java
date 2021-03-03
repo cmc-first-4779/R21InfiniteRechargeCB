@@ -126,15 +126,15 @@ public class RobotContainer {
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(shooterOffCommand);
     // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(turretMotorRightCommand);
     // new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(turretMotorLeftCommand);
-    new JoystickButton(m_driverStick, Button.kY.value).whileHeld(elevatorGoUpCommand);
-    new JoystickButton(m_driverStick, Button.kA.value).whileHeld(elevatorGoDownCommand);
-    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(hopperGoForward);
-    new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(hopperGoBackward);
+    // new JoystickButton(m_driverStick, Button.kY.value).whileHeld(elevatorGoUpCommand);
+    // new JoystickButton(m_driverStick, Button.kA.value).whileHeld(elevatorGoDownCommand);
+    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(hopperGoBackward);
+    // new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(hopperGoBackward);
     new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
         m_intakeSubsystem));
     new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
     new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new RetractIntakeCommand(m_intakeSubsystem));
-    // new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new IntakeCellsCommand(m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new IntakeCellsCommand(m_intakeSubsystem));
     // new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new EjectCellsCommand(m_intakeSubsystem));
     //new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new TurretMotorClockwiseCommand(m_turretSubsystem));
     //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new TurretMotorCounterClockwiseCommand(m_turretSubsystem));

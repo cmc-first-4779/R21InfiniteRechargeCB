@@ -35,7 +35,7 @@ public class HopperElevatorCommand extends ParallelCommandGroup {
 
     addCommands(
     new HopperGoBackwardCommand(m_hopperSubsystem),
-    new IntakeCellsCommand(m_intakeSubsystem),
+    // new IntakeCellsCommand(m_intakeSubsystem),
     new GoUpCommand(m_elevatorSubsystem)
     );
   }

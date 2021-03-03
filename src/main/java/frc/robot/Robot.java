@@ -89,6 +89,7 @@ public class Robot extends TimedRobot {
 
     // During teleop, we want the robot drivetrain motor controllers in "Brake" mode.
     m_robotContainer.getDriveTrainSubsystem().setNeutralMode(NeutralMode.Brake);
+    m_robotContainer.getIntakeSubsystem().retractIntake();
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
