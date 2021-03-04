@@ -4,14 +4,20 @@
 
 package frc.robot.commands.IntakeCommands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class RetractIntakeCommand extends CommandBase {
   /** Creates a new RetractIntakeCommand. */
   IntakeSubsystem m_intakeSubsystem;
+Timer myTimer;
+boolean finished = false;
+
   public RetractIntakeCommand(IntakeSubsystem intakeSubsystem) {
     m_intakeSubsystem = intakeSubsystem;
+    myTimer = new Timer();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_intakeSubsystem);
   }
@@ -19,8 +25,11 @@ public class RetractIntakeCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    myTimer.reset();
+    myTimer.start();
     //  Retract the Intake
     m_intakeSubsystem.retractIntake();
+    m_intakeSubsystem.startIntakeRoller(Constants.INTAKE_MOTOR_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,6 +43,6 @@ public class RetractIntakeCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return myTimer.get() > Constants.INTAKE_ROLLER_TIMER;
   }
 }

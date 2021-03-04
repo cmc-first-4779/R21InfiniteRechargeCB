@@ -35,15 +35,15 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
-  public void intakeCells(double speed) {
+  public void startIntakeRoller(double speed) {
     intakeMotor.set(speed);
   }
 
-  public void ejectCells(double speed) {
+  public void reverseIntakeRoller(double speed) {
     intakeMotor.set(speed*-1);
   }
 
-  public void stopIntake(){
+  public void stopIntakeRoller(){
     intakeMotor.set(0);
   }
 

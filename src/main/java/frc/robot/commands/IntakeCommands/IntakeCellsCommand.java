@@ -22,18 +22,22 @@ public class IntakeCellsCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+     m_intakeSubsystem.extendIntake();
+    }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSubsystem.intakeCells(Constants.INTAKE_MOTOR_SPEED);
+    m_intakeSubsystem.startIntakeRoller(Constants.INTAKE_MOTOR_SPEED);
+   
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSubsystem.stopIntake();
+    m_intakeSubsystem.stopIntakeRoller();
+    m_intakeSubsystem.retractIntake();
   }
 
   // Returns true when the command should end.

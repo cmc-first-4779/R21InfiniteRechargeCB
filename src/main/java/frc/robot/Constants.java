@@ -112,6 +112,7 @@ public final class Constants {
   // **************** INTAKE SETTINGS ****************/
   public static final double INTAKE_MOTOR_SPEED = 1.0; // How fast to spin the rollers to intake a ball
   public static final double EJECT_MOTOR_SPEED = 0.8;  //  How fast to eject a ball from the intake
+  public static final double INTAKE_ROLLER_TIMER = 5; // How long roller will run after retracting intake
 
   // **************** ELEVATOR SETTINGS ****************/
   public static final double ELEVATOR_MOTOR_UP_SPEED = 0.9; // How fast to spin the wheels for bring power cells up to shooter 
@@ -243,6 +244,7 @@ public final class Constants {
   public final static int kSlot_MotProf = SLOT_3;
 
   public static final double kNeutralDeadband = 0.001;
+
 
  
 
