@@ -22,6 +22,7 @@ import frc.robot.commands.ElevatorCommands.GoDownCommand;
 import frc.robot.commands.ElevatorCommands.GoUpCommand;
 import frc.robot.commands.ElevatorCommands.StopElevatorCommand;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.ShooterCommands.ShootDaBallCommand;
 import frc.robot.commands.ShooterCommands.ShooterOffCommand;
 import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
@@ -71,6 +72,7 @@ public class RobotContainer {
   //    Commands
   private final ShooterOnCommand shooterOnCommand = new ShooterOnCommand(m_shooterSubsystem);
   private final ShooterOffCommand shooterOffCommand = new ShooterOffCommand(m_shooterSubsystem);
+  private final ShootDaBallCommand shootDaBallCommand = new ShootDaBallCommand(m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem);
   private final TurretMotorCounterClockwiseCommand turretMotorLeftCommand = new TurretMotorCounterClockwiseCommand(m_turretSubsystem);
   private final TurretMotorClockwiseCommand turretMotorRightCommand = new TurretMotorClockwiseCommand(m_turretSubsystem); 
   private final StopTurretCommand turretStopCommand = new StopTurretCommand(m_turretSubsystem);
@@ -128,6 +130,7 @@ public class RobotContainer {
     //Shooting commands
     new JoystickButton(m_driverStick, Button.kA.value).whenPressed(shooterOnCommand);
     new JoystickButton(m_driverStick, Button.kB.value).whenPressed(shooterOffCommand);
+    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(shootDaBallCommand);
 
     // Intake Commands
     new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
