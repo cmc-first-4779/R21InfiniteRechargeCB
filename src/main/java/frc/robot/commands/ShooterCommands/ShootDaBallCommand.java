@@ -39,6 +39,9 @@ public class ShootDaBallCommand extends CommandBase {
     if (shooter.isUpToSpeed()) {
       elevator.goUp(Constants.ELEVATOR_MOTOR_UP_SPEED);
       hopper.goBackward(Constants.HOPPER_MOTOR_BACKWARD_SPEED);
+    } else {
+      elevator.stopElevator();
+      hopper.stop();
     }
 
   }
