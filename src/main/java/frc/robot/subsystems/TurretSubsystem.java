@@ -31,7 +31,7 @@ public class TurretSubsystem extends SubsystemBase {
     turretMotor = new Spark(Constants.PWM_PORT_TURRET_MOTOR); 
     AnalogInput analogInput = new AnalogInput(0);
     turretEncoder = new AnalogEncoder(analogInput);
-    resetTurretEncoder();  //  Reset our encoder to zero when the subsystem is constructed.
+    //resetTurretEncoder();  //  Reset our encoder to zero when the subsystem is constructed.
   }
 
   @Override
@@ -40,7 +40,7 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   public void setTurretMotorCounterClockwise(){ 
-    if (getTurretEncoderPosition() > Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+    if (getTurretEncoderPosition() > Constants.TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION){
       System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Negative speed to turn counter clockwise
       setTurretMotorSpeed(-1 * Constants.TURRET_MOTOR_SPEED);
@@ -53,7 +53,7 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   public void setTurretMotorClockwise(){ 
-    if (getTurretEncoderPosition() < Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+    if (getTurretEncoderPosition() < Constants.TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION){
       System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Positive speed to turn clockwise
       setTurretMotorSpeed(Constants.TURRET_MOTOR_SPEED);
@@ -91,6 +91,7 @@ public class TurretSubsystem extends SubsystemBase {
       System.out.println("We are touching the Right Stop, starting counter-clockwise scan..");  
     }
     turretMotor.set(turretspeed);
+    SmartDashboard.putNumber("Turret Encoder Value:", getTurretEncoderPosition());
       
   }
 
@@ -158,7 +159,7 @@ public class TurretSubsystem extends SubsystemBase {
     //  Get the current angle / position from the Turret Encoder
     double currentEncoderPosition = getTurretEncoderPosition();
     //  If the Encoder Angle is at the left manual stop, change our boolean to true...
-    if (currentEncoderPosition <= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+    if (currentEncoderPosition <= Constants.TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION){
         return true;
        }
     //  Else..   We are not touching the left manual stop   
@@ -173,7 +174,7 @@ public class TurretSubsystem extends SubsystemBase {
     //  Get the current angle / position from the Turret Encoder
     double currentEncoderPosition = getTurretEncoderPosition();
     //  If the Encoder Angle is at the right manual stop, change our boolean to true...
-    if (currentEncoderPosition >= Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+    if (currentEncoderPosition >= Constants.TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION){
         return true;
        }
     //  Else..   We are not touching the right manual stop   

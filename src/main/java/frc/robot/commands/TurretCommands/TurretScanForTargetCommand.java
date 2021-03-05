@@ -170,7 +170,7 @@ public class TurretScanForTargetCommand extends CommandBase {
     //  Get the current angle / position from the Turret Encoder
     double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
     //  If the Encoder Angle is at the left manual stop, change our boolean to true...
-    if (currentEncoderPosition <= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+    if (currentEncoderPosition <= Constants.TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION){
         return true;
        }
     //  Else..   We are not touching the left manual stop   
@@ -185,7 +185,7 @@ public class TurretScanForTargetCommand extends CommandBase {
     //  Get the current angle / position from the Turret Encoder
     double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
     //  If the Encoder Angle is at the right manual stop, change our boolean to true...
-    if (currentEncoderPosition >= Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
+    if (currentEncoderPosition >= Constants.TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION){
         return true;
        }
     //  Else..   We are not touching the right manual stop   

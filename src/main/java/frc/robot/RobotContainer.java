@@ -138,7 +138,7 @@ public class RobotContainer {
 
     //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new EjectCellsCommand(m_intakeSubsystem));
     new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new TurretMotorClockwiseCommand(m_turretSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new TurretMotorCounterClockwiseCommand(m_turretSubsystem));
+    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new TurretMotorCounterClockwiseCommand(m_turretSubsystem));
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new TurretResetEncoderCommand(m_turretSubsystem));
     //new JoystickButton(m_driverStick, Button.kA.value).whileHeld(new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem));
   }
