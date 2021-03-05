@@ -106,8 +106,8 @@ public final class Constants {
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;                                                                                 
 
   // **************** HOPPER SETTINGS ****************/
-  public static final double HOPPER_MOTOR_FORWARD_SPEED = 0.8; // How fast to move conveyor belt forward
-  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 0.8;  // How fast to move the conveyor belt forward
+  public static final double HOPPER_MOTOR_FORWARD_SPEED = 1; // How fast to move conveyor belt forward
+  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 1;  // How fast to move the conveyor belt forward
 
   // **************** INTAKE SETTINGS ****************/
   public static final double INTAKE_MOTOR_SPEED = 1.0; // How fast to spin the rollers to intake a ball
