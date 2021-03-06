@@ -40,6 +40,7 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   public void setTurretMotorCounterClockwise(){ 
+
     if (getTurretEncoderPosition() > Constants.TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION){
       System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Negative speed to turn counter clockwise
@@ -47,7 +48,7 @@ public class TurretSubsystem extends SubsystemBase {
     }
     else{
       //  Set speed to Zero..  Stop turret motor
-      System.out.println("Current Position:  " + getTurretEncoderPosition());
+      // System.out.println("Current Position:  " + getTurretEncoderPosition());
       stopTurret();
     }
   }
@@ -60,7 +61,7 @@ public class TurretSubsystem extends SubsystemBase {
     }
     else{
       //  Set speed to Zero..  Stop turret motor
-      System.out.println("Current Position:  " + getTurretEncoderPosition());
+      // System.out.println("Current Position:  " + getTurretEncoderPosition());
       stopTurret();
     }
   }
