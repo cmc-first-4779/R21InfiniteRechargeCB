@@ -5,6 +5,7 @@
 package frc.robot.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.ElevatorCommands.GoDownCommand;
 import frc.robot.commands.ElevatorCommands.GoUpCommand;
 import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
@@ -34,9 +35,9 @@ public class HopperElevatorCommand extends ParallelCommandGroup {
     m_intakeSubsystem = intakeSubsystem;
 
     addCommands(
-    new HopperGoBackwardCommand(m_hopperSubsystem),
+    new HopperGoForwardCommand(m_hopperSubsystem),
     // new IntakeCellsCommand(m_intakeSubsystem),
-    new GoUpCommand(m_elevatorSubsystem)
+    new GoDownCommand(m_elevatorSubsystem)
     );
   }
 }

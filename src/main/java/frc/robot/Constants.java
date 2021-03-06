@@ -193,6 +193,7 @@ public final class Constants {
   public static final int SHOOTER_TARGET_VELOCITY_UNITS_100MILLISECONDS_LOW = 8000; // placeholder
   public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 350; // Place holder for now. Deadband for our velocity
   public static final int SHOOTER_MAX_VELOCITY_UNITS_100MILLISECONDS = 27000; // Derived from Phoneix Tuner
+  public static final int SHOOTER_DESIRED_VELOCITY = 20000;
   /**
    * Which PID slot to pull gains from. Starting 2018, you can choose from 0,1,2
    * or 3. Only the first two (0,1) are visible in web-based configuration.

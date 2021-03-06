@@ -41,7 +41,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   isShooterUpToSpeed = false;
 
-  m_desiredSpeed = 20000;
+  m_desiredSpeed = Constants.SHOOTER_DESIRED_VELOCITY;
 
   }
   
