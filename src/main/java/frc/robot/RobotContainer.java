@@ -28,6 +28,7 @@ import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretMotorCounterClockwiseCommand;
 import frc.robot.commands.TurretCommands.TurretResetEncoderCommand;
+import frc.robot.commands.TurretCommands.TurretScanForTargetCommand;
 import frc.robot.commands.TurretCommands.StopTurretCommand;
 import frc.robot.commands.TurretCommands.TurretAimTowardsTargetCommand;
 import frc.robot.commands.TurretCommands.TurretMotorClockwiseCommand;
@@ -129,22 +130,24 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     //Shooting commands
+
     new JoystickButton(m_driverStick, Button.kA.value).whenPressed(shooterOnCommand);
     new JoystickButton(m_driverStick, Button.kB.value).whenPressed(shooterOffCommand);
     new JoystickButton(m_driverStick, Button.kY.value).whenPressed(shootDaBallCommand);
 
-    // Intake Commands
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
-    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
 
-    new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
-        m_intakeSubsystem));
+    // Intake Commands
+    //new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
+    //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
+
+    //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
+    //    m_intakeSubsystem));
 
     //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new EjectCellsCommand(m_intakeSubsystem));
     new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new TurretMotorClockwiseCommand(m_turretSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new TurretMotorCounterClockwiseCommand(m_turretSubsystem));
-    //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new TurretResetEncoderCommand(m_turretSubsystem));
-    //new JoystickButton(m_driverStick, Button.kA.value).whileHeld(new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem));
+    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new TurretMotorCounterClockwiseCommand(m_turretSubsystem));
+    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanForTargetCommand(m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem));
+    new JoystickButton(m_driverStick, Button.kA.value).whileHeld(new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem));
   }
 
   /**

@@ -15,26 +15,33 @@ import frc.robot.subsystems.TurretSubsystem;
 public class TurretScanForTargetCommand extends CommandBase {
   /** Creates a new TurretScanForTargetCommand. */
 
-    // Declare the Turret and Limelight Subsystems
-    TurretSubsystem m_turretSubsystem;
-    LimelightSubsystem m_limelightSubsystem;
-    double m_pipeline;
-    BlingSubsystem m_blingSubsystem;
-  
-    // These will be used as we calculate turning and moving forward
-    double turnTurretPower = 0;
+  // Declare the Turret and Limelight Subsystems
+  TurretSubsystem m_turretSubsystem;
+  LimelightSubsystem m_limelightSubsystem;
+  double m_pipeline;
+  BlingSubsystem m_blingSubsystem;
 
-    //Get current encoder location and angle
-    double initialEncoderPositon;
-   
+  // These will be used as we calculate turning and moving forward
+  double turnTurretPower = 0;
+
+  // Get current encoder location and angle
+  double initialEncoderPositon;
+
+  // Counter to track which way its tracking
+  int counter;
+
+  double midEncoderPosition;
+
   public TurretScanForTargetCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem,
-  double pipeline, BlingSubsystem blingSubsystem) {
+      double pipeline, BlingSubsystem blingSubsystem) {
 
-      // Init our local variables
-      m_turretSubsystem = turretSubsystem;
-      m_limelightSubsystem = limelightSubsystem;
-      m_pipeline = pipeline;
-      m_blingSubsystem = blingSubsystem;
+    // Init our local variables
+    m_turretSubsystem = turretSubsystem;
+    m_limelightSubsystem = limelightSubsystem;
+    m_pipeline = pipeline;
+    m_blingSubsystem = blingSubsystem;
+    midEncoderPosition = (Constants.TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION
+        + Constants.TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION) / 2;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
@@ -47,97 +54,68 @@ public class TurretScanForTargetCommand extends CommandBase {
     m_limelightSubsystem.initLimelightforVision();
     // Ensure that the Pipeline is set for the correct target
     m_limelightSubsystem.setPipeline(m_pipeline);
-    // Set BLING to LIME_GREEN as a visual cue for our driveteam that Vision is 
+    // Set BLING to LIME_GREEN as a visual cue for our driveteam that Vision is
     // taking over the Turret
     m_blingSubsystem.setBlingPattern(BlingConstants.BLING_LIME);
 
-    // get the position and angle values of the Turret Encoder when the command initially starts.
+    // get the position and angle values of the Turret Encoder when the command
+    // initially starts.
     initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
-  
+
+    // Turn the turret clockwise if the turrent started to the left of the midpoint
+
+    if (initialEncoderPositon < midEncoderPosition) {
+      turnTurretPower = Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER;
+    } else {
+      turnTurretPower = -1 * Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER;
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     /*
-     * First check to see if there is a target, if not turn 
+     * First check to see if there is a target, if not turn
      */
     boolean hasTarget = m_limelightSubsystem.hasTarget();
-     //   If the Limelight can see the target...
-    if (hasTarget) 
-    {
+    // If the Limelight can see the target...
+    if (hasTarget) {
       // Output to the Dashboard whether the LimeLight has a target
       System.out.println("LimeLight Has Target");
       SmartDashboard.putString("LimeLight Has Target", "TARGET ACQUIRED");
-      //  Set the turn ower just enough to zero in on the target
-      turnTurretPower = calculateTurn();
-      System.out.println("Turn Value: " + turnTurretPower);
-      //Turn the turret
-      m_turretSubsystem.setTurretMotorSpeed(turnTurretPower);
+      end(false);
     }
-    //  Else..   If the Limelight can't see the target, we need to keep scanning
-    else 
-    {
-      // Output to the Dashboard whether the LimeLight has a target
-      System.out.println("LimeLight Has NO Target.  Seeking...");   
-      SmartDashboard.putString("LimeLight Has Target", "NO TARGET");
-      //  If we are touching the left Manual Stop...
-      if (isTouchingLeftStop())
-      {
-        //  Set the InitalEncoderPosition to the left Manual Stop angle so that the scan will now
-        //    turn clockwise after it exits this "if" statement
-        if (!isTurningClockwise(turnTurretPower)){
-          //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
-          //    to the right stop encoder position so that the turett will now turn counterclockwise on the next loop
-          initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
-        }
-        System.out.println("We are touching the Left Stop, starting clockwise scan..");   
-      }
-        // Else if we are touching the right manual stop, set the inital stop angle so that the scan
-        //   will not turn counterclockwise  
-      else if (isTouchingRightStop())
-      {
-        if (isTurningClockwise(turnTurretPower)){
-          //  Since touched the right stop and we are turning clockwise, Set our initialEncoderPosition
-          //    to the right stop encoder position so that the turett will now turn counterclockwise on the next loop
-          initialEncoderPositon = m_turretSubsystem.getTurretEncoderPosition();
-        }  
-        System.out.println("We are touching the Right Stop, starting counter-clockwise scan..");  
-      }
-      //Set our seek power to our constant
-      //  Because we have the manual stops in the turret, we have to be strategic in which way
-      //    the turret turns to scan for a target..   If we are far to the left, then we scan to the right..
-      //    if we started far to the right, then we scan to the left..
-      if (initialEncoderPositon > 0)
-      {
-        //  Turn the turret clockwise if the turrent started to the left of the midpoint
-        turnTurretPower = Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER; 
-        System.out.println("Turn Value: " + turnTurretPower);
-      }
-      else
-      {
-        //  Else..   We started to the right of the midpoint, so turn the turret counter clockwise
-        turnTurretPower = -1 * Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER; 
-        System.out.println("Turn Value: " + turnTurretPower);
-      }
-    //FINALLY..   Turn the turret the correct direction based on the location and whether
-    //  and whether the turret had been going clockwise or counter-clockwise..
+    // Else.. If the Limelight can't see the target, we need to keep scanning
+    else if ((turnTurretPower < 0) && (m_turretSubsystem.isTouchingLeftStop())) {
+      turnTurretPower = -1 * turnTurretPower;
+    } else if ((turnTurretPower >= 0) && (m_turretSubsystem.isTouchingRightStop())) {
+      turnTurretPower = -1 * Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER;
+    }
+
+    // FINALLY.. Turn the turret the correct direction based on the location and
+    // whether
+    // and whether the turret had been going clockwise or counter-clockwise..
+    //
+    // If the counter is even, we hit the end of the scanning range and need to
+    // switch direction
+    // (% 2 is a mod of 2, which looks for even numbers)
+
     m_turretSubsystem.setTurretMotorSpeed(turnTurretPower);
-    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_limelightSubsystem.hasTarget();
   }
 
-
-/**
+  /**
    * Calculates how much to turn. Get's how far off in the x-axis we are from
    * limelight. If we are within acceptable range, then it returns 0.
    * 
@@ -162,47 +140,6 @@ public class TurretScanForTargetCommand extends CommandBase {
     }
     // Return the directon and amount we have to turn
     return turnTurretPower;
-  }
-
-  //  This routine will doublecheck our current location to see if we are touching the left manual stop
-  //   It returns TRUE if we are...
-  private boolean isTouchingLeftStop(){
-    //  Get the current angle / position from the Turret Encoder
-    double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
-    //  If the Encoder Angle is at the left manual stop, change our boolean to true...
-    if (currentEncoderPosition <= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
-        return true;
-       }
-    //  Else..   We are not touching the left manual stop   
-    else {
-        return false;
-    }   
-  }
-
-//  This routine will doublecheck our current location to see if we are touching the Right manual stop
-  //   It returns TRUE if we are...
-  private boolean isTouchingRightStop(){
-    //  Get the current angle / position from the Turret Encoder
-    double currentEncoderPosition = m_turretSubsystem.getTurretEncoderPosition();
-    //  If the Encoder Angle is at the right manual stop, change our boolean to true...
-    if (currentEncoderPosition >= Constants.TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
-        return true;
-       }
-    //  Else..   We are not touching the right manual stop   
-    else {
-        return false;
-    }   
-  }
-
-  //  Returns true if we are turning clockwise
-  private boolean isTurningClockwise(double turnTurrentPower){
-    double m_turnTurretPower = turnTurrentPower;
-    if (m_turnTurretPower > 0){
-      return true;
-    }
-    else {
-      return false;
-    }
   }
 
 }

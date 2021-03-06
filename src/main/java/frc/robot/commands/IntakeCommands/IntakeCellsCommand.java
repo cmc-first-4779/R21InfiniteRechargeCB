@@ -4,6 +4,7 @@
 
 package frc.robot.commands.IntakeCommands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -11,26 +12,30 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCellsCommand extends CommandBase {
   private IntakeSubsystem m_intakeSubsystem;
 
-  /** Creates a new GoForward. */
+  Timer myTimer;
 
   public IntakeCellsCommand(IntakeSubsystem intakeSubsystem) {
     m_intakeSubsystem = intakeSubsystem;
+    myTimer = new Timer();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_intakeSubsystem);
-    
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-     m_intakeSubsystem.extendIntake();
-    }
+    m_intakeSubsystem.extendIntake();
+    myTimer.reset();
+    myTimer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSubsystem.startIntakeRoller(Constants.INTAKE_MOTOR_SPEED);
-   
+    if (myTimer.get() >= 1) {
+      m_intakeSubsystem.startIntakeRoller(Constants.INTAKE_MOTOR_SPEED);
+    }
   }
 
   // Called once the command ends or is interrupted.

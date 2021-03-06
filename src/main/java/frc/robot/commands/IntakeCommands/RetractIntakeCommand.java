@@ -13,7 +13,7 @@ public class RetractIntakeCommand extends CommandBase {
   /** Creates a new RetractIntakeCommand. */
   IntakeSubsystem m_intakeSubsystem;
 Timer myTimer;
-boolean finished = false;
+
 
   public RetractIntakeCommand(IntakeSubsystem intakeSubsystem) {
     m_intakeSubsystem = intakeSubsystem;

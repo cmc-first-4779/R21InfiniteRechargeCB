@@ -42,20 +42,18 @@ public final class Constants {
   public static final int CAN_ADDRESS_SHOOTER_SLAVE = 22; // Shooter Motor Slave (FALCON)
   public static final int CAN_ADDRESS_INTAKE = 31; // SparkMax controller w/ Neo 550 motor
   public static final int CAN_ADDRESS_HOPPER = 41; // SparkMax controlller w/ Neo 550 motor
-  
 
   // ***************** PWM PORTS ON THE ROBORIO
   // **********************************/
   public static final int PWM_PORT_ELEVATOR_MOTOR = 0; // CIM Motor
   public static final int PWM_PORT_TURRET_MOTOR = 1; // Spark controller w/ RedLine (775) Motor
   public static final int PWM_PORT_BLING = 2; // PWM for BLINKIN LED Driver (Looks like a SPARK, but not)
-  //public static final int PWM_PORT_TURRET = 0; // PWM for Turret subsystem
+  // public static final int PWM_PORT_TURRET = 0; // PWM for Turret subsystem
 
   // ************** PCM (PNEUMATICS CONTROL MODULE) PORTS
   // *************************/
   public static final int PCM_PORT_INTAKE_EXTEND = 0; // Solenoid for extending the intake
-  public static final int PCM_PORT_INTAKE_RETRACT = 1;  //  PCM for retracting the intake
-
+  public static final int PCM_PORT_INTAKE_RETRACT = 1; // PCM for retracting the intake
 
   /**********************
    * GYRO SPI PORT
@@ -64,10 +62,12 @@ public final class Constants {
 
   /*************************
    * DIO PORTS FOR SENSORS
-  **************************************************/
-  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_A = 0;  // Shooter Quad Encoder - Channel A
-  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_B = 1;  // Shooter Quad Encoder - Channel B
-  
+   **************************************************/
+  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_A = 0; // Shooter Quad
+  // Encoder - Channel A
+  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_B = 1; // Shooter Quad
+  // Encoder - Channel B
+
   // Set a DEFAULT BLING mode here so that way we only have to change it in one
   // place..
   public static final double BLING_DEFAULT = BlingConstants.BLING_OCEAN_PALETTE;
@@ -83,13 +83,14 @@ public final class Constants {
   /******************************************************************************* */
   /**************** DRIVE TRAIN SETTINGS ***************************/
   /******************************************************************************* */
-  public static final double DRIVERTRAIN_MM_WAIT_SECS = 1;  //  Let Motion Magic settle down
-  public static final double DRIVETRAIN_JOYSTICK_Y_THROTTLE = 0.6;  // Throttle down the drive with joystick
-  public static final double DRIVETRAIN_JOYSTICK_X_THROTTLE = 0.7;  // Throttle down the drive with joystick
+  public static final double DRIVERTRAIN_MM_WAIT_SECS = 1; // Let Motion Magic settle down
+  public static final double DRIVETRAIN_JOYSTICK_Y_THROTTLE = 0.6; // Throttle down the drive with joystick
+  public static final double DRIVETRAIN_JOYSTICK_X_THROTTLE = 0.7; // Throttle down the drive with joystick
   public static final double DRIVETRAIN_WHEEL_DIAMETER = 6.0;
   public static final double DRIVETRAIN_GEAR_REDUCTION_RATIO = 7.31;
-  public static final double DRIVETRAIN_ENCODER_TICKS_PER_ROTATION = 2048; // 80 for CIM, 4096 Redline encoder, 8192 for falcon
-  public static final int DRIVETRAIN_STRAIGHT_COUNTER = 20;  // We use this to get motion magic a chance to line up
+  public static final double DRIVETRAIN_ENCODER_TICKS_PER_ROTATION = 2048; // 80 for CIM, 4096 Redline encoder, 8192 for
+                                                                           // falcon
+  public static final int DRIVETRAIN_STRAIGHT_COUNTER = 20; // We use this to get motion magic a chance to line up
   public static final int DRIVETRAIN_DIRECTION_FORWARD = 1;
   public static final int DRIVETRAIN_DIRECTION_REVERSE = -1;
   public static final double DRIVETRAIN_TURN_POWER = 0.4;
@@ -103,63 +104,79 @@ public final class Constants {
                                                                                             // drivetrain if the robot
                                                                                             // is too close to the CP
                                                                                             // with the arm up
-  public static double DRIVETRAIN_POSITION_TOLERANCE = 150;                                                                                 
+  public static double DRIVETRAIN_POSITION_TOLERANCE = 150;
 
   // **************** HOPPER SETTINGS ****************/
+
   public static final double HOPPER_MOTOR_FORWARD_SPEED = 1; // How fast to move conveyor belt forward
   public static final double HOPPER_MOTOR_BACKWARD_SPEED = 1;  // How fast to move the conveyor belt forward
 
+
   // **************** INTAKE SETTINGS ****************/
   public static final double INTAKE_MOTOR_SPEED = 1.0; // How fast to spin the rollers to intake a ball
-  public static final double EJECT_MOTOR_SPEED = 0.8;  //  How fast to eject a ball from the intake
+  public static final double EJECT_MOTOR_SPEED = 0.8; // How fast to eject a ball from the intake
   public static final double INTAKE_ROLLER_TIMER = 5; // How long roller will run after retracting intake
+  public static final double INTAKE_ROLLER_DELAY_TIMER = 1; // How lon the rollers wait after intake extends
 
   // **************** ELEVATOR SETTINGS ****************/
-  public static final double ELEVATOR_MOTOR_UP_SPEED = 0.9; // How fast to spin the wheels for bring power cells up to shooter 
+  public static final double ELEVATOR_MOTOR_UP_SPEED = 0.9; // How fast to spin the wheels for bring power cells up to
+                                                            // shooter
   public static final double ELEVATOR_MOTOR_DOWN_SPEED = 0.9; // How fast the elevator will move cells up
 
   // **************** TURRET SETTINGS ****************/
-  public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target 
-  public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on RoboRIO
-  //public static final double TURRET_CIRCUMFRENCE_INCHES = 47;  // This will change
-  public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096;  //  This value will change
-  //public static final double TURRET_DEGREES_PER_ENCODER_PULSE  = 360 / TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION;  //Degrees per encoder pulse
-  //public static final double TURRET_ENCODER_PULSES_PER_DEGREE = TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION / 360;
-  //public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES = 0;  //  Our reference point.  The right manual stop
-  public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE = 0.7;  //Encoder ticks
-  //public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES = 225;  //This number may change
-  public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE = -0.9;
- // public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_PULSE = (TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE + TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE) / 2;
- // public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_DEGREES = (TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES + TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES) / 2;
-  
-   // **************** SHOOTER SETTINGS ****************/
+  public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target
+  public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
+                                                          // RoboRIO
+  // public static final double TURRET_CIRCUMFRENCE_INCHES = 47; // This will
+  // change
+  public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096; // This value will change
+  // public static final double TURRET_DEGREES_PER_ENCODER_PULSE = 360 /
+  // TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION; //Degrees per encoder pulse
+  // public static final double TURRET_ENCODER_PULSES_PER_DEGREE =
+  // TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION / 360;
+  // public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES = 0; //
+  // Our reference point. The right manual stop
+  public static final double TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION = 3.8; // Encoder ticks
+  // public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES = 225;
+  // //This number may change
+  public static final double TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION = 1.3;
+  // public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_PULSE =
+  // (TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE +
+  // TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE) / 2;
+  // public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_DEGREES =
+  // (TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES +
+  // TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES) / 2;
+
+  // **************** SHOOTER SETTINGS ****************/
   public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
   public static final double SHOOTER_EMPTY_MAGAZINE_TIMER = 0.5;
 
-  //   AUTON CONSTANTS
+  // AUTON CONSTANTS
   public static final double LIMELIGHT_SEEK_TIMEOUT_SECS = 2.0;
 
   /************************************************************************/
   /*************** LIMELIGHT / VISION SETTINGS *****************************/
   /********** These variables can change to be tuned..******************** */
   /********** Non-tunable variables are in LimelightConstants.java ***** */
-  /********************************=2****************************************/
+  /******************************** =2 ****************************************/
   public static final double LIMELIGHT_PIPELINE_POWERCELLPORT = 0;
   public static final double LIMELIGHT_PIPELINE_UPPER_POWER_PORT = 0; // Use the Upper Power Port Pipeline
-  public static final double LIMELIGHT_AIMING_DEADBAND = 3; //  was 1.75 // How close do we have to be right or left of the target
+  public static final double LIMELIGHT_AIMING_DEADBAND = 3; // was 1.75 // How close do we have to be right or left of
+                                                            // the target
   public static final double LIMELIGHT_AIMING_DISTANCE_TOLERANCE = 2; // Tolerance of degrees we want to be on target
   public static final double LIMELIGHT_AIMING_kpAim = 0.0040;
   public static final double LIMELIGHT_AIMING_kpDist = 0.05;
-  public static final double LIMELIGHT_AIMING_AIM_MIN_CMD = 0.113;  //adjust this for turn speed once we found a target
+  public static final double LIMELIGHT_AIMING_AIM_MIN_CMD = 0.113; // adjust this for turn speed once we found a target
   public static final double LIMELIGHT_AIMING_MOVE_MIN_CMD = 0.26;
-  public static final int LIMELIGHT_AIMING_COUNTER = 10;   //  Number of times we want to aim before taking a shot
+  public static final int LIMELIGHT_AIMING_COUNTER = 10; // Number of times we want to aim before taking a shot
 
   // LIMELIGHT SEEK MODE - How much power do we give the motors when it is turning
   // to scan and driving...
-  public static final double LIMELIGHT_SEEK_TURN_DT_POWER = 0.45; // Power when we are turning when we CAN'T SEE THE target
+  public static final double LIMELIGHT_SEEK_TURN_DT_POWER = 0.45; // Power when we are turning when we CAN'T SEE THE
+                                                                  // target
   public static final double LIMELIGHT_SEEK_DRIVE_DT_POWER = 0.7; // Power when we are driving toward the target
-  public static final double LIMELIGHT_SEEK_TURN_TURRET_POWER = 0.3; // Power when we are using the turret to seek
-  
+  public static final double LIMELIGHT_SEEK_TURN_TURRET_POWER = 0.6; // Power when we are using the turret to seek
+
   // public static double LIMELIGHT_SEEK_AREA = 0.9;
 
   // //Tolerance of degrees we want to be on target
@@ -174,8 +191,8 @@ public final class Constants {
   // SHOOTER VELOCITY TALON PID CONSTANTS
   public static final int SHOOTER_TARGET_VELOCITY_UNITS_100MILLISECONDS_HIGH = 16300; // placeholder
   public static final int SHOOTER_TARGET_VELOCITY_UNITS_100MILLISECONDS_LOW = 8000; // placeholder
-  public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 350;  //  Place holder for now.  Deadband for our velocity
-  public static final int SHOOTER_MAX_VELOCITY_UNITS_100MILLISECONDS = 27000;  //  Derived from Phoneix Tuner
+  public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 350; // Place holder for now. Deadband for our velocity
+  public static final int SHOOTER_MAX_VELOCITY_UNITS_100MILLISECONDS = 27000; // Derived from Phoneix Tuner
   /**
    * Which PID slot to pull gains from. Starting 2018, you can choose from 0,1,2
    * or 3. Only the first two (0,1) are visible in web-based configuration.
@@ -244,8 +261,5 @@ public final class Constants {
   public final static int kSlot_MotProf = SLOT_3;
 
   public static final double kNeutralDeadband = 0.001;
-
-
- 
 
 }
