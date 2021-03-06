@@ -155,7 +155,7 @@ public class TurretSubsystem extends SubsystemBase {
 
     //  This routine will doublecheck our current location to see if we are touching the left manual stop
   //   It returns TRUE if we are...
-  private boolean isTouchingLeftStop(){
+  public boolean isTouchingLeftStop(){
     //  Get the current angle / position from the Turret Encoder
     double currentEncoderPosition = getTurretEncoderPosition();
     //  If the Encoder Angle is at the left manual stop, change our boolean to true...
@@ -170,7 +170,7 @@ public class TurretSubsystem extends SubsystemBase {
 
 //  This routine will doublecheck our current location to see if we are touching the Right manual stop
   //   It returns TRUE if we are...
-  private boolean isTouchingRightStop(){
+  public boolean isTouchingRightStop(){
     //  Get the current angle / position from the Turret Encoder
     double currentEncoderPosition = getTurretEncoderPosition();
     //  If the Encoder Angle is at the right manual stop, change our boolean to true...
