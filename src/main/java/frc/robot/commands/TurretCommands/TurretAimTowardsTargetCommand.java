@@ -86,7 +86,7 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
 
         
       } 
-      // Else if we do NOT have a target, keep spinning...
+      // Else if we do NOT have a target, do not move
       else {
         // Output to the Dashboard whether the LimeLight has a target
         SmartDashboard.putString("LimeLight Has Target", "NO TARGET");  
