@@ -17,7 +17,7 @@ public class TurnToAngleCommand extends CommandBase {
 	private double goalAngle = 0.0;
 	private boolean isDone = false;
 	private double speed;
-	private double tolerance = 3;
+	private double tolerance = 0.5;
 	//private double currentAngle;
 	
     public TurnToAngleCommand(DriveTrainSubsystem driveTrainSubsystem, double speed, double givenAngle) {

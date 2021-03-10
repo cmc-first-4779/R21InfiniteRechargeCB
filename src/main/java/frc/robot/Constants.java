@@ -175,7 +175,7 @@ public final class Constants {
   public static final double LIMELIGHT_SEEK_TURN_DT_POWER = 0.45; // Power when we are turning when we CAN'T SEE THE
                                                                   // target
   public static final double LIMELIGHT_SEEK_DRIVE_DT_POWER = 0.7; // Power when we are driving toward the target
-  public static final double LIMELIGHT_SEEK_TURN_TURRET_POWER = 0.6; // Power when we are using the turret to seek
+  public static final double LIMELIGHT_SEEK_TURN_TURRET_POWER = 0.4; // Power when we are using the turret to seek
 
   // public static double LIMELIGHT_SEEK_AREA = 0.9;
 

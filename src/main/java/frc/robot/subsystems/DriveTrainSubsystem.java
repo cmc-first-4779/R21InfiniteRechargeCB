@@ -79,6 +79,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     // Init the gyro/AHRS
     gyro = new AHRS(SPI.Port.kMXP);
+    resetGyro();
 
     // init the differential drive
     myDrive = new DifferentialDrive(leftMotorMaster, rightMotorMaster);
@@ -115,7 +116,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     leftMotorMaster.selectProfileSlot(0, 0);
     rightMotorMaster.selectProfileSlot(0, 0);
 
-    configMotionCruiseAndAcceleration(6000, 4000);
+    configMotionCruiseAndAcceleration(7000, 6000); //8000 6000
     configPeakVelocities(1.0, -1.0);
     configAllowableError(0, 100);
 
@@ -298,5 +299,10 @@ public class DriveTrainSubsystem extends SubsystemBase {
     rightMotorMaster.setNeutralMode(mode);
     rightMotorSlave.setNeutralMode(mode);
   }
+
+public void stopMotors() {
+  rightMotorMaster.stopMotor();
+  leftMotorMaster.stopMotor();
+}
 
 }
