@@ -4,46 +4,29 @@
 
 package frc.robot.AutoCommands;
 
-import java.util.Timer;
-
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
-import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
-import frc.robot.commands.DriveTrainCommands.TurnToAngleCommand;
 import frc.robot.commands.IntakeCommands.IntakeCellsCommand;
 import frc.robot.commands.IntakeCommands.RetractIntakeCommand;
-import frc.robot.commands.MiscCommands.TimerCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class BarnRunOne extends SequentialCommandGroup {
-  /** Creates a new BarnRunOne. */
+public class BarnRunTwo extends SequentialCommandGroup {
 
-  DriveTrainSubsystem m_driveTrainSubsystem;
- 
-  
-  public BarnRunOne(DriveTrainSubsystem dt) {
+DriveTrainSubsystem m_driveTrainSubsystem;
+IntakeSubsystem m_IntakeSubsystem;
+
+  /** Creates a new BarnRunTwo. */
+  public BarnRunTwo(IntakeSubsystem intake, DriveTrainSubsystem dt) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-
+    m_IntakeSubsystem = intake;
     m_driveTrainSubsystem = dt;
-    
-
-
-
     addCommands(
-
-      new ResetDriveGyro(m_driveTrainSubsystem),
-      new DriveStraightCommand(m_driveTrainSubsystem, 180),
-      //new TimerCommand(3),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
-      new DriveStraightCommand(m_driveTrainSubsystem, 60),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 225),
-      new DriveStraightCommand(m_driveTrainSubsystem, 48)
-      
+      new DriveAndPickup(m_driveTrainSubsystem, m_IntakeSubsystem),
+      new RetractIntakeCommand(m_IntakeSubsystem)
 
     );
   }
