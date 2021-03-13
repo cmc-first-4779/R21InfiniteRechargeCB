@@ -93,7 +93,7 @@ public final class Constants {
   public static final int DRIVETRAIN_STRAIGHT_COUNTER = 20; // We use this to get motion magic a chance to line up
   public static final int DRIVETRAIN_DIRECTION_FORWARD = 1;
   public static final int DRIVETRAIN_DIRECTION_REVERSE = -1;
-  public static final double DRIVETRAIN_TURN_POWER = 0.4;
+  public static final double DRIVETRAIN_TURN_POWER = 0.41;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
   public static final double DRIVETRAIN_THROTTLE_RAINBOW_ARM_UP = 0.5; // Used to throttle our straight speed when the
                                                                        // Rainbow Arm is deployed.

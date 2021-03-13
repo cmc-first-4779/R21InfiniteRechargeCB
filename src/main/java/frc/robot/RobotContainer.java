@@ -19,6 +19,7 @@ import frc.robot.AutoCommands.BarnRunTwo;
 import frc.robot.AutoCommands.DriveAndPickup;
 import frc.robot.AutoCommands.HopperElevatorCommand;
 import frc.robot.AutoCommands.Path_A_Overall;
+import frc.robot.AutoCommands.Path_B_Overall;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
 import frc.robot.commands.BlingCommands.BlingSetDefaultCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStopCommand;
@@ -154,6 +155,7 @@ public class RobotContainer {
     //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
 
     //  Turret Commands
     //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new EjectCellsCommand(m_intakeSubsystem));

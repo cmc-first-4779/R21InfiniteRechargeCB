@@ -185,7 +185,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     System.out.println("Current_L: " + currentPos_L);
     System.out.println("Current_R: " + currentPos_R);
 
-    return Math.abs(currentPos_L - target) < tolerance && (currentPos_R - target) < tolerance;
+    return Math.abs(currentPos_L - target) < tolerance && Math.abs(currentPos_R - target) < tolerance;
   }
 
   @Override
