@@ -104,7 +104,6 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setConstantVelocity() {
-  public void setConstantVelocity(int velocity){  
     configPIDFValues(.1, 0, 0, 0.05, 0); // STILL NEED TO GET THESE VALUES
     shooterMotorMaster.set(ControlMode.Velocity, m_desiredSpeed);
   }
