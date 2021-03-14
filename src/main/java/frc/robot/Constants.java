@@ -60,13 +60,6 @@ public final class Constants {
    **************************************************/
   public static final int SPI_PORT_AHRS = 0; // Using Nav-X GYRO THIS YEAR
 
-  /*************************
-   * DIO PORTS FOR SENSORS
-   **************************************************/
-  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_A = 0; // Shooter Quad
-  // Encoder - Channel A
-  // public static final int DIO_PORT_SHOOTER_SLAVE_CHANNEL_B = 1; // Shooter Quad
-  // Encoder - Channel B
 
   // Set a DEFAULT BLING mode here so that way we only have to change it in one
   // place..
@@ -93,7 +86,7 @@ public final class Constants {
   public static final int DRIVETRAIN_STRAIGHT_COUNTER = 20; // We use this to get motion magic a chance to line up
   public static final int DRIVETRAIN_DIRECTION_FORWARD = 1;
   public static final int DRIVETRAIN_DIRECTION_REVERSE = -1;
-  public static final double DRIVETRAIN_TURN_POWER = 0.41;
+  public static final double DRIVETRAIN_TURN_POWER = 0.4;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
   public static final double DRIVETRAIN_THROTTLE_RAINBOW_ARM_UP = 0.5; // Used to throttle our straight speed when the
                                                                        // Rainbow Arm is deployed.
@@ -127,25 +120,10 @@ public final class Constants {
   public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
                                                           // RoboRIO
-  // public static final double TURRET_CIRCUMFRENCE_INCHES = 47; // This will
-  // change
   public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096; // This value will change
-  // public static final double TURRET_DEGREES_PER_ENCODER_PULSE = 360 /
-  // TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION; //Degrees per encoder pulse
-  // public static final double TURRET_ENCODER_PULSES_PER_DEGREE =
-  // TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION / 360;
-  // public static final double TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES = 0; //
-  // Our reference point. The right manual stop
-  public static final double TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION = 3.8; // Encoder ticks
-  // public static final double TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES = 225;
-  // //This number may change
-  public static final double TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION = 1.3;
-  // public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_PULSE =
-  // (TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE +
-  // TURRET_RIGHT_MANUAL_STOP_LOCATION_ENCODER_PULSE) / 2;
-  // public static final double TURRET_MIDPOINT_BETWEEN_MANUAL_STOPS_DEGREES =
-  // (TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES +
-  // TURRET_RIGHT_MANUAL_STOP_LOCATION_DEGREES) / 2;
+  public static final double TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION = 3.8; // Analog Encoder value at Right Stop position (in volts)
+  public static final double TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION = 1.3; // Analog Encoder value at Left Stop position (in volts)
+
 
   // **************** SHOOTER SETTINGS ****************/
   public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
@@ -194,6 +172,10 @@ public final class Constants {
   public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 350; // Place holder for now. Deadband for our velocity
   public static final int SHOOTER_MAX_VELOCITY_UNITS_100MILLISECONDS = 27000; // Derived from Phoneix Tuner
   public static final int SHOOTER_DESIRED_VELOCITY = 20000;
+  public static final int SHOOTER_VELOCITY_RED_ZONE = 20000;  // Shooting from 17'6" out or more from the target
+  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from 12'6" to 17'6" from the target 
+  public static final int SHOOTER_VELOCITY_YELLOW_ZONE = 19000; // Shooting from 7'6" to 12'6" from the target
+  public static final int SHOOTER_VELOCITY_GREEN_ZONE = 18500; //  Shooting from less than 7'6" 
   /**
    * Which PID slot to pull gains from. Starting 2018, you can choose from 0,1,2
    * or 3. Only the first two (0,1) are visible in web-based configuration.
