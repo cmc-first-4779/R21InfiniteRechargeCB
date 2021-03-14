@@ -82,7 +82,7 @@ public class RobotContainer {
   //    Commands
   private final ShooterOnCommand shooterOnCommand = new ShooterOnCommand(m_shooterSubsystem);
   private final ShooterOffCommand shooterOffCommand = new ShooterOffCommand(m_shooterSubsystem);
-  private final ShootDaBallCommand shootDaBallCommand = new ShootDaBallCommand(m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem);
+  private final ShootDaBallCommand shootDaBallCommand = new ShootDaBallCommand(m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem, m_limelightSubsystem);
   private final TurretMotorCounterClockwiseCommand turretMotorLeftCommand = new TurretMotorCounterClockwiseCommand(m_turretSubsystem);
   private final TurretMotorClockwiseCommand turretMotorRightCommand = new TurretMotorClockwiseCommand(m_turretSubsystem); 
   private final StopTurretCommand turretStopCommand = new StopTurretCommand(m_turretSubsystem);
