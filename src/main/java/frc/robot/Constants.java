@@ -175,7 +175,9 @@ public final class Constants {
   public static final double SHOOTER_ANGLE_RED_ZONE = -16.0; //  Angle of the Shooter/Limelight in the red zone
   public static final int SHOOTER_VELOCITY_RED_ZONE = 23000;  // Shooting from 17'6" out or more from the target
   public static final double SHOOTER_ANGLE_BLUE_ZONE = -9.0; //  Angle of the Shooter/Limelight in the red zone
-  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 17700; // Shooting from 12'6" to 17'6" from the target 
+  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 18000; // Shooting from 12'6" to 17'6" from the target 
+  //public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from 12'6" to 17'6" from the target 
+
   public static final double SHOOTER_ANGLE_YELLOW_ZONE = 0.0; //  Angle of the Shooter/Limelight in the red zone
   public static final int SHOOTER_VELOCITY_YELLOW_ZONE = 19000; // Shooting from 7'6" to 12'6" from the target
   public static final double SHOOTER_ANGLE_GREEN_ZONE = 0.0; //  Angle of the Shooter/Limelight in the red zone
