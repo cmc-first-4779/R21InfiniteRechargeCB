@@ -33,7 +33,14 @@ public class ShootDaBallCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.setConstantVelocity();
+    
+    //   Commenting this out for now so that we can change our constant velocity based off of our TY value
+    //shooter.setConstantVelocity();
+
+    // Get the defined velocity from our tY value
+    int velocity = getVelocityfromTY();
+    // Pass that value to the shooter controllers
+    shooter.setConstantVelocityFromInput(velocity);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
