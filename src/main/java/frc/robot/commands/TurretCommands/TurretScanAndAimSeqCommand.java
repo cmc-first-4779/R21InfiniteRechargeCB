@@ -39,7 +39,7 @@ public class TurretScanAndAimSeqCommand extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new TurretScanForTargetCommand(m_turretSubsystem, m_limelightSubsystem, m_pipeline, m_blingSubsystem),
+      //new TurretScanForTargetCommand(m_turretSubsystem, m_limelightSubsystem, m_pipeline, m_blingSubsystem),
       new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, m_pipeline, m_blingSubsystem),
       new ShootDaBallCommand(m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem, m_limelightSubsystem)
       );

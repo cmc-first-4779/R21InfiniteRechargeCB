@@ -109,9 +109,10 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setConstantVelocityFromInput(int velocity){  
+    configPIDFValues(.1, 0, 0, 0.05, 0); 
         //  Added these steps to allow us to set the constant velocity based on passed integer.
-        int m_velocity = velocity;
-        shooterMotorMaster.set(ControlMode.Velocity, m_velocity);
+        m_desiredSpeed = velocity;
+        shooterMotorMaster.set(ControlMode.Velocity, velocity);
   }
 
 
@@ -137,7 +138,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public boolean isUpToSpeed() {
-    isShooterUpToSpeed = Math.abs(shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < 350;
+    isShooterUpToSpeed = Math.abs(shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < Constants.SHOOTER_TARGET_VELOCITY_TOLERANCE;
     SmartDashboard.putBoolean("Is Shooter Up to Speed", isShooterUpToSpeed);
     System.out.println("Shooting Speed:  " + shooterMotorMaster.getSelectedSensorVelocity());
     System.out.println("Desired Speed:  " + m_desiredSpeed);

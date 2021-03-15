@@ -169,17 +169,18 @@ public final class Constants {
   // SHOOTER VELOCITY TALON PID CONSTANTS
   public static final int SHOOTER_TARGET_VELOCITY_UNITS_100MILLISECONDS_HIGH = 16300; // placeholder
   public static final int SHOOTER_TARGET_VELOCITY_UNITS_100MILLISECONDS_LOW = 8000; // placeholder
-  public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 350; // Place holder for now. Deadband for our velocity
+  public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 50; // Place holder for now. Deadband for our velocity
   public static final int SHOOTER_MAX_VELOCITY_UNITS_100MILLISECONDS = 27000; // Derived from Phoneix Tuner
   public static final int SHOOTER_DESIRED_VELOCITY = 20000;
-  public static final double SHOOTER_ANGLE_RED_ZONE = 8.0; //  Angle of the Shooter/Limelight in the red zone
-  public static final int SHOOTER_VELOCITY_RED_ZONE = 20000;  // Shooting from 17'6" out or more from the target
-  public static final double SHOOTER_ANGLE_BLUE_ZONE = 9.0; //  Angle of the Shooter/Limelight in the red zone
-  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from 12'6" to 17'6" from the target 
-  public static final double SHOOTER_ANGLE_YELLOW_ZONE = 10.0; //  Angle of the Shooter/Limelight in the red zone
+  public static final double SHOOTER_ANGLE_RED_ZONE = -16.0; //  Angle of the Shooter/Limelight in the red zone
+  public static final int SHOOTER_VELOCITY_RED_ZONE = 23000;  // Shooting from 17'6" out or more from the target
+  public static final double SHOOTER_ANGLE_BLUE_ZONE = -9.0; //  Angle of the Shooter/Limelight in the red zone
+  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 17700; // Shooting from 12'6" to 17'6" from the target 
+  public static final double SHOOTER_ANGLE_YELLOW_ZONE = 0.0; //  Angle of the Shooter/Limelight in the red zone
   public static final int SHOOTER_VELOCITY_YELLOW_ZONE = 19000; // Shooting from 7'6" to 12'6" from the target
-  public static final double SHOOTER_ANGLE_GREEN_ZONE = 11.0; //  Angle of the Shooter/Limelight in the red zone
+  public static final double SHOOTER_ANGLE_GREEN_ZONE = 0.0; //  Angle of the Shooter/Limelight in the red zone
   public static final int SHOOTER_VELOCITY_GREEN_ZONE = 18500; //  Shooting from less than 7'6" 
+
   /**
    * Which PID slot to pull gains from. Starting 2018, you can choose from 0,1,2
    * or 3. Only the first two (0,1) are visible in web-based configuration.
