@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -24,6 +25,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
+    setupSmartDashboard();
 
     shooterMotorMaster = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_MASTER);
     shooterMotorSlave = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_SLAVE);
@@ -38,9 +40,11 @@ public class ShooterSubsystem extends SubsystemBase {
 
     isShooterUpToSpeed = false;
 
-    m_desiredSpeed = Constants.SHOOTER_DESIRED_VELOCITY;
+    m_desiredSpeed = Constants.SHOOTER_DEFAULT_VELOCITY;
 
   }
+
+
 
   @Override
   public void periodic() {
@@ -104,18 +108,63 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setConstantVelocity() {
-    configPIDFValues(.1, 0, 0, 0.05, 0); // STILL NEED TO GET THESE VALUES
+    configPIDFValues(Constants.SHOOTER_DEFAULT_P, Constants.SHOOTER_DEFAULT_I, Constants.SHOOTER_DEFAULT_D, Constants.SHOOTER_DEFAULT_F, 0); // STILL NEED TO GET THESE VALUES
     shooterMotorMaster.set(ControlMode.Velocity, m_desiredSpeed);
   }
 
-  public void setConstantVelocityFromInput(int velocity){  
-    configPIDFValues(.1, 0, 0, 0.05, 0); 
-        //  Added these steps to allow us to set the constant velocity based on passed integer.
-        m_desiredSpeed = velocity;
-        shooterMotorMaster.set(ControlMode.Velocity, velocity);
+  public void setConstantVelocityFromInput(int buttonNumber, int velocity) {
+    double kP = Constants.SHOOTER_DEFAULT_P;
+    double kI = Constants.SHOOTER_DEFAULT_I;
+    double kD = Constants.SHOOTER_DEFAULT_D;
+    double kF = Constants.SHOOTER_DEFAULT_F;
+
+    m_desiredSpeed = velocity;
+
+    switch (buttonNumber) {
+      case 0: //default case
+        configPIDFValues(kP, kI, kD, kF, 0); // STILL NEED TO GET THESE VALUES
+        break;
+      case 1:
+        kP = SmartDashboard.getNumber("GreenZone_P", Constants.SHOOTER_DEFAULT_P);
+        kI = SmartDashboard.getNumber("GreenZone_I", Constants.SHOOTER_DEFAULT_I);
+        kD = SmartDashboard.getNumber("GreenZone_D", Constants.SHOOTER_DEFAULT_D);
+        kF = SmartDashboard.getNumber("GreenZone_F", Constants.SHOOTER_DEFAULT_F);
+        break;
+      case 2:
+        kP = SmartDashboard.getNumber("RedZone_P", Constants.SHOOTER_DEFAULT_P);
+        kI = SmartDashboard.getNumber("RedZone_I", Constants.SHOOTER_DEFAULT_I);
+        kD = SmartDashboard.getNumber("RedZone_D", Constants.SHOOTER_DEFAULT_D);
+        kF = SmartDashboard.getNumber("RedZone_F", Constants.SHOOTER_DEFAULT_F);
+        break;
+      case 3:
+        kP = SmartDashboard.getNumber("BlueZone_P", Constants.SHOOTER_DEFAULT_P);
+        kI = SmartDashboard.getNumber("BlueZone_I", Constants.SHOOTER_DEFAULT_I);
+        kD = SmartDashboard.getNumber("BlueZone_D", Constants.SHOOTER_DEFAULT_D);
+        kF = SmartDashboard.getNumber("BlueZone_F", Constants.SHOOTER_DEFAULT_F);
+        break;
+      case 4:
+        kP = SmartDashboard.getNumber("YellowZone_P", Constants.SHOOTER_DEFAULT_P);
+        kI = SmartDashboard.getNumber("YellowZone_I", Constants.SHOOTER_DEFAULT_I);
+        kD = SmartDashboard.getNumber("YellowZone_D", Constants.SHOOTER_DEFAULT_D);
+        kF = SmartDashboard.getNumber("YellowZone_F", Constants.SHOOTER_DEFAULT_F);
+        break;
+      default:
+        kP = Constants.SHOOTER_DEFAULT_P;
+        kI = Constants.SHOOTER_DEFAULT_I;
+        kD = Constants.SHOOTER_DEFAULT_D;
+        kF = Constants.SHOOTER_DEFAULT_F;
+    }
+    configPIDFValues(kP, kI, kD, kF, 0);
+    shooterMotorMaster.set(ControlMode.Velocity, m_desiredSpeed);
   }
 
-
+  public void setConstantVelocityFromInput(int velocity) {
+    configPIDFValues(.1, 0, 0, 0.05, 0);
+    // Added these steps to allow us to set the constant velocity based on passed
+    // integer.
+    m_desiredSpeed = velocity;
+    shooterMotorMaster.set(ControlMode.Velocity, velocity);
+  }
 
   // Stop our shooter to stop the shooter
   public void stopMotor() {
@@ -138,11 +187,28 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public boolean isUpToSpeed() {
-    isShooterUpToSpeed = Math.abs(shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < Constants.SHOOTER_TARGET_VELOCITY_TOLERANCE;
+    isShooterUpToSpeed = Math.abs(
+        shooterMotorMaster.getSelectedSensorVelocity() - m_desiredSpeed) < Constants.SHOOTER_TARGET_VELOCITY_TOLERANCE;
     SmartDashboard.putBoolean("Is Shooter Up to Speed", isShooterUpToSpeed);
     System.out.println("Shooting Speed:  " + shooterMotorMaster.getSelectedSensorVelocity());
     System.out.println("Desired Speed:  " + m_desiredSpeed);
     return isShooterUpToSpeed;
+  }
+
+  private void setupSmartDashboard() {
+    addPIDFToSmartDashboard("Default", Constants.SHOOTER_DEFAULT_VELOCITY, Constants.SHOOTER_DEFAULT_P, Constants.SHOOTER_DEFAULT_I, Constants.SHOOTER_DEFAULT_D, Constants.SHOOTER_DEFAULT_F);
+    addPIDFToSmartDashboard("Green", Constants.SHOOTER_GREEN_ZONE_VELOCITY, Constants.SHOOTER_GREEN_ZONE_P, Constants.SHOOTER_GREEN_ZONE_I, Constants.SHOOTER_GREEN_ZONE_D, Constants.SHOOTER_GREEN_ZONE_F);
+    addPIDFToSmartDashboard("Red", Constants.SHOOTER_RED_ZONE_VELOCITY, Constants.SHOOTER_RED_ZONE_P, Constants.SHOOTER_RED_ZONE_I, Constants.SHOOTER_RED_ZONE_D, Constants.SHOOTER_RED_ZONE_F);
+    addPIDFToSmartDashboard("Blue", Constants.SHOOTER_BLUE_ZONE_VELOCITY, Constants.SHOOTER_BLUE_ZONE_P, Constants.SHOOTER_BLUE_ZONE_I, Constants.SHOOTER_BLUE_ZONE_D, Constants.SHOOTER_BLUE_ZONE_F);
+    addPIDFToSmartDashboard("Yellow", Constants.SHOOTER_YELLOW_ZONE_VELOCITY, Constants.SHOOTER_YELLOW_ZONE_P, Constants.SHOOTER_YELLOW_ZONE_I, Constants.SHOOTER_YELLOW_ZONE_D, Constants.SHOOTER_YELLOW_ZONE_F);
+  }
+
+  private void addPIDFToSmartDashboard (String zone, int velocity, double p, double i, double d, double f) {
+    SmartDashboard.putNumber(zone + "Velocity", velocity);
+    SmartDashboard.putNumber(zone +"Zone_P", p);
+    SmartDashboard.putNumber(zone +"Zone_I", i);
+    SmartDashboard.putNumber(zone +"Zone_D", d);
+    SmartDashboard.putNumber(zone +"Zone_F", f);
   }
 
 }

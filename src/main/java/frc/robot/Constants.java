@@ -60,7 +60,6 @@ public final class Constants {
    **************************************************/
   public static final int SPI_PORT_AHRS = 0; // Using Nav-X GYRO THIS YEAR
 
-
   // Set a DEFAULT BLING mode here so that way we only have to change it in one
   // place..
   public static final double BLING_DEFAULT = BlingConstants.BLING_OCEAN_PALETTE;
@@ -102,8 +101,7 @@ public final class Constants {
   // **************** HOPPER SETTINGS ****************/
 
   public static final double HOPPER_MOTOR_FORWARD_SPEED = 1; // How fast to move conveyor belt forward
-  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 1;  // How fast to move the conveyor belt forward
-
+  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 1; // How fast to move the conveyor belt forward
 
   // **************** INTAKE SETTINGS ****************/
   public static final double INTAKE_MOTOR_SPEED = 1.0; // How fast to spin the rollers to intake a ball
@@ -121,9 +119,10 @@ public final class Constants {
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
                                                           // RoboRIO
   public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096; // This value will change
-  public static final double TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION = 3.8; // Analog Encoder value at Right Stop position (in volts)
-  public static final double TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION = 1.3; // Analog Encoder value at Left Stop position (in volts)
-
+  public static final double TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION = 3.8; // Analog Encoder value at Right Stop
+                                                                                // position (in volts)
+  public static final double TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION = 1.3; // Analog Encoder value at Left Stop
+                                                                               // position (in volts)
 
   // **************** SHOOTER SETTINGS ****************/
   public static final double SHOOTER_REGAIN_SPEED_TIMER = 0.5;
@@ -172,16 +171,42 @@ public final class Constants {
   public static final int SHOOTER_TARGET_VELOCITY_TOLERANCE = 50; // Place holder for now. Deadband for our velocity
   public static final int SHOOTER_MAX_VELOCITY_UNITS_100MILLISECONDS = 27000; // Derived from Phoneix Tuner
   public static final int SHOOTER_DESIRED_VELOCITY = 20000;
-  public static final double SHOOTER_ANGLE_RED_ZONE = -16.0; //  Angle of the Shooter/Limelight in the red zone
-  public static final int SHOOTER_VELOCITY_RED_ZONE = 23000;  // Shooting from 17'6" out or more from the target
-  public static final double SHOOTER_ANGLE_BLUE_ZONE = -9.0; //  Angle of the Shooter/Limelight in the red zone
-  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 18000; // Shooting from 12'6" to 17'6" from the target 
-  //public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from 12'6" to 17'6" from the target 
+  public static final double SHOOTER_ANGLE_RED_ZONE = -16.0; // Angle of the Shooter/Limelight in the red zone
+  public static final int SHOOTER_VELOCITY_RED_ZONE = 23000; // Shooting from 17'6" out or more from the target
+  public static final double SHOOTER_ANGLE_BLUE_ZONE = -9.0; // Angle of the Shooter/Limelight in the red zone
+  public static final int SHOOTER_VELOCITY_BLUE_ZONE = 18000; // Shooting from 12'6" to 17'6" from the target
+  // public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from
+  // 12'6" to 17'6" from the target
+  public static final int SHOOTER_DEFAULT_VELOCITY = 20000;
+  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 1000;
+  public static final int SHOOTER_RED_ZONE_VELOCITY = 15000;
+  public static final int SHOOTER_BLUE_ZONE_VELOCITY = 20000;
+  public static final int SHOOTER_YELLOW_ZONE_VELOCITY = 17700;
+  public static final double SHOOTER_DEFAULT_P = .1; // Default value of kP for shooter PID
+  public static final double SHOOTER_DEFAULT_I = 0; // Default value of kI for shooter PID
+  public static final double SHOOTER_DEFAULT_D = 0; // Default value of kD for shooter PID
+  public static final double SHOOTER_DEFAULT_F = .05; // Default value of kF for shooter PID
+  public static final double SHOOTER_GREEN_ZONE_P = .1;
+  public static final double SHOOTER_GREEN_ZONE_I = 0;
+  public static final double SHOOTER_GREEN_ZONE_D = 0;
+  public static final double SHOOTER_GREEN_ZONE_F = .05;
+  public static final double SHOOTER_RED_ZONE_P = 0.1;
+  public static final double SHOOTER_RED_ZONE_I = 0;
+  public static final double SHOOTER_RED_ZONE_D = 0;
+  public static final double SHOOTER_RED_ZONE_F = .05;
+  public static final double SHOOTER_BLUE_ZONE_P = .1;
+  public static final double SHOOTER_BLUE_ZONE_I = 0;
+  public static final double SHOOTER_BLUE_ZONE_D = 0;
+  public static final double SHOOTER_BLUE_ZONE_F = .05;
+  public static final double SHOOTER_YELLOW_ZONE_P = .1;
+  public static final double SHOOTER_YELLOW_ZONE_I = 0;
+  public static final double SHOOTER_YELLOW_ZONE_D = 0;
+  public static final double SHOOTER_YELLOW_ZONE_F = .05;
 
-  public static final double SHOOTER_ANGLE_YELLOW_ZONE = 0.0; //  Angle of the Shooter/Limelight in the red zone
+  public static final double SHOOTER_ANGLE_YELLOW_ZONE = 0.0; // Angle of the Shooter/Limelight in the red zone
   public static final int SHOOTER_VELOCITY_YELLOW_ZONE = 19000; // Shooting from 7'6" to 12'6" from the target
-  public static final double SHOOTER_ANGLE_GREEN_ZONE = 0.0; //  Angle of the Shooter/Limelight in the red zone
-  public static final int SHOOTER_VELOCITY_GREEN_ZONE = 18500; //  Shooting from less than 7'6" 
+  public static final double SHOOTER_ANGLE_GREEN_ZONE = 0.0; // Angle of the Shooter/Limelight in the red zone
+  public static final int SHOOTER_VELOCITY_GREEN_ZONE = 18500; // Shooting from less than 7'6"
 
   /**
    * Which PID slot to pull gains from. Starting 2018, you can choose from 0,1,2
