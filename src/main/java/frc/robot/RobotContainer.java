@@ -152,8 +152,8 @@ public class RobotContainer {
 
 
     // Intake Commands
-    //new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
-    //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
+    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
+    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
     
@@ -177,6 +177,7 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
     new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
     new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
+    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
 
   }
 

@@ -24,14 +24,13 @@ public class Path_A_Drive extends SequentialCommandGroup {
     m_driveTrainSubsystem = dt;
     addCommands(
       new ResetDriveGyro(m_driveTrainSubsystem),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 30),
-      new DriveStraightCommand(m_driveTrainSubsystem, 175),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, -90),
+      new TurnWithPIDCommand(m_driveTrainSubsystem,  30),
+      new DriveStraightCommand(m_driveTrainSubsystem, 173),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, -90),
       new DriveStraightCommand(m_driveTrainSubsystem, 120),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 35),
+      new TurnWithPIDCommand(m_driveTrainSubsystem,  37),
       new DriveStraightCommand(m_driveTrainSubsystem, 85),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
-      new DriveStraightCommand(m_driveTrainSubsystem, 55)
+      new TurnWithPIDCommand(m_driveTrainSubsystem,  0)
       // new DriveStraightCommand(m_driveTrainSubsystem, 60), //5ft
       // new TurnToAngleCommand(m_driveTrainSubsystem, 70, 90), 
       // new DriveStraightCommand(m_driveTrainSubsystem, 30), //2.5ft

@@ -4,7 +4,7 @@
 
 package frc.robot.AutoCommands;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
 import frc.robot.commands.IntakeCommands.RetractIntakeCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -13,18 +13,18 @@ import frc.robot.subsystems.IntakeSubsystem;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Path_A_Overall extends SequentialCommandGroup {
-  IntakeSubsystem m_intakeSubsystem;
+public class Path_A_Finale extends ParallelCommandGroup {
   DriveTrainSubsystem m_driveTrainSubsystem;
-  /** Creates a new Path_A_Overall. */
-  public Path_A_Overall(DriveTrainSubsystem dt, IntakeSubsystem intake) {
-    m_intakeSubsystem = intake;
-    m_driveTrainSubsystem = dt;
+  IntakeSubsystem m_intakeSubsystem;
+  /** Creates a new Path_A_Finale. */
+  public Path_A_Finale(DriveTrainSubsystem dt, IntakeSubsystem intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+    m_intakeSubsystem = intake;
+    m_driveTrainSubsystem = dt;
     addCommands(
-      new Path_A_With_Intake(m_driveTrainSubsystem, m_intakeSubsystem),
-      new Path_A_Finale(m_driveTrainSubsystem, m_intakeSubsystem)
+      new RetractIntakeCommand(m_intakeSubsystem),
+      new DriveStraightCommand(m_driveTrainSubsystem, 60)
     );
   }
 }
