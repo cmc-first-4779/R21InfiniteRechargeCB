@@ -26,7 +26,8 @@ public class TurnWithPIDCommand extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 		m_driveTrainSubsystem = driveTrainSubsystem;
-    	goalAngle = m_driveTrainSubsystem.getGyroAngle() +  givenAngle;
+    	// goalAngle = m_driveTrainSubsystem.getGyroAngle() +  givenAngle;
+    	goalAngle = givenAngle;
     	this.speed = Constants.DRIVETRAIN_TURN_POWER;
 		isDone = false;    	
 		addRequirements(m_driveTrainSubsystem);
