@@ -86,6 +86,7 @@ public final class Constants {
   public static final int DRIVETRAIN_DIRECTION_FORWARD = 1;
   public static final int DRIVETRAIN_DIRECTION_REVERSE = -1;
   public static final double DRIVETRAIN_TURN_POWER = 0.4;
+  public static final double DRIVETRAIN_TURN_KP = 0.005;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
   public static final double DRIVETRAIN_THROTTLE_RAINBOW_ARM_UP = 0.5; // Used to throttle our straight speed when the
                                                                        // Rainbow Arm is deployed.
@@ -276,5 +277,7 @@ public final class Constants {
   public final static int kSlot_MotProf = SLOT_3;
 
   public static final double kNeutralDeadband = 0.001;
+public static final double DRIVETRAIN_TURN_THRESHOLD = 0;
+
 
 }

@@ -12,23 +12,23 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class TurnWithoutPIDCommand extends CommandBase {
+public class TurnWithPIDCommand extends CommandBase {
 	private DriveTrainSubsystem m_driveTrainSubsystem;
 	private double goalAngle = 0.0;
 	private boolean isDone = false;
 	private double speed;
-	private double tolerance = 3;
+	private double tolerance = Constants.DRIVETRAIN_TURN_THRESHOLD;
+	private double kPTurn = Constants.DRIVETRAIN_TURN_KP;
+	int counter = 0;
 	//private double currentAngle;
 	
-    public TurnWithoutPIDCommand(DriveTrainSubsystem driveTrainSubsystem, double speed, double givenAngle) {
+    public TurnWithPIDCommand(DriveTrainSubsystem driveTrainSubsystem, double givenAngle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 		m_driveTrainSubsystem = driveTrainSubsystem;
     	goalAngle = m_driveTrainSubsystem.getGyroAngle() +  givenAngle;
-    	this.speed = speed;
+    	this.speed = Constants.DRIVETRAIN_TURN_POWER;
 		isDone = false;    	
-		SmartDashboard.putNumber("Goal Angle: ", goalAngle);
-		SmartDashboard.putNumber("TurnSpeed: ", speed);
 		addRequirements(m_driveTrainSubsystem);
     }
 
@@ -37,6 +37,7 @@ public class TurnWithoutPIDCommand extends CommandBase {
     public void initialize() {
     	//m_driveTrainSubsystem.resetGyro();
 		isDone = false;
+		counter = 0;
 
     }
 
@@ -47,16 +48,26 @@ public class TurnWithoutPIDCommand extends CommandBase {
 		 SmartDashboard.putNumber("Gyro: ", currentAngle);
 		 //goalAngle = SmartDashboard.getNumber("Goal Angle: ", goalAngle);
 	
-		 speed = Constants.DRIVETRAIN_TURN_POWER;
+		 speed = calculateTurnSpeed();
     	if(Math.abs(goalAngle - currentAngle) < tolerance) {  //if within tolerance
-    		m_driveTrainSubsystem.arcadeDrive(0.0, 0.0);
-    		isDone = true;
-    	} else if(currentAngle < goalAngle) {  //If left of target angle
+			m_driveTrainSubsystem.arcadeDrive(0.0, 0.0);
+    		counter++;
+		} else if(currentAngle < goalAngle) {  //If left of target angle
+			counter = 0;
     		m_driveTrainSubsystem.arcadeDrive(0, speed);  //turn clockwise
-    	} else if(currentAngle > goalAngle){  //If right of target angle
+		} else if(currentAngle > goalAngle){  //If right of target angle
+			counter = 0;
     		m_driveTrainSubsystem.arcadeDrive(0, -speed);  //turn counterclockwise
-    	}
+		}
+		
+		isDone = counter > 10;
     }
+
+	private double calculateTurnSpeed() {
+		double turnError = Math.abs(m_driveTrainSubsystem.getGyroAngle() - goalAngle);
+		speed = speed + (kPTurn * turnError);
+		return speed;
+	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
