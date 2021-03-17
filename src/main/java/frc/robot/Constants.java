@@ -117,6 +117,11 @@ public final class Constants {
 
   // **************** TURRET SETTINGS ****************/
   public static final double TURRET_MOTOR_SPEED = 0.2; // How fast to spin the turret to line-up to target
+  public static final double TURRET_MIN_AIM_SPEED = 0.1;
+  public static final double TURRET_SPEED_P = 0.5;
+  public static final double TURRET_AIMING_DEADBAND = 1.5;  //degrees
+  public static final int TURRET_AIMING_COUNTER = 10;  // Ten times trying to dial in
+  
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
                                                           // RoboRIO
   public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096; // This value will change

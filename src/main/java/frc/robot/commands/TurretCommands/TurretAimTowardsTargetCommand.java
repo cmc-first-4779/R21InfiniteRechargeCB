@@ -30,7 +30,10 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
   double aimMinPower; // The minimum power we use to turn the robot to aim at the target
 
   boolean onTarget = false; // Are we on target, assume "false"
-  int counter = 0;
+  int counter;
+
+  //Tells us we are done after dialing in
+  boolean isDone;
 
   public TurretAimTowardsTargetCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem,
       double pipeline, BlingSubsystem blingSubsystem) {
@@ -42,9 +45,11 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
     kpAim = 0;
     aimMinPower = Constants.LIMELIGHT_SEEK_TURN_TURRET_POWER;
     aimAndMove = false;
+    isDone = false;
+    counter = 0;
     // Put these to the Shuffleboard so that we can read them later to calibrate
-    SmartDashboard.putNumber("kpAim", kpAim);
-    SmartDashboard.putNumber("Aim Min", aimMinPower);
+    //SmartDashboard.putNumber("kpAim", kpAim);
+    //SmartDashboard.putNumber("Aim Min", aimMinPower);
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_turretSubsystem, m_limelightSubsystem, m_blingSubsystem);
@@ -57,6 +62,8 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
     onTarget = false;
     // set our counter to zero
     counter = 0;
+    //  Set isDone to false
+    isDone = false;
     // Set the Limelight to init for vision
     m_limelightSubsystem.initLimelightforVision();
     // Set the bling subsystem to lime green
@@ -111,7 +118,7 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return counter > 10;
+    return isDone;
   }
 
   /**
@@ -125,13 +132,15 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
     double aim_error = m_limelightSubsystem.getTX();
     // GET the aimMin variable from the Dashboard so that we can calibrate. We will
     // comment this out later.
-    aimMinPower = SmartDashboard.getNumber("Aim Min", aimMinPower);
+    //aimMinPower = SmartDashboard.getNumber("Aim Min", aimMinPower);
+    aimMinPower = Constants.TURRET_MIN_AIM_SPEED;
     // GET the kpAim variable from the Dashboard so that we can calibrate. We will
     // comment this out later.
-    kpAim = SmartDashboard.getNumber("kpAim ", kpAim);
+    //kpAim = SmartDashboard.getNumber("kpAim ", kpAim);
+    kpAim = Constants.TURRET_SPEED_P;
     // If that error is too far to the right by our threshold / deadband, then
     // increase 'turn' to turn left by our min constant.
-    if (aim_error > Constants.LIMELIGHT_AIMING_DEADBAND) {
+    if (aim_error > Constants.TURRET_AIMING_DEADBAND) {
       // turn = (Constants.LIMELIGHT_AIMING_kpAim * aim_error) +
       // Constants.LIMELIGHT_AIMING_AIM_MIN_CMD;
       turnPower = (kpAim * aim_error) + aimMinPower;
@@ -140,7 +149,7 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
     }
     // If that error is too far to the left by our threshold / deadband, then
     // increase 'turn' to turn right by our min constant.
-    else if (aim_error < -Constants.LIMELIGHT_AIMING_DEADBAND) {
+    else if (aim_error < -Constants.TURRET_AIMING_DEADBAND) {
       // turn = (Constants.LIMELIGHT_AIMING_kpAim * aim_error) -
       // Constants.LIMELIGHT_AIMING_AIM_MIN_CMD;
       turnPower = (kpAim * aim_error) - aimMinPower;
@@ -153,6 +162,8 @@ public class TurretAimTowardsTargetCommand extends CommandBase {
       onTarget = true;
       counter++;
     }
+    //  Check to see if we are done
+    isDone = counter > Constants.TURRET_AIMING_COUNTER;
     // Return the directon and amount we have to turn
     return turnPower;
   }
