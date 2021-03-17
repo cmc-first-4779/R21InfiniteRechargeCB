@@ -25,6 +25,7 @@ import frc.robot.commands.BlingCommands.BlingSetDefaultCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStopCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
 import frc.robot.commands.DriveTrainCommands.DriveWithJoystickCommand;
+import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
 import frc.robot.commands.DriveTrainCommands.TurnToAngleCommand;
 import frc.robot.commands.DriveTrainCommands.TurnWithPIDCommand;
 import frc.robot.commands.ElevatorCommands.GoDownCommand;
@@ -174,6 +175,8 @@ public class RobotContainer {
     // Auton Commands
     //new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
     new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
+    new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
 
   }
 
