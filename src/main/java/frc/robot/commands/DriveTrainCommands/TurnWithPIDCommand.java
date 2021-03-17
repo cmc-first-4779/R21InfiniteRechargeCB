@@ -48,7 +48,7 @@ public class TurnWithPIDCommand extends CommandBase {
 		 SmartDashboard.putNumber("Gyro: ", currentAngle);
 		 //goalAngle = SmartDashboard.getNumber("Goal Angle: ", goalAngle);
 	
-		 speed = calculateTurnSpeed();
+		 speed = calculateTurnSpeed(currentAngle);
     	if(Math.abs(goalAngle - currentAngle) < tolerance) {  //if within tolerance
 			m_driveTrainSubsystem.arcadeDrive(0.0, 0.0);
     		counter++;
@@ -63,8 +63,8 @@ public class TurnWithPIDCommand extends CommandBase {
 		isDone = counter > 10;
     }
 
-	private double calculateTurnSpeed() {
-		double turnError = Math.abs(m_driveTrainSubsystem.getGyroAngle() - goalAngle);
+	private double calculateTurnSpeed(double currentAngle) {
+		double turnError = Math.abs(currentAngle - goalAngle);
 		speed = speed + (kPTurn * turnError);
 		return speed;
 	}
