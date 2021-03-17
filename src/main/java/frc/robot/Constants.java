@@ -86,7 +86,7 @@ public final class Constants {
   public static final int DRIVETRAIN_DIRECTION_FORWARD = 1;
   public static final int DRIVETRAIN_DIRECTION_REVERSE = -1;
   public static final double DRIVETRAIN_TURN_POWER = 0.4;
-  public static final double DRIVETRAIN_TURN_KP = 0.005;
+  public static final double DRIVETRAIN_TURN_KP = 0.003;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
   public static final double DRIVETRAIN_THROTTLE_RAINBOW_ARM_UP = 0.5; // Used to throttle our straight speed when the
                                                                        // Rainbow Arm is deployed.
@@ -118,7 +118,7 @@ public final class Constants {
   // **************** TURRET SETTINGS ****************/
   public static final double TURRET_MOTOR_SPEED = 0.2; // How fast to spin the turret to line-up to target
   public static final double TURRET_MIN_AIM_SPEED = 0.1;
-  public static final double TURRET_SPEED_P = 0.5;
+  public static final double TURRET_SPEED_P = 0.02;
   public static final double TURRET_AIMING_DEADBAND = 1.5;  //degrees
   public static final int TURRET_AIMING_COUNTER = 10;  // Ten times trying to dial in
   
@@ -282,7 +282,7 @@ public final class Constants {
   public final static int kSlot_MotProf = SLOT_3;
 
   public static final double kNeutralDeadband = 0.001;
-public static final double DRIVETRAIN_TURN_THRESHOLD = 0;
+public static final double DRIVETRAIN_TURN_THRESHOLD = 2;
 
 
 }

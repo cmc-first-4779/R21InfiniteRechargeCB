@@ -65,7 +65,9 @@ public class TurnWithPIDCommand extends CommandBase {
 
 	private double calculateTurnSpeed(double currentAngle) {
 		double turnError = Math.abs(currentAngle - goalAngle);
-		speed = speed + (kPTurn * turnError);
+		speed = Constants.DRIVETRAIN_TURN_POWER + (kPTurn * turnError);
+		SmartDashboard.putNumber("TurnError", turnError);
+		SmartDashboard.putNumber("Speed", speed);
 		return speed;
 	}
 
