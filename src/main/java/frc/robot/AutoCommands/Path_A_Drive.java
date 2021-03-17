@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
 import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
 import frc.robot.commands.DriveTrainCommands.TurnToAngleCommand;
+import frc.robot.commands.DriveTrainCommands.TurnWithPIDCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -23,28 +24,36 @@ public class Path_A_Drive extends SequentialCommandGroup {
     m_driveTrainSubsystem = dt;
     addCommands(
       new ResetDriveGyro(m_driveTrainSubsystem),
-      new DriveStraightCommand(m_driveTrainSubsystem, 60), //5ft
-      new TurnToAngleCommand(m_driveTrainSubsystem, 70, 90), 
-      new DriveStraightCommand(m_driveTrainSubsystem, 30), //2.5ft
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
-      new DriveStraightCommand(m_driveTrainSubsystem, 60), //5ft
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
-      new DriveStraightCommand( m_driveTrainSubsystem, 30),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
-      new DriveStraightCommand(m_driveTrainSubsystem, 39),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, -90),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 30),
+      new DriveStraightCommand(m_driveTrainSubsystem, 180),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, -90),
       new DriveStraightCommand(m_driveTrainSubsystem, 120),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
-      new DriveStraightCommand(m_driveTrainSubsystem, 30),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
-      new DriveStraightCommand(m_driveTrainSubsystem, 30),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
-      new DriveStraightCommand(m_driveTrainSubsystem, 30),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
-      new DriveStraightCommand(m_driveTrainSubsystem, 120),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 135),
-      new DriveStraightCommand(m_driveTrainSubsystem, 96),
-      new TurnToAngleCommand(m_driveTrainSubsystem, 10, 180)
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 35),
+      new DriveStraightCommand(m_driveTrainSubsystem, 85),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 0),
+      new DriveStraightCommand(m_driveTrainSubsystem, 55)
+      // new DriveStraightCommand(m_driveTrainSubsystem, 60), //5ft
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 70, 90), 
+      // new DriveStraightCommand(m_driveTrainSubsystem, 30), //2.5ft
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 60), //5ft
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
+      // new DriveStraightCommand( m_driveTrainSubsystem, 30),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 39),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, -90),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 120),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 30),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 30),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 90),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 30),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 0),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 120),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 135),
+      // new DriveStraightCommand(m_driveTrainSubsystem, 96),
+      // new TurnToAngleCommand(m_driveTrainSubsystem, 10, 180)
     );
   }
 }

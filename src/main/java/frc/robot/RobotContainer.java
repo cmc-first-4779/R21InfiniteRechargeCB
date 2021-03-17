@@ -142,8 +142,7 @@ public class RobotContainer {
 
     //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new DriveStraightCommand(m_driveTrainSubsystem, 180));
     //new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new TurnToAngleCommand(m_driveTrainSubsystem, 10, -45));
-    // new JoystickButton(m_driverStick, Button.kB.value).whileHeld(new DriveStopCommand(m_driveTrainSubsystem));
-    // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kB.value).whileHeld(new DriveStopCommand(m_driveTrainSubsystem));
 
     //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(shooterOnCommand);
     // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(shooterOffCommand);
@@ -155,20 +154,24 @@ public class RobotContainer {
     //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
-    new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
+    
 
     //  Turret Commands
     //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new EjectCellsCommand(m_intakeSubsystem));
     //new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new TurretMotorClockwiseCommand(m_turretSubsystem));
-    new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new HopperGoForwardCommand(m_hopperSubsystem));
+    //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new HopperGoForwardCommand(m_hopperSubsystem));
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanForTargetCommand(m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem));
-    new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kA.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
-    new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kB.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
-    new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kX.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
-    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kY.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kA.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    //new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kB.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    //new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kX.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kY.value, m_turretSubsystem, m_limelightSubsystem, 1, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem, m_intakeSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
+    //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
+    //new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
+
+    // Auton Commands
+    //new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
   }
 
   /**
