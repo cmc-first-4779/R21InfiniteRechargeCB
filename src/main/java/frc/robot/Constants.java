@@ -115,7 +115,7 @@ public final class Constants {
   public static final double ELEVATOR_MOTOR_DOWN_SPEED = 0.9; // How fast the elevator will move cells up
 
   // **************** TURRET SETTINGS ****************/
-  public static final double TURRET_MOTOR_SPEED = 0.3; // How fast to spin the turret to line-up to target
+  public static final double TURRET_MOTOR_SPEED = 0.2; // How fast to spin the turret to line-up to target
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
                                                           // RoboRIO
   public static final int TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION = 4096; // This value will change
@@ -138,7 +138,7 @@ public final class Constants {
   /******************************** =2 ****************************************/
   public static final double LIMELIGHT_PIPELINE_POWERCELLPORT = 0;
   public static final double LIMELIGHT_PIPELINE_UPPER_POWER_PORT = 0; // Use the Upper Power Port Pipeline
-  public static final double LIMELIGHT_AIMING_DEADBAND = 3; // was 1.75 // How close do we have to be right or left of
+  public static final double LIMELIGHT_AIMING_DEADBAND = 2; // was 1.75 // How close do we have to be right or left of
                                                             // the target
   public static final double LIMELIGHT_AIMING_DISTANCE_TOLERANCE = 2; // Tolerance of degrees we want to be on target
   public static final double LIMELIGHT_AIMING_kpAim = 0.0040;
@@ -178,9 +178,9 @@ public final class Constants {
   // public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from
   // 12'6" to 17'6" from the target
   public static final int SHOOTER_DEFAULT_VELOCITY = 20000;
-  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 1000;
-  public static final int SHOOTER_RED_ZONE_VELOCITY = 15000;
-  public static final int SHOOTER_BLUE_ZONE_VELOCITY = 20000;
+  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 10000;
+  public static final int SHOOTER_RED_ZONE_VELOCITY = 19500;
+  public static final int SHOOTER_BLUE_ZONE_VELOCITY = 18500;
   public static final int SHOOTER_YELLOW_ZONE_VELOCITY = 17700;
   public static final double SHOOTER_DEFAULT_P = .1; // Default value of kP for shooter PID
   public static final double SHOOTER_DEFAULT_I = 0; // Default value of kI for shooter PID
@@ -193,7 +193,7 @@ public final class Constants {
   public static final double SHOOTER_RED_ZONE_P = 0.1;
   public static final double SHOOTER_RED_ZONE_I = 0;
   public static final double SHOOTER_RED_ZONE_D = 0;
-  public static final double SHOOTER_RED_ZONE_F = .05;
+  public static final double SHOOTER_RED_ZONE_F = .048;
   public static final double SHOOTER_BLUE_ZONE_P = .1;
   public static final double SHOOTER_BLUE_ZONE_I = 0;
   public static final double SHOOTER_BLUE_ZONE_D = 0;

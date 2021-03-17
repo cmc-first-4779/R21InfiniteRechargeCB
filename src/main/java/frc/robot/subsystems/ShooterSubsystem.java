@@ -204,7 +204,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private void addPIDFToSmartDashboard (String zone, int velocity, double p, double i, double d, double f) {
-    SmartDashboard.putNumber(zone + "Velocity", velocity);
+    SmartDashboard.putNumber(zone + "ZoneVelocity", velocity);
     SmartDashboard.putNumber(zone +"Zone_P", p);
     SmartDashboard.putNumber(zone +"Zone_I", i);
     SmartDashboard.putNumber(zone +"Zone_D", d);

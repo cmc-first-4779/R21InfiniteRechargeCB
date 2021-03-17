@@ -110,16 +110,16 @@ public class ShootDaBallCommand extends CommandBase {
         velocity = (int) SmartDashboard.getNumber("DefaultVelocity", Constants.SHOOTER_DEFAULT_VELOCITY);
         break;
       case 1:
-        velocity = (int) SmartDashboard.getNumber("GreenZoneVelocity", Constants.SHOOTER_VELOCITY_GREEN_ZONE);
+        velocity = (int) SmartDashboard.getNumber("GreenZoneVelocity", Constants.SHOOTER_GREEN_ZONE_VELOCITY);
         break;
       case 2:
-        velocity = (int) SmartDashboard.getNumber("RedZoneVelocity", Constants.SHOOTER_VELOCITY_GREEN_ZONE);
+        velocity = (int) SmartDashboard.getNumber("RedZoneVelocity", Constants.SHOOTER_RED_ZONE_VELOCITY);
         break;
       case 3:
-        velocity = (int) SmartDashboard.getNumber("BlueZoneVelocity", Constants.SHOOTER_VELOCITY_GREEN_ZONE);
+        velocity = (int) SmartDashboard.getNumber("BlueZoneVelocity", Constants.SHOOTER_BLUE_ZONE_VELOCITY);
         break;
       case 4:
-        velocity = (int) SmartDashboard.getNumber("YellowZoneVelocity", Constants.SHOOTER_VELOCITY_GREEN_ZONE);
+        velocity = (int) SmartDashboard.getNumber("YellowZoneVelocity", Constants.SHOOTER_YELLOW_ZONE_VELOCITY);
         break;
     }
 
