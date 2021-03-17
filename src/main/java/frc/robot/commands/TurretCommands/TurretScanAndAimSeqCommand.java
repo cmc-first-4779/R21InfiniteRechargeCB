@@ -26,7 +26,7 @@ public class TurretScanAndAimSeqCommand extends SequentialCommandGroup {
   HopperSubsystem m_hopperSubsystem;
 
   /** Creates a new TurretScanAndAimSeqCommand. */
-  public TurretScanAndAimSeqCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem, ShooterSubsystem shooterSubsystem, ElevatorSubsystem elevatorSubsystem, HopperSubsystem hopperSubsystem) {
+  public TurretScanAndAimSeqCommand(int buttonNumber, TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem, ShooterSubsystem shooterSubsystem, ElevatorSubsystem elevatorSubsystem, HopperSubsystem hopperSubsystem) {
     
     m_turretSubsystem = turretSubsystem;
     m_limelightSubsystem = limelightSubsystem;
@@ -40,8 +40,13 @@ public class TurretScanAndAimSeqCommand extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       //new TurretScanForTargetCommand(m_turretSubsystem, m_limelightSubsystem, m_pipeline, m_blingSubsystem),
-      new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, m_pipeline, m_blingSubsystem),
-      new ShootDaBallCommand(m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem, m_limelightSubsystem)
+      // new TurretAimTowardsTargetCommand(m_turretSubsystem, m_limelightSubsystem, m_pipeline, m_blingSubsystem),
+      new ShootDaBallCommand( buttonNumber, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem, m_limelightSubsystem)
       );
+
+  }
+
+  public TurretScanAndAimSeqCommand(TurretSubsystem turretSubsystem, LimelightSubsystem limelightSubsystem, double pipeline, BlingSubsystem blingSubsystem, ShooterSubsystem shooterSubsystem, ElevatorSubsystem elevatorSubsystem, HopperSubsystem hopperSubsystem) {
+    new TurretScanAndAimSeqCommand(0, turretSubsystem, limelightSubsystem, pipeline, blingSubsystem, shooterSubsystem, elevatorSubsystem, hopperSubsystem);
   }
 }
