@@ -142,8 +142,9 @@ public final class Constants {
   /********** These variables can change to be tuned..******************** */
   /********** Non-tunable variables are in LimelightConstants.java ***** */
   /******************************** =2 ****************************************/
-  public static final double LIMELIGHT_PIPELINE_POWERCELLPORT = 0;
-  public static final double LIMELIGHT_PIPELINE_UPPER_POWER_PORT = 0; // Use the Upper Power Port Pipeline
+  public static final double LIMELIGHT_PIPELINE_PORT_CLOSE = 0; // Use the Upper Power Port Pipeline
+  public static final double LIMELIGHT_PIPELINE_PORT_FAR = 1;  // from > 14 ft away
+  public static final double LIMELIGHT_PIPELINE_POWERCELL = 0; //  to gobble up powercells.   Seperate limelight
   public static final double LIMELIGHT_AIMING_DEADBAND = 2; // was 1.75 // How close do we have to be right or left of
                                                             // the target
   public static final double LIMELIGHT_AIMING_DISTANCE_TOLERANCE = 2; // Tolerance of degrees we want to be on target

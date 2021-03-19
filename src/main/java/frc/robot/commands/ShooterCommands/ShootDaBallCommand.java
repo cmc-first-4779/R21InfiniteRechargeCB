@@ -82,20 +82,28 @@ public class ShootDaBallCommand extends CommandBase {
     double tY = limelight.getTY(); // Get the angle of the Limelight to the target
     // If we are in the "RED" zone, set the velocity to the Red zone velocity..
     if (tY <= Constants.SHOOTER_ANGLE_RED_ZONE) {
+      //   Set the Vision Pipeline to use hardware zoom
+      limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_FAR);
       velocity = Constants.SHOOTER_VELOCITY_RED_ZONE;
     }
     // Else if we are in the "Blue" zone... (We also have to make sure we are NOT in
     // the RED zone)
     else if ((tY <= Constants.SHOOTER_ANGLE_BLUE_ZONE) && (tY > Constants.SHOOTER_ANGLE_RED_ZONE)) {
+      //   Set the Vision Pipeline to use hardware zoom
+      limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_FAR);
       velocity = Constants.SHOOTER_VELOCITY_BLUE_ZONE;
     }
     // Else if we are in the "Yellow" zone... (We also have to make sure we are NOT
     // in the BLUE zone)
     else if ((tY <= Constants.SHOOTER_ANGLE_YELLOW_ZONE) && (tY > Constants.SHOOTER_ANGLE_BLUE_ZONE)) {
+      //   Set the Vision Pipeline to use no zoom
+      limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
       velocity = Constants.SHOOTER_VELOCITY_YELLOW_ZONE;
     }
     // Else.. We must be in the GREEN zone then..
     else {
+       //   Set the Vision Pipeline to use no zoom
+      limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);     
       velocity = Constants.SHOOTER_VELOCITY_GREEN_ZONE;
     }
     // Return whatever we set the velocity to based on the angles above...
@@ -108,18 +116,28 @@ public class ShootDaBallCommand extends CommandBase {
     switch (buttonNumber) {
       case 0:
         velocity = (int) SmartDashboard.getNumber("DefaultVelocity", Constants.SHOOTER_DEFAULT_VELOCITY);
+        //   Set the Vision Pipeline to use no zoom
+        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
         break;
       case 1:
+        //   Set the Vision Pipeline to use no zoom
+        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
         velocity = (int) SmartDashboard.getNumber("GreenZoneVelocity", Constants.SHOOTER_GREEN_ZONE_VELOCITY);
         break;
       case 2:
         velocity = (int) SmartDashboard.getNumber("RedZoneVelocity", Constants.SHOOTER_RED_ZONE_VELOCITY);
+        //   Set the Vision Pipeline to use hardware zoom
+        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_FAR);
         break;
       case 3:
         velocity = (int) SmartDashboard.getNumber("BlueZoneVelocity", Constants.SHOOTER_BLUE_ZONE_VELOCITY);
+        //   Set the Vision Pipeline to use hardware zoom
+        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_FAR);
         break;
       case 4:
         velocity = (int) SmartDashboard.getNumber("YellowZoneVelocity", Constants.SHOOTER_YELLOW_ZONE_VELOCITY);
+        //   Set the Vision Pipeline to use no zoom
+        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
         break;
     }
 
