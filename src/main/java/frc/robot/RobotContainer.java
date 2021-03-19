@@ -72,7 +72,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Setup the CameraServer
-    CameraServer.getInstance().startAutomaticCapture();
+    //CameraServer.getInstance().startAutomaticCapture();
 
     //  DEFAULT COMMANDS FOR EACH SUBSYSTEM
     //This is where we make the DriveWithJoystick Command the default command for the DriveTrain
