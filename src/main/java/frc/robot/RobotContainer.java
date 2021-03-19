@@ -12,46 +12,21 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.BlingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
-//import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.AutoCommands.BarnRunOne;
-import frc.robot.AutoCommands.BarnRunTwo;
-import frc.robot.AutoCommands.DriveAndPickup;
-import frc.robot.AutoCommands.HopperElevatorCommand;
-import frc.robot.AutoCommands.Path_A_Overall;
-import frc.robot.AutoCommands.Path_B_Overall;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
 import frc.robot.commands.BlingCommands.BlingSetDefaultCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStopCommand;
-import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
 import frc.robot.commands.DriveTrainCommands.DriveWithJoystickCommand;
-import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
-import frc.robot.commands.DriveTrainCommands.TurnToAngleCommand;
-import frc.robot.commands.DriveTrainCommands.TurnWithPIDCommand;
-import frc.robot.commands.ElevatorCommands.GoDownCommand;
-import frc.robot.commands.ElevatorCommands.GoUpCommand;
 import frc.robot.commands.ElevatorCommands.StopElevatorCommand;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.ShooterCommands.ShootDaBallCommand;
 import frc.robot.commands.ShooterCommands.ShooterOffCommand;
-import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
-import frc.robot.commands.TurretCommands.TurretMotorCounterClockwiseCommand;
-import frc.robot.commands.TurretCommands.TurretResetEncoderCommand;
 import frc.robot.commands.TurretCommands.TurretScanAndAimSeqCommand;
-import frc.robot.commands.TurretCommands.TurretScanForTargetCommand;
 import frc.robot.commands.TurretCommands.StopTurretCommand;
-import frc.robot.commands.TurretCommands.TurretAimTowardsTargetCommand;
-import frc.robot.commands.TurretCommands.TurretMotorClockwiseCommand;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
-import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
-import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
 import frc.robot.commands.HopperCommands.StopHopperCommand;
-import frc.robot.commands.IntakeCommands.EjectCellsCommand;
-import frc.robot.commands.IntakeCommands.ExtendIntakeCommand;
-import frc.robot.commands.IntakeCommands.IntakeCellsCommand;
 import frc.robot.commands.IntakeCommands.IntakeStopCommand;
 import frc.robot.commands.IntakeCommands.RetractIntakeCommand;
 import frc.robot.commands.LimelightCommands.LimelightInitForVisionCommand;
@@ -79,26 +54,17 @@ public class RobotContainer {
 
 //  Joysticks
   private final XboxController m_driverStick = new XboxController(XBoxJoystickConstants.DRIVERSTICK_USB_PORT);
-  private final XboxController m_operStick = new XboxController(XBoxJoystickConstants.OPERSTICK_USB_PORT); 
+  //private final XboxController m_operStick = new XboxController(XBoxJoystickConstants.OPERSTICK_USB_PORT); 
 
   //    Commands
-  private final ShooterOnCommand shooterOnCommand = new ShooterOnCommand(m_shooterSubsystem);
   private final ShooterOffCommand shooterOffCommand = new ShooterOffCommand(m_shooterSubsystem);
-  private final ShootDaBallCommand shootDaBallCommand = new ShootDaBallCommand(m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem, m_limelightSubsystem);
-  private final TurretMotorCounterClockwiseCommand turretMotorLeftCommand = new TurretMotorCounterClockwiseCommand(m_turretSubsystem);
-  private final TurretMotorClockwiseCommand turretMotorRightCommand = new TurretMotorClockwiseCommand(m_turretSubsystem); 
   private final StopTurretCommand turretStopCommand = new StopTurretCommand(m_turretSubsystem);
-  private final HopperGoForwardCommand hopperGoForward = new HopperGoForwardCommand(m_hopperSubsystem);
-  private final HopperGoBackwardCommand hopperGoBackward = new HopperGoBackwardCommand(m_hopperSubsystem);
   private final StopHopperCommand hopperStopCommand = new StopHopperCommand(m_hopperSubsystem);
-  private final GoDownCommand elevatorGoDownCommand = new GoDownCommand(m_elevatorSubsystem);
-  private final GoUpCommand elevatorGoUpCommand = new GoUpCommand(m_elevatorSubsystem);
   private final StopElevatorCommand elevatorStopCommand = new StopElevatorCommand(m_elevatorSubsystem);
   private final DriveWithJoystickCommand driveWithJoystickCommand = new DriveWithJoystickCommand(m_driveTrainSubsystem, m_driverStick);
   private final LimelightInitForVisionCommand limelightInitForVisionCommand = new LimelightInitForVisionCommand(m_limelightSubsystem);
   private final BlingSetDefaultCommand blingSetDefaultCommand = new BlingSetDefaultCommand(m_blingSubsystem);
   private final IntakeStopCommand intakeStopCommand = new IntakeStopCommand(m_intakeSubsystem); 
-  private final IntakeCellsCommand intakeCellsCommand = new IntakeCellsCommand(m_intakeSubsystem);
   private final RetractIntakeCommand retractIntakeCommand = new RetractIntakeCommand(m_intakeSubsystem);
   
   
