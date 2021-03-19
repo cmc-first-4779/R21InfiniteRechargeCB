@@ -88,19 +88,11 @@ public final class Constants {
   public static final double DRIVETRAIN_TURN_POWER = 0.4;
   public static final double DRIVETRAIN_TURN_KP = 0.003;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
-  public static final double DRIVETRAIN_THROTTLE_RAINBOW_ARM_UP = 0.5; // Used to throttle our straight speed when the
-                                                                       // Rainbow Arm is deployed.
-  public static final double DRIVETRAIN_TURN_THROTTLE_RAINBOW_ARM_UP = 0.5; // used to throttle our x-axis turn power
-                                                                            // when the arm is up
-  public static final double DRIVETRAIN_THROTTLE_ROBOT_IS_TOO_CLOSE_TO_CONTROL_PANEL = 0.3; // used to throttle the
-                                                                                            // forward power of the
-                                                                                            // drivetrain if the robot
-                                                                                            // is too close to the CP
-                                                                                            // with the arm up
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;
+  public static final int  DRIVETRAIN_MM_VELOCITY = 7000;
+  public static final int  DRIVETRAIN_MM_ACCELERATION = 6000;
 
   // **************** HOPPER SETTINGS ****************/
-
   public static final double HOPPER_MOTOR_FORWARD_SPEED = 1; // How fast to move conveyor belt forward
   public static final double HOPPER_MOTOR_BACKWARD_SPEED = 1; // How fast to move the conveyor belt forward
 
