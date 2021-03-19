@@ -27,11 +27,10 @@ public class TurretSubsystem extends SubsystemBase {
 
   /** Creates a new TurretSubsystem. */
   public TurretSubsystem() {
-
-    turretMotor = new Spark(Constants.PWM_PORT_TURRET_MOTOR); 
-    AnalogInput analogInput = new AnalogInput(0);
-    turretEncoder = new AnalogEncoder(analogInput);
-    //resetTurretEncoder();  //  Reset our encoder to zero when the subsystem is constructed.
+    turretMotor = new Spark(Constants.PWM_PORT_TURRET_MOTOR); //Init our turret motor
+    AnalogInput analogInput = new AnalogInput(0);  //  Use Analog port 0 for the encoder
+    turretEncoder = new AnalogEncoder(analogInput);  //Init our turret encoder
+    //THIS ENCODER IS AN ABSOLUTE ENCODER.  WE DO NOT RESET IT!!!
   }
 
   @Override
@@ -39,10 +38,11 @@ public class TurretSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
+  //  Move the Turret Motor Counter Clockwise, but keep checking to see if it has passed our max
+  //   Left Stop Encoder psotion
   public void setTurretMotorCounterClockwise(){ 
-
     if (getTurretEncoderPosition() > Constants.TURRET_LEFT_STOP_LOCATION_ENCODER_POSITION){
-      System.out.println("Current Position:  " + getTurretEncoderPosition());
+      //System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Negative speed to turn counter clockwise
       setTurretMotorSpeed(-1 * Constants.TURRET_MOTOR_SPEED);
     }
@@ -53,9 +53,10 @@ public class TurretSubsystem extends SubsystemBase {
     }
   }
 
+  //  Turn the Turret clockwise, but make sure it isn't beyond the right stop location
   public void setTurretMotorClockwise(){ 
     if (getTurretEncoderPosition() < Constants.TURRET_RIGHT_STOP_LOCATION_ENCODER_POSITION){
-      System.out.println("Current Position:  " + getTurretEncoderPosition());
+      //System.out.println("Current Position:  " + getTurretEncoderPosition());
       //  Positive speed to turn clockwise
       setTurretMotorSpeed(Constants.TURRET_MOTOR_SPEED);
     }
@@ -68,7 +69,7 @@ public class TurretSubsystem extends SubsystemBase {
 
   //set motor speed when on.  Used also for limelight aiming.
   public void setTurretMotorSpeed(double turretspeed){
-
+    //  If we are touching the left stop
     if (isTouchingLeftStop())
     {
       //  Set the InitalEncoderPosition to the left Manual Stop angle so that the scan will now
@@ -117,30 +118,6 @@ public class TurretSubsystem extends SubsystemBase {
     return turretEncoder.get();
   }  
 
-  //public double getTurretAngleFromEncoder(){
-  //  double currentEncoderPosition = getTurretEncoderPosition();
-  //  double angleFromEncoder = (currentEncoderPosition / Constants.TURRET_NUMBER_ENCODER_PULSES_PER_REVOLUTION) * 360;
-  //  System.out.println("Current Angle from Encoder:  " + angleFromEncoder);
-  //  return angleFromEncoder;
-  //}
-
-  //  This method returns a boolean of TRUE if we are in either side of the dead zone which is protected
-  //   by manual stops on the turret.   
-  //  We need this logic to protect our motors from burning out.
-  //public boolean isInDeadZone(){
-    //  If our turret angle is less than or equal to the angle of the right manual stop in degrees
-   // if (getTurretEncoderPosition() <= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_ENCODER_PULSE){
-   //  return true;
-   // }
-    //  If our turret angle is greater than or equal to the angle of the left manual stop in degrees
-   // else if (getTurretAngleFromEncoder() >= Constants.TURRET_LEFT_MANUAL_STOP_LOCATION_DEGREES){
-    //  return true;
-   // }
-    //  Else..   We are not in the Deadzone..   Return False
-   // else {
-    //  return false;
-   // }
- // }
 
   //  This method returns a boolean of TRUE if we are turning clockwise
   public boolean isTurningClockwise(double turretspeed){
@@ -183,6 +160,5 @@ public class TurretSubsystem extends SubsystemBase {
         return false;
     }   
   }
-
   
 }
