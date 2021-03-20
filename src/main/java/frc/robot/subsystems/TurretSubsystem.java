@@ -113,7 +113,7 @@ public class TurretSubsystem extends SubsystemBase {
 
   //  Return the Turret Encoder Position
   public double getTurretEncoderPosition(){
-    System.out.println("Current Position of Encoder:  " + turretEncoder.get());
+    //System.out.println("Current Position of Encoder:  " + turretEncoder.get());
     SmartDashboard.putNumber("Current Position:", turretEncoder.get());
     return turretEncoder.get();
   }  

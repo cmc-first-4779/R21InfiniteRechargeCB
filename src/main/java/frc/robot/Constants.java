@@ -109,9 +109,9 @@ public final class Constants {
 
   // **************** TURRET SETTINGS ****************/
   public static final double TURRET_MOTOR_SPEED = 0.2; // How fast to spin the turret to line-up to target
-  public static final double TURRET_MIN_AIM_SPEED = 0.1;
+  public static final double TURRET_MIN_AIM_SPEED = 0.15;
   public static final double TURRET_SPEED_P = 0.02;
-  public static final double TURRET_AIMING_DEADBAND = 1.5;  //degrees
+  public static final double TURRET_AIMING_DEADBAND = 1.25;  //degrees
   public static final int TURRET_AIMING_COUNTER = 10;  // Ten times trying to dial in
   
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
@@ -137,7 +137,7 @@ public final class Constants {
   public static final double LIMELIGHT_PIPELINE_PORT_CLOSE = 0; // Use the Upper Power Port Pipeline
   public static final double LIMELIGHT_PIPELINE_PORT_FAR = 1;  // from > 14 ft away
   public static final double LIMELIGHT_PIPELINE_POWERCELL = 0; //  to gobble up powercells.   Seperate limelight
-  public static final double LIMELIGHT_AIMING_DEADBAND = 2; // was 1.75 // How close do we have to be right or left of
+  public static final double LIMELIGHT_AIMING_DEADBAND = 1; // was 1.75 // How close do we have to be right or left of
                                                             // the target
   public static final double LIMELIGHT_AIMING_DISTANCE_TOLERANCE = 2; // Tolerance of degrees we want to be on target
   public static final double LIMELIGHT_AIMING_kpAim = 0.0040;
@@ -189,14 +189,14 @@ public final class Constants {
   public static final double SHOOTER_GREEN_ZONE_I = 0;
   public static final double SHOOTER_GREEN_ZONE_D = 0;
   public static final double SHOOTER_GREEN_ZONE_F = .05;
-  public static final double SHOOTER_RED_ZONE_P = 0.1;
+  public static final double SHOOTER_RED_ZONE_P = 0.125;
   public static final double SHOOTER_RED_ZONE_I = 0;
   public static final double SHOOTER_RED_ZONE_D = 0;
   public static final double SHOOTER_RED_ZONE_F = .048;
   public static final double SHOOTER_BLUE_ZONE_P = .1;
   public static final double SHOOTER_BLUE_ZONE_I = 0;
   public static final double SHOOTER_BLUE_ZONE_D = 0;
-  public static final double SHOOTER_BLUE_ZONE_F = .05;
+  public static final double SHOOTER_BLUE_ZONE_F = .048;
   public static final double SHOOTER_YELLOW_ZONE_P = .1;
   public static final double SHOOTER_YELLOW_ZONE_I = 0;
   public static final double SHOOTER_YELLOW_ZONE_D = 0;

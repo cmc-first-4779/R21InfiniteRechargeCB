@@ -90,7 +90,7 @@ public class ShootDaBallCommand extends CommandBase {
     // the RED zone)
     else if ((tY <= Constants.SHOOTER_ANGLE_BLUE_ZONE) && (tY > Constants.SHOOTER_ANGLE_RED_ZONE)) {
       //   Set the Vision Pipeline to use hardware zoom
-      limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_FAR);
+      limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
       velocity = Constants.SHOOTER_VELOCITY_BLUE_ZONE;
     }
     // Else if we are in the "Yellow" zone... (We also have to make sure we are NOT
@@ -132,7 +132,7 @@ public class ShootDaBallCommand extends CommandBase {
       case 3:
         velocity = (int) SmartDashboard.getNumber("BlueZoneVelocity", Constants.SHOOTER_BLUE_ZONE_VELOCITY);
         //   Set the Vision Pipeline to use hardware zoom
-        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_FAR);
+        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
         break;
       case 4:
         velocity = (int) SmartDashboard.getNumber("YellowZoneVelocity", Constants.SHOOTER_YELLOW_ZONE_VELOCITY);

@@ -119,7 +119,7 @@ public class RobotContainer {
 
     // Intake Commands
     // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
-    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
+    //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
     
@@ -135,7 +135,7 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kY.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_CLOSE, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem, m_intakeSubsystem));
 
-    //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
+    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
     //new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
 
     // Auton Commands

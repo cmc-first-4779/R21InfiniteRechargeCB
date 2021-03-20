@@ -23,7 +23,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
-    // setupSmartDashboard();
+    setupSmartDashboard();
 
     //  Init the motor controllers as Falcons
     shooterMotorMaster = new WPI_TalonFX(Constants.CAN_ADDRESS_SHOOTER_MASTER);
