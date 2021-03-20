@@ -17,7 +17,7 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.AutoCommands.BarnRunOne;
 import frc.robot.AutoCommands.BarnRunTwo;
 import frc.robot.AutoCommands.DriveAndPickup;
-import frc.robot.AutoCommands.GalacticSearchCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchCommand;
 import frc.robot.AutoCommands.HopperElevatorCommand;
 import frc.robot.AutoCommands.Path_A_Overall;
 import frc.robot.AutoCommands.Path_B_Overall;
