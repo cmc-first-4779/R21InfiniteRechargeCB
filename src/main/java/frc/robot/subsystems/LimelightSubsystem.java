@@ -201,9 +201,6 @@ public double returnTargetOffset()  {
     setLEDMode(LimelightConstants.LIMELIGHT_LEDMODE_ON);;
     //   Set the Camera mode to "Vision" so that the Vision can use it
     setCameraMode(LimelightConstants.LIMELIGHT_CAMMODE_VISION);
-    //   Set the Vision Pipeline to our default
-    setPipeline(Constants.LIMELIGHT_PIPELINE_POWERCELLPORT);
-
   }
 
     //   Adjust the Limelight settings for the driver mode

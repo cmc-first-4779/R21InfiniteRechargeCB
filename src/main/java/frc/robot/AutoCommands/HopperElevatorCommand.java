@@ -6,10 +6,7 @@ package frc.robot.AutoCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.ElevatorCommands.GoDownCommand;
-import frc.robot.commands.ElevatorCommands.GoUpCommand;
-import frc.robot.commands.HopperCommands.HopperGoBackwardCommand;
 import frc.robot.commands.HopperCommands.HopperGoForwardCommand;
-import frc.robot.commands.IntakeCommands.IntakeCellsCommand;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;

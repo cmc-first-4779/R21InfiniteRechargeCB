@@ -20,7 +20,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -62,12 +61,10 @@ public class DriveTrainSubsystem extends SubsystemBase {
     initMotorController(rightMotorSlave);
 
     // slaved rear motors to front motors
-    // leftMotorSlave.follow(leftMotorMaster);
-    // rightMotorSlave.follow(rightMotorMaster);
     leftMotorSlave.set(ControlMode.Follower, leftMotorMaster.getDeviceID());
     rightMotorSlave.set(ControlMode.Follower, rightMotorMaster.getDeviceID());
 
-    // Gnerally one side of our motors will need to be inverted. Use Pheonix Tuner
+    // Generally one side of our motors will need to be inverted. Use Pheonix Tuner
     // to figure out which side it is based on wanting the the bot to move forward
     // when given a postive voltage. We can tell the slaves to just use the
     // inversion of their master
@@ -79,7 +76,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     // Init the gyro/AHRS
     gyro = new AHRS(SPI.Port.kMXP);
-    resetGyro();
+    resetGyro(); //reset gyro
 
     // init the differential drive
     myDrive = new DifferentialDrive(leftMotorMaster, rightMotorMaster);
@@ -116,7 +113,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     leftMotorMaster.selectProfileSlot(0, 0);
     rightMotorMaster.selectProfileSlot(0, 0);
 
-    configMotionCruiseAndAcceleration(7000, 6000); //8000 6000
+    configMotionCruiseAndAcceleration(Constants.DRIVETRAIN_MM_VELOCITY, Constants.DRIVETRAIN_MM_ACCELERATION); //8000 6000
     configPeakVelocities(1.0, -1.0);
     configAllowableError(0, 100);
 
