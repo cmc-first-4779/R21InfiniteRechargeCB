@@ -34,10 +34,11 @@ public class GalacticSearchCommand extends SequentialCommandGroup {
       tx = ll.getTX();
       SmartDashboard.putNumber("Galactic TX", tx);
 
-      if (tx < Constants.GS_B3_MAX) {
-        path = "Path_B_Red";
-      } else if (tx < Constants.GS_C3_MAX && tx > Constants.GS_C3_MIN) {
+   
+      if (tx < Constants.GS_C3_MAX && tx > Constants.GS_C3_MIN) {
         path = "Path_A_Red";
+      } else if (tx < Constants.GS_B3_MAX) {
+        path = "Path_B_Red";
       } else if (tx < Constants.GS_D6_MAX && tx > Constants.GS_D6_MIN) {
         path = "Path_B_Blue";
       } else {
@@ -46,9 +47,8 @@ public class GalacticSearchCommand extends SequentialCommandGroup {
 
       SmartDashboard.putString("GalacticSearch", path);
       supplier = () -> path;
-    }), new SelectCommand(Map.ofEntries(Map.entry("Path_B_Red", new Path_B_RedCommand(dt)),
-        Map.entry("Path_A_Red", new Path_A_RedCommand(dt)), Map.entry("Path_B_Blue", new Path_B_BlueCommand(dt)),
-        Map.entry("Path_A_Blue", new Path_A_BlueCommand(dt))), supplier));
+    }), new SelectCommand(Map.ofEntries(Map.entry("Path_A_Red", new Path_A_RedCommand(dt)), Map.entry("Path_B_Red", new Path_B_RedCommand(dt)),
+         Map.entry("Path_B_Blue", new Path_B_BlueCommand(dt)), Map.entry("Path_A_Blue", new Path_A_BlueCommand(dt))), supplier));
 
   }
 
