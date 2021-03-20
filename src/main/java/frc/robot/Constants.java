@@ -76,8 +76,8 @@ public final class Constants {
   /**************** DRIVE TRAIN SETTINGS ***************************/
   /******************************************************************************* */
   public static final double DRIVERTRAIN_MM_WAIT_SECS = 1; // Let Motion Magic settle down
-  public static final double DRIVETRAIN_JOYSTICK_Y_THROTTLE = 0.6; // Throttle down the drive with joystick
-  public static final double DRIVETRAIN_JOYSTICK_X_THROTTLE = 0.7; // Throttle down the drive with joystick
+  public static final double DRIVETRAIN_JOYSTICK_Y_THROTTLE = 0.8; // Throttle down the drive with joystick
+  public static final double DRIVETRAIN_JOYSTICK_X_THROTTLE = 0.5; // Throttle down the drive with joystick
   public static final double DRIVETRAIN_WHEEL_DIAMETER = 6.0;
   public static final double DRIVETRAIN_GEAR_REDUCTION_RATIO = 7.31;
   public static final double DRIVETRAIN_ENCODER_TICKS_PER_ROTATION = 2048; // 80 for CIM, 4096 Redline encoder, 8192 for
