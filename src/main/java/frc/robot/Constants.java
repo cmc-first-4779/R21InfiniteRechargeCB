@@ -284,5 +284,12 @@ public final class Constants {
   public static final double kNeutralDeadband = 0.001;
 public static final double DRIVETRAIN_TURN_THRESHOLD = 2;
 
+// Galatic search constants
+public static final double GS_B3_MAX = 0;
+public static final double GS_C3_MAX = 12;
+public static final double GS_C3_MIN = 0;
+public static final double GS_D6_MAX = 20;
+public static final double GS_D6_MIN = 12;
+
 
 }

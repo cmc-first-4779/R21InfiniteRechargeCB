@@ -17,6 +17,7 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.AutoCommands.BarnRunOne;
 import frc.robot.AutoCommands.BarnRunTwo;
 import frc.robot.AutoCommands.DriveAndPickup;
+import frc.robot.AutoCommands.GalacticSearchCommand;
 import frc.robot.AutoCommands.HopperElevatorCommand;
 import frc.robot.AutoCommands.Path_A_Overall;
 import frc.robot.AutoCommands.Path_B_Overall;
@@ -67,6 +68,8 @@ import frc.robot.commands.LimelightCommands.LimelightInitForVisionCommand;
 public class RobotContainer {
    // The robot's subsystems and commands are defined here...
   
+  double tx; 
+  
   //  Subsystems
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final TurretSubsystem m_turretSubsystem = new TurretSubsystem();
@@ -107,6 +110,7 @@ public class RobotContainer {
 
     // Setup the CameraServer
     CameraServer.getInstance().startAutomaticCapture();
+
 
     //  DEFAULT COMMANDS FOR EACH SUBSYSTEM
     //This is where we make the DriveWithJoystick Command the default command for the DriveTrain
@@ -174,10 +178,12 @@ public class RobotContainer {
 
     // Auton Commands
     //new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
-    new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
-    new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
-    new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
+    // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
+    // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+
+    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchCommand(m_driveTrainSubsystem, m_limelightSubsystem));
 
   }
 
@@ -229,7 +235,17 @@ public class RobotContainer {
   //  Return the Shooter Subsystem
   public TurretSubsystem getTurretSubsystem(){
     return m_turretSubsystem;
-  }  
+  }
+
+  public double getTx() {
+    return tx;
+  }
+
+  public void setTx(double tx) {
+    this.tx = tx;
+  }
+
+
 
 }
     
