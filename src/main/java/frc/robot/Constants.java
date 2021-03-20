@@ -177,7 +177,7 @@ public final class Constants {
   // public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from
   // 12'6" to 17'6" from the target
   public static final int SHOOTER_DEFAULT_VELOCITY = 20000;
-  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 10000;
+  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 6825;
   public static final int SHOOTER_RED_ZONE_VELOCITY = 19500;
   public static final int SHOOTER_BLUE_ZONE_VELOCITY = 18500;
   public static final int SHOOTER_YELLOW_ZONE_VELOCITY = 17700;

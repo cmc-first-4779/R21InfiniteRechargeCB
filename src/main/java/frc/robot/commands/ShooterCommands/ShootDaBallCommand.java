@@ -117,11 +117,11 @@ public class ShootDaBallCommand extends CommandBase {
       case 0:
         velocity = (int) SmartDashboard.getNumber("DefaultVelocity", Constants.SHOOTER_DEFAULT_VELOCITY);
         //   Set the Vision Pipeline to use no zoom
-        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
+        // limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
         break;
       case 1:
         //   Set the Vision Pipeline to use no zoom
-        limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
+        // limelight.setPipeline(Constants.LIMELIGHT_PIPELINE_PORT_CLOSE);
         velocity = (int) SmartDashboard.getNumber("GreenZoneVelocity", Constants.SHOOTER_GREEN_ZONE_VELOCITY);
         break;
       case 2:
