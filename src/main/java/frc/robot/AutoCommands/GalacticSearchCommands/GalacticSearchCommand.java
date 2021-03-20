@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
@@ -34,7 +35,6 @@ public class GalacticSearchCommand extends SequentialCommandGroup {
       tx = ll.getTX();
       SmartDashboard.putNumber("Galactic TX", tx);
 
-   
       if (tx < Constants.GS_C3_MAX && tx > Constants.GS_C3_MIN) {
         path = "Path_A_Red";
       } else if (tx < Constants.GS_B3_MAX) {
@@ -47,8 +47,9 @@ public class GalacticSearchCommand extends SequentialCommandGroup {
 
       SmartDashboard.putString("GalacticSearch", path);
       supplier = () -> path;
-    }), new SelectCommand(Map.ofEntries(Map.entry("Path_A_Red", new Path_A_RedCommand(dt)), Map.entry("Path_B_Red", new Path_B_RedCommand(dt)),
-         Map.entry("Path_B_Blue", new Path_B_BlueCommand(dt)), Map.entry("Path_A_Blue", new Path_A_BlueCommand(dt))), supplier));
+    }), new SelectCommand(Map.ofEntries(Map.entry("Path_A_Red", new Path_A_RedCommand(dt)),
+        Map.entry("Path_B_Red", new Path_B_RedCommand(dt)), Map.entry("Path_B_Blue", new Path_B_BlueCommand(dt)),
+        Map.entry("Path_A_Blue", new Path_A_BlueCommand(dt))), supplier));
 
   }
 

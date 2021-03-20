@@ -4,6 +4,7 @@
 
 package frc.robot.AutoCommands.GalacticSearchCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -18,7 +19,7 @@ DriveTrainSubsystem m_driveTrainSubsystem;
   /** Creates a new RedBPathCommand. */
   public Path_B_RedCommand(DriveTrainSubsystem dt) {
     m_driveTrainSubsystem = dt;
-
+    SmartDashboard.putString("BRED", "Got into BRed");
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new DriveStraightCommand(m_driveTrainSubsystem, 20));

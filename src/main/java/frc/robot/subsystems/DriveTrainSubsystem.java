@@ -179,8 +179,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
     double tolerance = Constants.DRIVETRAIN_POSITION_TOLERANCE;
     double currentPos_L = leftMotorMaster.getSelectedSensorPosition();
     double currentPos_R = rightMotorMaster.getSelectedSensorPosition();
-    System.out.println("Current_L: " + currentPos_L);
-    System.out.println("Current_R: " + currentPos_R);
 
     return Math.abs(currentPos_L - target) < tolerance && Math.abs(currentPos_R - target) < tolerance;
   }
