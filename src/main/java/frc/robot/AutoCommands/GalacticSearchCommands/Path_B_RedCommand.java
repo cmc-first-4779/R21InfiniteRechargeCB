@@ -7,6 +7,8 @@ package frc.robot.AutoCommands.GalacticSearchCommands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
+import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
+import frc.robot.commands.DriveTrainCommands.TurnWithPIDCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -22,6 +24,17 @@ DriveTrainSubsystem m_driveTrainSubsystem;
     SmartDashboard.putString("BRED", "Got into BRed");
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new DriveStraightCommand(m_driveTrainSubsystem, 20));
+    addCommands(
+      new ResetDriveGyro(m_driveTrainSubsystem),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, -15),
+      new DriveStraightCommand(m_driveTrainSubsystem, 84),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 40),
+      new DriveStraightCommand(m_driveTrainSubsystem, 84),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, -40),
+      new DriveStraightCommand(m_driveTrainSubsystem, 84),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 15),
+      new DriveStraightCommand(m_driveTrainSubsystem, 108)); 
+
+      // new DriveStraightCommand(m_driveTrainSubsystem, 20));
   }
 }

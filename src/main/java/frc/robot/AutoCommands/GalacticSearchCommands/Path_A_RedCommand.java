@@ -7,6 +7,8 @@ package frc.robot.AutoCommands.GalacticSearchCommands;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
+import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
+import frc.robot.commands.DriveTrainCommands.TurnWithPIDCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -23,6 +25,15 @@ DriveTrainSubsystem m_driveTrainSubsystem;
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new PrintCommand("Inside Path A red addCommands"), new DriveStraightCommand(m_driveTrainSubsystem, 60));
+    addCommands(
+      new ResetDriveGyro(m_driveTrainSubsystem),
+      new DriveStraightCommand(m_driveTrainSubsystem, 60),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 27),
+      new DriveStraightCommand(m_driveTrainSubsystem, 72),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, -60),
+      new DriveStraightCommand(m_driveTrainSubsystem, 84),
+      new TurnWithPIDCommand(m_driveTrainSubsystem, 15),
+      new DriveStraightCommand(m_driveTrainSubsystem, 150)
+    );
   }
 }

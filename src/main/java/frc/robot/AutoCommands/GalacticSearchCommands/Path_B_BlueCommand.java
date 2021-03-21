@@ -4,8 +4,14 @@
 
 package frc.robot.AutoCommands.GalacticSearchCommands;
 
+import java.util.Timer;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
+import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
+import frc.robot.commands.DriveTrainCommands.TurnToAngleCommand;
+import frc.robot.commands.DriveTrainCommands.TurnWithPIDCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -21,6 +27,21 @@ DriveTrainSubsystem m_driveTrainSubsystem;
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new DriveStraightCommand(m_driveTrainSubsystem, 40));
+    addCommands(
+    new ResetDriveGyro(m_driveTrainSubsystem),
+    new TurnWithPIDCommand(m_driveTrainSubsystem, -3),
+    new DriveStraightCommand(m_driveTrainSubsystem, 216),
+    new TurnWithPIDCommand(m_driveTrainSubsystem, -27),
+    // new WaitCommand(.5),
+    new DriveStraightCommand(m_driveTrainSubsystem, -125),
+    new TurnWithPIDCommand(m_driveTrainSubsystem, 2),
+    new DriveStraightCommand(m_driveTrainSubsystem, 210));
+    // new TurnWithPIDCommand(m_driveTrainSubsystem, 10),
+    // new DriveStraightCommand(m_driveTrainSubsystem, 168),
+    // new TurnWithPIDCommand(m_driveTrainSubsystem, -34),
+    // new DriveStraightCommand(m_driveTrainSubsystem, 84),
+    // new TurnWithPIDCommand(m_driveTrainSubsystem, 41),
+    // new DriveStraightCommand(m_driveTrainSubsystem, 84));
+    // new DriveStraightCommand(m_driveTrainSubsystem, 40));
   }
 }

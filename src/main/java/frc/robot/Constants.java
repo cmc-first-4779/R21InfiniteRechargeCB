@@ -89,7 +89,7 @@ public final class Constants {
   public static final double DRIVETRAIN_TURN_KP = 0.003;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;
-  public static final int  DRIVETRAIN_MM_VELOCITY = 7000;
+  public static final int  DRIVETRAIN_MM_VELOCITY = 10000;
   public static final int  DRIVETRAIN_MM_ACCELERATION = 6000;
 
   // **************** HOPPER SETTINGS ****************/
@@ -279,10 +279,10 @@ public static final double DRIVETRAIN_TURN_THRESHOLD = 2;
 
 // Galatic search constants
 public static final double GS_B3_MAX = 0;
-public static final double GS_C3_MAX = 12;
+public static final double GS_C3_MAX = 7;
 public static final double GS_C3_MIN = 0;
-public static final double GS_D6_MAX = 20;
-public static final double GS_D6_MIN = 12;
+public static final double GS_D6_MAX = 18;
+public static final double GS_D6_MIN = 7;
 
 
 }

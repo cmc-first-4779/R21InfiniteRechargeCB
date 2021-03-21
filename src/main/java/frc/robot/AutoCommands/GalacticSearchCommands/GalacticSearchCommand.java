@@ -23,7 +23,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GalacticSearchCommand extends SequentialCommandGroup {
   double tx;
-  Supplier<Object> supplier = () -> "";
+  // Supplier<Object> supplier = () -> "";
   Supplier<PathSelector> selector = () -> PathSelector.ARED;
 
   private enum PathSelector {

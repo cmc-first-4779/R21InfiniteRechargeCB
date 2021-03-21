@@ -15,11 +15,16 @@ import frc.robot.subsystems.BlingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchWithIntake;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_A_BlueCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_A_RedCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_B_BlueCommand;
 import frc.robot.AutoCommands.GalacticSearchCommands.Path_B_RedCommand;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
 import frc.robot.commands.BlingCommands.BlingSetDefaultCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStopCommand;
 import frc.robot.commands.DriveTrainCommands.DriveWithJoystickCommand;
+import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
 import frc.robot.commands.ElevatorCommands.StopElevatorCommand;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterCommands.ShooterOffCommand;
@@ -31,6 +36,7 @@ import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.commands.HopperCommands.StopHopperCommand;
+import frc.robot.commands.IntakeCommands.ExtendIntakeCommand;
 import frc.robot.commands.IntakeCommands.IntakeStopCommand;
 import frc.robot.commands.IntakeCommands.RetractIntakeCommand;
 import frc.robot.commands.LimelightCommands.LimelightInitForVisionCommand;
@@ -120,7 +126,7 @@ public class RobotContainer {
 
     //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new DriveStraightCommand(m_driveTrainSubsystem, 180));
     //new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new TurnToAngleCommand(m_driveTrainSubsystem, 10, -45));
-    // new JoystickButton(m_driverStick, Button.kB.value).whileHeld(new DriveStopCommand(m_driveTrainSubsystem));
+    new JoystickButton(m_driverStick, Button.kB.value).whileHeld(new DriveStopCommand(m_driveTrainSubsystem));
 
     //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(shooterOnCommand);
     // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(shooterOffCommand);
@@ -128,8 +134,8 @@ public class RobotContainer {
 
 
     // Intake Commands
-    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
-    //new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(retractIntakeCommand);
+    // new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(intakeCellsCommand);
+    new JoystickButton(m_driverStick, Button.kBack.value).whenPressed(retractIntakeCommand);
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
     
@@ -145,19 +151,21 @@ public class RobotContainer {
     // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kY.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_CLOSE, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem, m_intakeSubsystem));
 
-    new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new ShooterOnCommand(m_shooterSubsystem));
-    new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new ShooterOffCommand(m_shooterSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new ShooterOnCommand(m_shooterSubsystem));
+    // new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new ShooterOffCommand(m_shooterSubsystem));
 
     // Auton Commands
     //new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
     // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
     // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
     // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
-    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+    new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
 
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchCommand(m_driveTrainSubsystem, m_limelightSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new Path_B_RedCommand(m_driveTrainSubsystem));
-
+    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchWithIntake(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem));
+    // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new Path_B_RedCommand(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_RedCommand(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new Path_A_BlueCommand(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new Path_B_BlueCommand(m_driveTrainSubsystem));
 
   }
 
