@@ -59,6 +59,16 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
     // When disabled, we want the robot drivetrain motor controllers in "Coast" mode.
     m_robotContainer.getDriveTrainSubsystem().setNeutralMode(NeutralMode.Coast);
+    //  Stop the hopper on a disable
+    m_robotContainer.getHopperSubsystem().stop();
+    //  Stop the elevator on a disable
+    m_robotContainer.getElevatorSubsystem().stopElevator();
+    //  Stop the shooter on a disable
+    m_robotContainer.getShooterSubsystem().stopMotor();
+    //  Stop the turret on a disable
+    m_robotContainer.getTurretSubsystem().stopTurret();
+    // Stop the Intake roller on a disable
+    m_robotContainer.getIntakeSubsystem().stopIntakeRoller();
   }
 
   @Override
