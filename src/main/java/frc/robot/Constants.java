@@ -89,7 +89,7 @@ public final class Constants {
   public static final double DRIVETRAIN_TURN_KP = 0.003;
   public static final double DRIVETRAIN_STABILIZE_WAIT_TIME_SECS = 0.25;
   public static double DRIVETRAIN_POSITION_TOLERANCE = 150;
-  public static final int  DRIVETRAIN_MM_VELOCITY = 7000;
+  public static final int  DRIVETRAIN_MM_VELOCITY = 10000;
   public static final int  DRIVETRAIN_MM_ACCELERATION = 6000;
 
   // **************** HOPPER SETTINGS ****************/
@@ -176,28 +176,28 @@ public final class Constants {
   public static final int SHOOTER_VELOCITY_BLUE_ZONE = 18000; // Shooting from 12'6" to 17'6" from the target
   // public static final int SHOOTER_VELOCITY_BLUE_ZONE = 19500; // Shooting from
   // 12'6" to 17'6" from the target
-  public static final int SHOOTER_DEFAULT_VELOCITY = 20000;
-  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 6825;
+  public static final int SHOOTER_DEFAULT_VELOCITY = 19500;
+  public static final int SHOOTER_GREEN_ZONE_VELOCITY = 10000;
   public static final int SHOOTER_RED_ZONE_VELOCITY = 19500;
   public static final int SHOOTER_BLUE_ZONE_VELOCITY = 18500;
   public static final int SHOOTER_YELLOW_ZONE_VELOCITY = 17700;
-  public static final double SHOOTER_DEFAULT_P = .1; // Default value of kP for shooter PID
-  public static final double SHOOTER_DEFAULT_I = 0; // Default value of kI for shooter PID
+  public static final double SHOOTER_DEFAULT_P = .2; // Default value of kP for shooter PID
+  public static final double SHOOTER_DEFAULT_I = .00; // Default value of kI for shooter PID
   public static final double SHOOTER_DEFAULT_D = 0; // Default value of kD for shooter PID
-  public static final double SHOOTER_DEFAULT_F = .05; // Default value of kF for shooter PID
-  public static final double SHOOTER_GREEN_ZONE_P = .1;
+  public static final double SHOOTER_DEFAULT_F = .0485; // Default value of kF for shooter PID
+  public static final double SHOOTER_GREEN_ZONE_P = .2;
   public static final double SHOOTER_GREEN_ZONE_I = 0;
   public static final double SHOOTER_GREEN_ZONE_D = 0;
   public static final double SHOOTER_GREEN_ZONE_F = .05;
-  public static final double SHOOTER_RED_ZONE_P = 0.125;
+  public static final double SHOOTER_RED_ZONE_P = 0.5;
   public static final double SHOOTER_RED_ZONE_I = 0;
   public static final double SHOOTER_RED_ZONE_D = 0;
-  public static final double SHOOTER_RED_ZONE_F = .048;
+  public static final double SHOOTER_RED_ZONE_F = .0485;
   public static final double SHOOTER_BLUE_ZONE_P = .1;
   public static final double SHOOTER_BLUE_ZONE_I = 0;
   public static final double SHOOTER_BLUE_ZONE_D = 0;
   public static final double SHOOTER_BLUE_ZONE_F = .048;
-  public static final double SHOOTER_YELLOW_ZONE_P = .1;
+  public static final double SHOOTER_YELLOW_ZONE_P = .5;
   public static final double SHOOTER_YELLOW_ZONE_I = 0;
   public static final double SHOOTER_YELLOW_ZONE_D = 0;
   public static final double SHOOTER_YELLOW_ZONE_F = .05;
@@ -276,6 +276,13 @@ public final class Constants {
 
   public static final double kNeutralDeadband = 0.001;
 public static final double DRIVETRAIN_TURN_THRESHOLD = 2;
+
+// Galatic search constants
+public static final double GS_B3_MAX = 0;
+public static final double GS_C3_MAX = 7;
+public static final double GS_C3_MIN = 0;
+public static final double GS_D6_MAX = 18;
+public static final double GS_D6_MIN = 7;
 
 
 }

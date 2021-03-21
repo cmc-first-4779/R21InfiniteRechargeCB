@@ -99,7 +99,8 @@ public class TurretSubsystem extends SubsystemBase {
 
   //  Stop the turret by setting the motor speed to zero
   public void stopTurret(){
-    setTurretMotorSpeed(0);
+    // setTurretMotorSpeed(0);
+    turretMotor.set(0);
   }
 
   //  Reset the Turret Encoders distance to zero.   We need to run this at the start of match

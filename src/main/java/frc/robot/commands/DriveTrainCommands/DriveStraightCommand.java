@@ -15,7 +15,7 @@ import frc.robot.subsystems.DriveTrainSubsystem;
 public class DriveStraightCommand extends CommandBase {
   DriveTrainSubsystem m_driveTrain;
   double m_distance; // Position in sensor units
-  int counter = 0;  //  Set counter to zero
+  int counter = 0; // Set counter to zero
   boolean firstTime = true; // Flag for knowing if this is first time running again.
 
   /**
@@ -39,6 +39,8 @@ public class DriveStraightCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    SmartDashboard.putString("DriveStraight", "Made it into DriveStraight");
     // Zero out our Encoders
     m_driveTrain.zeroEncoders();
 
@@ -55,11 +57,10 @@ public class DriveStraightCommand extends CommandBase {
     }
 
     if (m_driveTrain.motionMagicOnTargetDrive(m_distance)) {
-      System.out.println("on target " + counter);
       counter++;
     } else {
       counter = 0;
-      // System.out.println("MM not on target");
+
     }
   }
 

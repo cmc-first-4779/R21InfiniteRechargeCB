@@ -72,6 +72,9 @@ public class ShooterSubsystem extends SubsystemBase {
     falcon.configNominalOutputReverse(0, Constants.kTimeoutMs_Velocity);
     falcon.configPeakOutputForward(1, Constants.kTimeoutMs_Velocity);
     falcon.configPeakOutputReverse(1, Constants.kTimeoutMs_Velocity);
+    falcon.config_IntegralZone(0, 300);
+    falcon.config_IntegralZone(1, 300);
+    
   }
 
    //   This is there we set up the Falcon Slave controller settings so that it is in a 

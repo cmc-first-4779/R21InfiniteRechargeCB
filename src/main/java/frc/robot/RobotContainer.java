@@ -9,18 +9,27 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.BlingSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchWithIntake;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_A_BlueCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_A_RedCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_B_BlueCommand;
+import frc.robot.AutoCommands.GalacticSearchCommands.Path_B_RedCommand;
 import frc.robot.StaticConstants.XBoxJoystickConstants;
 import frc.robot.commands.BlingCommands.BlingSetDefaultCommand;
 import frc.robot.commands.DriveTrainCommands.DriveStopCommand;
 import frc.robot.commands.DriveTrainCommands.DriveWithJoystickCommand;
+import frc.robot.commands.DriveTrainCommands.ResetDriveGyro;
 import frc.robot.commands.ElevatorCommands.StopElevatorCommand;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterCommands.ShootDaBallCommand;
 import frc.robot.commands.ShooterCommands.ShooterOffCommand;
+import frc.robot.commands.ShooterCommands.ShooterOnCommand;
 import frc.robot.subsystems.TurretSubsystem;
 import frc.robot.commands.TurretCommands.TurretScanAndAimSeqCommand;
 import frc.robot.commands.TurretCommands.StopTurretCommand;
@@ -43,6 +52,8 @@ import frc.robot.commands.LimelightCommands.LimelightInitForVisionCommand;
  */
 public class RobotContainer {
    // The robot's subsystems and commands are defined here...
+  
+  double tx; 
   
   //  Subsystems
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
@@ -76,6 +87,7 @@ public class RobotContainer {
     // Setup the CameraServer
     //CameraServer.getInstance().startAutomaticCapture();
 
+
     //  DEFAULT COMMANDS FOR EACH SUBSYSTEM
     //This is where we make the DriveWithJoystick Command the default command for the DriveTrain
     //  Drivetrain Default:  Drive with Joystick   
@@ -95,6 +107,9 @@ public class RobotContainer {
     //  Intake Default:  Intake Off
     m_intakeSubsystem.setDefaultCommand(intakeStopCommand);
 
+
+    SmartDashboard.putData(m_driveTrainSubsystem);
+    SmartDashboard.putData(m_turretSubsystem);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -120,8 +135,10 @@ public class RobotContainer {
 
 
     // Intake Commands
+
     // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
     new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(retractIntakeCommand);
+
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
     
@@ -131,21 +148,27 @@ public class RobotContainer {
     //new JoystickButton(m_driverStick, Button.kStart.value).whileHeld(new TurretMotorClockwiseCommand(m_turretSubsystem));
     //new JoystickButton(m_driverStick, Button.kBack.value).whileHeld(new HopperGoForwardCommand(m_hopperSubsystem));
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanForTargetCommand(m_turretSubsystem, m_limelightSubsystem, 0, m_blingSubsystem));
-    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new ShootDaBallCommand(Button.kA.value, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem, m_limelightSubsystem));
-    //new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kB.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_FAR, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
-    //new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kX.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_FAR, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
-    //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kY.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_CLOSE, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kA.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_CLOSE, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    // new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kB.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_FAR, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kX.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_FAR, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
+    // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurretScanAndAimSeqCommand(Button.kY.value, m_turretSubsystem, m_limelightSubsystem, Constants.LIMELIGHT_PIPELINE_PORT_CLOSE, m_blingSubsystem, m_shooterSubsystem, m_elevatorSubsystem, m_hopperSubsystem));
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem, m_intakeSubsystem));
 
-    // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
-   //new JoystickButton(m_driverStick, Button.kBumperRight.value).whileHeld(new ShooterOffCommand(m_shooterSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new ShooterOnCommand(m_shooterSubsystem));
+    // new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new ShooterOffCommand(m_shooterSubsystem));
 
     // Auton Commands
     //new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new Path_B_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
-    //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
-    //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
-    //new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
+    // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
+    // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
+    new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+
+    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchWithIntake(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem));
+    // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new Path_B_RedCommand(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_RedCommand(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new Path_A_BlueCommand(m_driveTrainSubsystem));
+    // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new Path_B_BlueCommand(m_driveTrainSubsystem));
 
   }
 
@@ -197,7 +220,17 @@ public class RobotContainer {
   //  Return the Shooter Subsystem
   public TurretSubsystem getTurretSubsystem(){
     return m_turretSubsystem;
-  }  
+  }
+
+  public double getTx() {
+    return tx;
+  }
+
+  public void setTx(double tx) {
+    this.tx = tx;
+  }
+
+
 
 }
     
