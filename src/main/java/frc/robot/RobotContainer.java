@@ -102,6 +102,7 @@ public class RobotContainer {
 
 
     SmartDashboard.putData(m_driveTrainSubsystem);
+    SmartDashboard.putData(m_turretSubsystem);
 
     // Configure the button bindings
     configureButtonBindings();

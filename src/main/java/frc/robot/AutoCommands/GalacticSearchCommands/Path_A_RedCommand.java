@@ -4,6 +4,7 @@
 
 package frc.robot.AutoCommands.GalacticSearchCommands;
 
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveTrainCommands.DriveStraightCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -18,9 +19,10 @@ DriveTrainSubsystem m_driveTrainSubsystem;
   /** Creates a new RedBPathCommand. */
   public Path_A_RedCommand(DriveTrainSubsystem dt) {
     m_driveTrainSubsystem = dt;
+    System.out.println("Insided Path_A_RedCommand");
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new DriveStraightCommand(m_driveTrainSubsystem, 60));
+    addCommands(new PrintCommand("Inside Path A red addCommands"), new DriveStraightCommand(m_driveTrainSubsystem, 60));
   }
 }
