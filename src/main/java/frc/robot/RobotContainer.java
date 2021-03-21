@@ -16,6 +16,7 @@ import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchCommand;
 import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchWithIntake;
+import frc.robot.AutoCommands.GalacticSearchCommands.GalacticSearchWithRetract;
 import frc.robot.AutoCommands.GalacticSearchCommands.Path_A_BlueCommand;
 import frc.robot.AutoCommands.GalacticSearchCommands.Path_A_RedCommand;
 import frc.robot.AutoCommands.GalacticSearchCommands.Path_B_BlueCommand;
@@ -137,7 +138,7 @@ public class RobotContainer {
     // Intake Commands
 
     // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(intakeCellsCommand);
-    new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(retractIntakeCommand);
+    new JoystickButton(m_driverStick, Button.kB.value).whenPressed(new DriveStopCommand(m_driveTrainSubsystem));
 
     //new JoystickButton(m_driverStick, Button.kX.value).whileHeld(new HopperElevatorCommand(m_hopperSubsystem, m_elevatorSubsystem,
     //    m_intakeSubsystem));
@@ -164,7 +165,7 @@ public class RobotContainer {
     // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
     new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
 
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchWithIntake(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem));
+    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchWithRetract(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem));
     // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new Path_B_RedCommand(m_driveTrainSubsystem));
     // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_RedCommand(m_driveTrainSubsystem));
     // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new Path_A_BlueCommand(m_driveTrainSubsystem));

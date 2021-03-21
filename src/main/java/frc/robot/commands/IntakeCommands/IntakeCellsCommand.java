@@ -33,9 +33,9 @@ public class IntakeCellsCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //if (myTimer.get() >= 1) {
+    if (myTimer.get() >= 1) {
       m_intakeSubsystem.startIntakeRoller(Constants.INTAKE_MOTOR_SPEED);
-    //}
+    }
   }
 
   // Called once the command ends or is interrupted.
