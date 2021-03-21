@@ -4,6 +4,7 @@
 
 package frc.robot.AutoCommands.GalacticSearchCommands;
 
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -26,15 +27,12 @@ public class GalacticSearchCommand extends SequentialCommandGroup {
   Supplier<PathSelector> selector = () -> PathSelector.ARED;
 
   private enum PathSelector {
-    ARED,
-    ABLUE,
-    BRED,
-    BBLUE
+    ARED, ABLUE, BRED, BBLUE, NOPATH
   }
 
   private PathSelector select() {
     return selector.get();
-  } 
+  }
 
   /** Creates a new GalacticSearch Command */
   public GalacticSearchCommand(DriveTrainSubsystem dt, LimelightSubsystem ll) {
@@ -42,40 +40,43 @@ public class GalacticSearchCommand extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
 
     addCommands(new InstantCommand(() -> {
-      final String path;
-
       if (RobotBase.isSimulation()) {
-        path = "Path_A_Red";
+        selector = () -> PathSelector.ARED;
       } else {
         // Get tx
         tx = ll.getTX();
         SmartDashboard.putNumber("Galactic TX", tx);
 
-        if (tx < Constants.GS_C3_MAX && tx > Constants.GS_C3_MIN) {
-          path = "Path_A_Red";
-          selector = () -> PathSelector.ARED;
-        } else if (tx < Constants.GS_B3_MAX) {
-          path = "Path_B_Red";
-          selector = () -> PathSelector.BRED;
-        } else if (tx < Constants.GS_D6_MAX && tx > Constants.GS_D6_MIN) {
-          path = "Path_B_Blue";
-          selector = () -> PathSelector.BBLUE;
+        if (ll.hasTarget()) {
+          if (tx < Constants.GS_C3_MAX && tx > Constants.GS_C3_MIN) {
+            selector = () -> PathSelector.ARED;
+            SmartDashboard.putString("GalacticSearch", "Path_A_Red");
+          } else if (tx < Constants.GS_B3_MAX) {
+            selector = () -> PathSelector.BRED;
+            SmartDashboard.putString("GalacticSearch", "Path_B_Red");
+          } else if (tx < Constants.GS_D6_MAX && tx > Constants.GS_D6_MIN) {
+            selector = () -> PathSelector.BBLUE;
+            SmartDashboard.putString("GalacticSearch", "Path_B_Blue");
+          } else {
+            selector = () -> PathSelector.ABLUE;
+            SmartDashboard.putString("GalacticSearch", "Path_A_Blue");
+          }
         } else {
-          path = "Path_A_BLUE";
-          selector = () -> PathSelector.ABLUE;
+          SmartDashboard.putString("GalacticSearch", "No Target Detected");
+          selector = ()-> PathSelector.NOPATH;
+
         }
       }
-      SmartDashboard.putString("GalacticSearch", path);
-      supplier = () -> path;
-    }), 
-    // new SelectCommand(Map.ofEntries(Map.entry("Path_A_Red", new Path_A_RedCommand(dt)),
-    //     Map.entry("Path_B_Red", new Path_B_RedCommand(dt)), Map.entry("Path_B_Blue", new Path_B_BlueCommand(dt)),
-    //     Map.entry("Path_A_Blue", new Path_A_BlueCommand(dt))), supplier),
-        new SelectCommand(Map.ofEntries(
-          Map.entry(PathSelector.ARED, new Path_A_RedCommand(dt)),
-          Map.entry(PathSelector.BRED, new Path_B_RedCommand(dt))
-          ), this::select) 
-        ,new PrintCommand("After Seclect Command"));
+    }),
+        // new SelectCommand(Map.ofEntries(Map.entry("Path_A_Red", new
+        // Path_A_RedCommand(dt)),
+        // Map.entry("Path_B_Red", new Path_B_RedCommand(dt)), Map.entry("Path_B_Blue",
+        // new Path_B_BlueCommand(dt)),
+        // Map.entry("Path_A_Blue", new Path_A_BlueCommand(dt))), supplier),
+        new SelectCommand(Map.ofEntries(Map.entry(PathSelector.ARED, new Path_A_RedCommand(dt)),
+            Map.entry(PathSelector.BRED, new Path_B_RedCommand(dt)),
+            Map.entry(PathSelector.ABLUE, new Path_A_BlueCommand(dt)),
+            Map.entry(PathSelector.BBLUE, new Path_B_BlueCommand(dt))), this::select));
 
   }
 
