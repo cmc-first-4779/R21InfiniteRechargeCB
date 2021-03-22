@@ -131,7 +131,7 @@ public class RobotContainer {
     //new JoystickButton(m_driverStick, Button.kB.value).whileHeld(new DriveStopCommand(m_driveTrainSubsystem));
 
     //new JoystickButton(m_driverStick, Button.kA.value).whenPressed(shooterOnCommand);
-    // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(shooterOffCommand);
+    new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(shooterOffCommand);
     //new JoystickButton(m_driverStick, Button.kY.value).whenPressed(shootDaBallCommand);
 
 
@@ -163,9 +163,9 @@ public class RobotContainer {
     // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_Overall(m_driveTrainSubsystem, m_intakeSubsystem));
     // new JoystickButton(m_driverStick, Button.kY.value).whenPressed(new TurnWithPIDCommand(m_driveTrainSubsystem, -30));
     // new JoystickButton(m_driverStick, Button.kX.value).whenPressed(new ResetDriveGyro(m_driveTrainSubsystem));
-    new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
+    //new JoystickButton(m_driverStick, Button.kStart.value).whenPressed(new ExtendIntakeCommand(m_intakeSubsystem));
 
-    new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchWithRetract(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem));
+    //new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new GalacticSearchWithRetract(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem));
     // new JoystickButton(m_driverStick, Button.kBumperLeft.value).whenPressed(new Path_B_RedCommand(m_driveTrainSubsystem));
     // new JoystickButton(m_driverStick, Button.kA.value).whenPressed(new Path_A_RedCommand(m_driveTrainSubsystem));
     // new JoystickButton(m_driverStick, Button.kBumperRight.value).whenPressed(new Path_A_BlueCommand(m_driveTrainSubsystem));
@@ -180,7 +180,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new GalacticSearchWithRetract(m_driveTrainSubsystem, m_intakeSubsystem, m_limelightSubsystem);
   }
 
   //  Return the Drivetrian Subsystem
