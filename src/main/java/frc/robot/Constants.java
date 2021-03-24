@@ -76,8 +76,8 @@ public final class Constants {
   /**************** DRIVE TRAIN SETTINGS ***************************/
   /******************************************************************************* */
   public static final double DRIVERTRAIN_MM_WAIT_SECS = 1; // Let Motion Magic settle down
-  public static final double DRIVETRAIN_JOYSTICK_Y_THROTTLE = 1.8; // Throttle down the drive with joystick
-  public static final double DRIVETRAIN_JOYSTICK_X_THROTTLE = 0.6; // Throttle down the drive with joystick
+  public static final double DRIVETRAIN_JOYSTICK_Y_THROTTLE = 0.6; // Throttle down the drive with joystick
+  public static final double DRIVETRAIN_JOYSTICK_X_THROTTLE = 0.45; // Throttle down the drive with joystick
   public static final double DRIVETRAIN_WHEEL_DIAMETER = 6.0;
   public static final double DRIVETRAIN_GEAR_REDUCTION_RATIO = 7.31;
   public static final double DRIVETRAIN_ENCODER_TICKS_PER_ROTATION = 2048; // 80 for CIM, 4096 Redline encoder, 8192 for
@@ -93,8 +93,8 @@ public final class Constants {
   public static final int  DRIVETRAIN_MM_ACCELERATION = 6000;
 
   // **************** HOPPER SETTINGS ****************/
-  public static final double HOPPER_MOTOR_FORWARD_SPEED = 1; // How fast to move conveyor belt forward
-  public static final double HOPPER_MOTOR_BACKWARD_SPEED = 1; // How fast to move the conveyor belt forward
+  public static final double HOPPER_MOTOR_FORWARD_SPEED = .7; // How fast to move conveyor belt forward
+  public static final double HOPPER_MOTOR_BACKWARD_SPEED = .7; // How fast to move the conveyor belt forward
 
   // **************** INTAKE SETTINGS ****************/
   public static final double INTAKE_MOTOR_SPEED = 1.0; // How fast to spin the rollers to intake a ball
@@ -111,7 +111,7 @@ public final class Constants {
   public static final double TURRET_MOTOR_SPEED = 0.2; // How fast to spin the turret to line-up to target
   public static final double TURRET_MIN_AIM_SPEED = 0.15;
   public static final double TURRET_SPEED_P = 0.02;
-  public static final double TURRET_AIMING_DEADBAND = 1.25;  //degrees
+  public static final double TURRET_AIMING_DEADBAND = .75;  //degrees
   public static final int TURRET_AIMING_COUNTER = 10;  // Ten times trying to dial in
   
   public static final int TURRET_ANALOG_ENCODER_PORT = 0; // The analog port number to plug the turret encoder into on
@@ -178,8 +178,8 @@ public final class Constants {
   // 12'6" to 17'6" from the target
   public static final int SHOOTER_DEFAULT_VELOCITY = 19500;
   public static final int SHOOTER_GREEN_ZONE_VELOCITY = 6450;
-  public static final int SHOOTER_RED_ZONE_VELOCITY = 18700;
-  public static final int SHOOTER_BLUE_ZONE_VELOCITY = 18000;
+  public static final int SHOOTER_RED_ZONE_VELOCITY = 18000;  //18700;
+  public static final int SHOOTER_BLUE_ZONE_VELOCITY = 17700; //18000;
   public static final int SHOOTER_YELLOW_ZONE_VELOCITY = 17700;
   public static final double SHOOTER_DEFAULT_P = .2; // Default value of kP for shooter PID
   public static final double SHOOTER_DEFAULT_I = .00; // Default value of kI for shooter PID
